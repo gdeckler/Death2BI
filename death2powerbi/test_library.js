@@ -1,0 +1,18 @@
+const assert=require('node:assert/strict');
+const ReportLibrary=require('./report-library.js');
+const storage={data:new Map(),setItem(k,v){this.data.set(k,v)},getItem(k){return this.data.get(k)}};
+let lib=new ReportLibrary(storage);
+const a={id:'first',name:'Same.pbix',createdAt:'2026-01-01',pages:[{name:'A'}]};
+const b={id:'second',name:'Same.pbix',createdAt:'2026-01-02',pages:[{name:'B'}]};
+lib.add(a);lib.select(a.id);lib.add(b);lib.select(b.id);
+assert.equal(lib.list().length,2);assert.equal(lib.select(a.id).pages[0].name,'A');
+lib=new ReportLibrary(storage);assert.equal(lib.load([a,b]).id,a.id);
+assert.equal(lib.list().length,2);
+assert.equal(lib.load([b]).id,b.id);
+const blocked=new ReportLibrary({getItem(){throw Error()},setItem(){throw Error()}});
+assert.equal(blocked.load([a,b]).id,b.id);
+console.log('PASS: multiple imports, duplicate filenames, switching, selection persistence, missing report fallback, unavailable localStorage');
+lib.load([a,b]);lib.select(a.id);assert.equal(lib.remove(a.id).id,b.id);
+assert.equal(lib.list().length,1);lib.remove(b.id);assert.equal(lib.active,'demo');
+assert.equal(lib.list().length,0);
+console.log('PASS: deletion selects remaining report; deleting last report falls back to example');

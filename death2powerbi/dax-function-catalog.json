@@ -1,0 +1,2329 @@
+{
+  "reference": "https://learn.microsoft.com/en-us/dax/dax-function-reference",
+  "reviewed": "2026-10-17",
+  "implementedCount": 186,
+  "functions": [
+    {
+      "name": "DISTINCT",
+      "family": "Table manipulation",
+      "minArgs": 1,
+      "maxArgs": 1,
+      "category": "Table manipulation",
+      "status": "implemented-bounded",
+      "reference": "https://learn.microsoft.com/en-us/dax/distinct-function-dax"
+    },
+    {
+      "name": "APPROXIMATEDISTINCTCOUNT",
+      "category": "aggregation",
+      "reference": "https://learn.microsoft.com/en-us/dax/approximate-distinctcount-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "AVERAGE",
+      "category": "aggregation",
+      "reference": "https://learn.microsoft.com/en-us/dax/average-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "AVERAGEA",
+      "category": "aggregation",
+      "reference": "https://learn.microsoft.com/en-us/dax/averagea-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "AVERAGEX",
+      "category": "aggregation",
+      "reference": "https://learn.microsoft.com/en-us/dax/averagex-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "COUNT",
+      "category": "aggregation",
+      "reference": "https://learn.microsoft.com/en-us/dax/count-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "COUNTA",
+      "category": "aggregation",
+      "reference": "https://learn.microsoft.com/en-us/dax/counta-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "COUNTAX",
+      "category": "aggregation",
+      "reference": "https://learn.microsoft.com/en-us/dax/countax-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "COUNTBLANK",
+      "category": "aggregation",
+      "reference": "https://learn.microsoft.com/en-us/dax/countblank-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "COUNTROWS",
+      "category": "aggregation",
+      "reference": "https://learn.microsoft.com/en-us/dax/countrows-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "COUNTX",
+      "category": "aggregation",
+      "reference": "https://learn.microsoft.com/en-us/dax/countx-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "DISTINCTCOUNT",
+      "category": "aggregation",
+      "reference": "https://learn.microsoft.com/en-us/dax/distinctcount-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "DISTINCTCOUNTNOBLANK",
+      "category": "aggregation",
+      "reference": "https://learn.microsoft.com/en-us/dax/distinctcountnoblank-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "MAX",
+      "category": "aggregation",
+      "reference": "https://learn.microsoft.com/en-us/dax/max-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "MAXA",
+      "category": "aggregation",
+      "reference": "https://learn.microsoft.com/en-us/dax/maxa-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "MAXX",
+      "category": "aggregation",
+      "reference": "https://learn.microsoft.com/en-us/dax/maxx-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "MIN",
+      "category": "aggregation",
+      "reference": "https://learn.microsoft.com/en-us/dax/min-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "MINA",
+      "category": "aggregation",
+      "reference": "https://learn.microsoft.com/en-us/dax/mina-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "MINX",
+      "category": "aggregation",
+      "reference": "https://learn.microsoft.com/en-us/dax/minx-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "PRODUCT",
+      "category": "aggregation",
+      "reference": "https://learn.microsoft.com/en-us/dax/product-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "PRODUCTX",
+      "category": "aggregation",
+      "reference": "https://learn.microsoft.com/en-us/dax/productx-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "SUM",
+      "category": "aggregation",
+      "reference": "https://learn.microsoft.com/en-us/dax/sum-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "SUMX",
+      "category": "aggregation",
+      "reference": "https://learn.microsoft.com/en-us/dax/sumx-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "CALENDAR",
+      "category": "date-and-time",
+      "reference": "https://learn.microsoft.com/en-us/dax/calendar-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "CALENDARAUTO",
+      "category": "date-and-time",
+      "reference": "https://learn.microsoft.com/en-us/dax/calendarauto-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "DATE",
+      "category": "date-and-time",
+      "reference": "https://learn.microsoft.com/en-us/dax/date-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "DATEDIFF",
+      "category": "date-and-time",
+      "reference": "https://learn.microsoft.com/en-us/dax/datediff-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "DATEVALUE",
+      "category": "date-and-time",
+      "reference": "https://learn.microsoft.com/en-us/dax/datevalue-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "DAY",
+      "category": "date-and-time",
+      "reference": "https://learn.microsoft.com/en-us/dax/day-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "EDATE",
+      "category": "date-and-time",
+      "reference": "https://learn.microsoft.com/en-us/dax/edate-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "EOMONTH",
+      "category": "date-and-time",
+      "reference": "https://learn.microsoft.com/en-us/dax/eomonth-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "HOUR",
+      "category": "date-and-time",
+      "reference": "https://learn.microsoft.com/en-us/dax/hour-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "MINUTE",
+      "category": "date-and-time",
+      "reference": "https://learn.microsoft.com/en-us/dax/minute-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "MONTH",
+      "category": "date-and-time",
+      "reference": "https://learn.microsoft.com/en-us/dax/month-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "NETWORKDAYS",
+      "category": "date-and-time",
+      "reference": "https://learn.microsoft.com/en-us/dax/networkdays-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "NOW",
+      "category": "date-and-time",
+      "reference": "https://learn.microsoft.com/en-us/dax/now-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "QUARTER",
+      "category": "date-and-time",
+      "reference": "https://learn.microsoft.com/en-us/dax/quarter-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "SECOND",
+      "category": "date-and-time",
+      "reference": "https://learn.microsoft.com/en-us/dax/second-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "TIME",
+      "category": "date-and-time",
+      "reference": "https://learn.microsoft.com/en-us/dax/time-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "TIMEVALUE",
+      "category": "date-and-time",
+      "reference": "https://learn.microsoft.com/en-us/dax/timevalue-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "TODAY",
+      "category": "date-and-time",
+      "reference": "https://learn.microsoft.com/en-us/dax/today-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "UTCNOW",
+      "category": "date-and-time",
+      "reference": "https://learn.microsoft.com/en-us/dax/utcnow-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "UTCTODAY",
+      "category": "date-and-time",
+      "reference": "https://learn.microsoft.com/en-us/dax/utctoday-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "WEEKDAY",
+      "category": "date-and-time",
+      "reference": "https://learn.microsoft.com/en-us/dax/weekday-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "WEEKNUM",
+      "category": "date-and-time",
+      "reference": "https://learn.microsoft.com/en-us/dax/weeknum-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "YEAR",
+      "category": "date-and-time",
+      "reference": "https://learn.microsoft.com/en-us/dax/year-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "YEARFRAC",
+      "category": "date-and-time",
+      "reference": "https://learn.microsoft.com/en-us/dax/yearfrac-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "ALL",
+      "category": "filter",
+      "reference": "https://learn.microsoft.com/en-us/dax/all-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "ALLCROSSFILTERED",
+      "category": "filter",
+      "reference": "https://learn.microsoft.com/en-us/dax/allcrossfiltered-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "ALLEXCEPT",
+      "category": "filter",
+      "reference": "https://learn.microsoft.com/en-us/dax/allexcept-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "ALLNOBLANKROW",
+      "category": "filter",
+      "reference": "https://learn.microsoft.com/en-us/dax/allnoblankrow-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "ALLSELECTED",
+      "category": "filter",
+      "reference": "https://learn.microsoft.com/en-us/dax/allselected-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "CALCULATE",
+      "category": "filter",
+      "reference": "https://learn.microsoft.com/en-us/dax/calculate-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "CALCULATETABLE",
+      "category": "filter",
+      "reference": "https://learn.microsoft.com/en-us/dax/calculatetable-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "EARLIER",
+      "category": "filter",
+      "reference": "https://learn.microsoft.com/en-us/dax/earlier-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "EARLIEST",
+      "category": "filter",
+      "reference": "https://learn.microsoft.com/en-us/dax/earliest-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "FILTER",
+      "category": "filter",
+      "reference": "https://learn.microsoft.com/en-us/dax/filter-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "FIRST",
+      "category": "filter",
+      "reference": "https://learn.microsoft.com/en-us/dax/first-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "INDEX",
+      "category": "filter",
+      "reference": "https://learn.microsoft.com/en-us/dax/index-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "KEEPFILTERS",
+      "category": "filter",
+      "reference": "https://learn.microsoft.com/en-us/dax/keepfilters-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "LAST",
+      "category": "filter",
+      "reference": "https://learn.microsoft.com/en-us/dax/last-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "LOOKUP",
+      "category": "filter",
+      "reference": "https://learn.microsoft.com/en-us/dax/lookup-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "LOOKUPVALUE",
+      "category": "filter",
+      "reference": "https://learn.microsoft.com/en-us/dax/lookupvalue-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "LOOKUPWITHTOTALS",
+      "category": "filter",
+      "reference": "https://learn.microsoft.com/en-us/dax/lookupwithtotals-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "MATCHBY",
+      "category": "filter",
+      "reference": "https://learn.microsoft.com/en-us/dax/matchby-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "MOVINGAVERAGE",
+      "category": "filter",
+      "reference": "https://learn.microsoft.com/en-us/dax/movingaverage-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "NEXT",
+      "category": "filter",
+      "reference": "https://learn.microsoft.com/en-us/dax/next-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "OFFSET",
+      "category": "filter",
+      "reference": "https://learn.microsoft.com/en-us/dax/offset-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "ORDERBY",
+      "category": "filter",
+      "reference": "https://learn.microsoft.com/en-us/dax/orderby-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "PARTITIONBY",
+      "category": "filter",
+      "reference": "https://learn.microsoft.com/en-us/dax/partitionby-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "PREVIOUS",
+      "category": "filter",
+      "reference": "https://learn.microsoft.com/en-us/dax/previous-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "RANGE",
+      "category": "filter",
+      "reference": "https://learn.microsoft.com/en-us/dax/range-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "RANK",
+      "category": "filter",
+      "reference": "https://learn.microsoft.com/en-us/dax/rank-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "REMOVEFILTERS",
+      "category": "filter",
+      "reference": "https://learn.microsoft.com/en-us/dax/removefilters-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "ROWNUMBER",
+      "category": "filter",
+      "reference": "https://learn.microsoft.com/en-us/dax/rownumber-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "RUNNINGSUM",
+      "category": "filter",
+      "reference": "https://learn.microsoft.com/en-us/dax/runningsum-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "SELECTEDVALUE",
+      "category": "filter",
+      "reference": "https://learn.microsoft.com/en-us/dax/selectedvalue-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "WINDOW",
+      "category": "filter",
+      "reference": "https://learn.microsoft.com/en-us/dax/window-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "ACCRINT",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/accrint-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "ACCRINTM",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/accrintm-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "AMORDEGRC",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/amordegrc-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "AMORLINC",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/amorlinc-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "COUPDAYBS",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/coupdaybs-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "COUPDAYS",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/coupdays-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "COUPDAYSNC",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/coupdaysnc-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "COUPNCD",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/coupncd-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "COUPNUM",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/coupnum-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "COUPPCD",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/couppcd-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "CUMIPMT",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/cumipmt-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "CUMPRINC",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/cumprinc-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "DB",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/db-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "DDB",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/ddb-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "DISC",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/disc-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "DOLLARDE",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/dollarde-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "DOLLARFR",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/dollarfr-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "DURATION",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/duration-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "EFFECT",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/effect-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "FV",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/fv-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "INTRATE",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/intrate-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "IPMT",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/ipmt-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "ISPMT",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/ispmt-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "MDURATION",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/mduration-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "NOMINAL",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/nominal-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "NPER",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/nper-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "ODDFPRICE",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/oddfprice-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "ODDFYIELD",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/oddfyield-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "ODDLPRICE",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/oddlprice-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "ODDLYIELD",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/oddlyield-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "PDURATION",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/pduration-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "PMT",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/pmt-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "PPMT",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/ppmt-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "PRICE",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/price-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "PRICEDISC",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/pricedisc-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "PRICEMAT",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/pricemat-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "PV",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/pv-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "RATE",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/rate-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "RECEIVED",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/received-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "RRI",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/rri-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "SLN",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/sln-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "SYD",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/syd-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "TBILLEQ",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/tbilleq-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "TBILLPRICE",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/tbillprice-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "TBILLYIELD",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/tbillyield-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "VDB",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/vdb-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "XIRR",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/xirr-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "XNPV",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/xnpv-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "YIELD",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/yield-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "YIELDDISC",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/yielddisc-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "YIELDMAT",
+      "category": "financial",
+      "reference": "https://learn.microsoft.com/en-us/dax/yieldmat-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "COLUMNSTATISTICS",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/columnstatistics-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "CONTAINS",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/contains-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "CONTAINSROW",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/containsrow-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "CONTAINSSTRING",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/containsstring-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "CONTAINSSTRINGEXACT",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/containsstringexact-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "CUSTOMDATA",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/customdata-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "HASONEFILTER",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/hasonefilter-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "HASONEVALUE",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/hasonevalue-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "ISAFTER",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/isafter-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "ISBLANK",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/isblank-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "ISBOOLEAN",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/isboolean-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "ISCROSSFILTERED",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/iscrossfiltered-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "ISCURRENCY",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/iscurrency-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "ISDATETIME",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/isdatetime-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "ISDECIMAL",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/isdecimal-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "ISDOUBLE",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/isdouble-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "ISEMPTY",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/isempty-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "ISERROR",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/iserror-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "ISEVEN",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/iseven-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "ISFILTERED",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/isfiltered-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "ISINSCOPE",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/isinscope-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "ISINT64",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/isint64-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "ISINTEGER",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/isinteger-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "ISLOGICAL",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/islogical-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "ISNONTEXT",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/isnontext-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "ISNUMBER",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/isnumber-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "ISNUMERIC",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/isnumeric-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "ISODD",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/isodd-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "ISONORAFTER",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/isonorafter-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "ISSELECTEDMEASURE",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/isselectedmeasure-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "ISSTRING",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/isstring-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "ISSUBTOTAL",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/issubtotal-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "ISTEXT",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/istext-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "NAMEOF",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/nameof-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "NONVISUAL",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/nonvisual-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "SELECTEDMEASURE",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/selectedmeasure-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "SELECTEDMEASUREFORMATSTRING",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/selectedmeasureformatstring-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "SELECTEDMEASURENAME",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/selectedmeasurename-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "TABLEOF",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/tableof-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "TEXTCONTAINS",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/textcontains-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "TEXTSIMILARITY",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/textsimilarity-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "USERCULTURE",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/userculture-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "USERNAME",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/username-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "USEROBJECTID",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/userobjectid-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "USERPRINCIPALNAME",
+      "category": "information",
+      "reference": "https://learn.microsoft.com/en-us/dax/userprincipalname-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "AND",
+      "category": "logical",
+      "reference": "https://learn.microsoft.com/en-us/dax/and-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "BITAND",
+      "category": "logical",
+      "reference": "https://learn.microsoft.com/en-us/dax/bitand-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "BITLSHIFT",
+      "category": "logical",
+      "reference": "https://learn.microsoft.com/en-us/dax/bitlshift-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "BITOR",
+      "category": "logical",
+      "reference": "https://learn.microsoft.com/en-us/dax/bitor-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "BITRSHIFT",
+      "category": "logical",
+      "reference": "https://learn.microsoft.com/en-us/dax/bitrshift-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "BITXOR",
+      "category": "logical",
+      "reference": "https://learn.microsoft.com/en-us/dax/bitxor-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "COALESCE",
+      "category": "logical",
+      "reference": "https://learn.microsoft.com/en-us/dax/coalesce-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "FALSE",
+      "category": "logical",
+      "reference": "https://learn.microsoft.com/en-us/dax/false-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "IF",
+      "category": "logical",
+      "reference": "https://learn.microsoft.com/en-us/dax/if-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "IF.EAGER",
+      "category": "logical",
+      "reference": "https://learn.microsoft.com/en-us/dax/if-eager-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "IFERROR",
+      "category": "logical",
+      "reference": "https://learn.microsoft.com/en-us/dax/iferror-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "NOT",
+      "category": "logical",
+      "reference": "https://learn.microsoft.com/en-us/dax/not-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "OR",
+      "category": "logical",
+      "reference": "https://learn.microsoft.com/en-us/dax/or-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "SWITCH",
+      "category": "logical",
+      "reference": "https://learn.microsoft.com/en-us/dax/switch-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "TRUE",
+      "category": "logical",
+      "reference": "https://learn.microsoft.com/en-us/dax/true-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "ABS",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/abs-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "ACOS",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/acos-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "ACOSH",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/acosh-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "ACOT",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/acot-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "ACOTH",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/acoth-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "ASIN",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/asin-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "ASINH",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/asinh-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "ATAN",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/atan-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "ATANH",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/atanh-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "CEILING",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/ceiling-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "CONVERT",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/convert-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "COS",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/cos-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "COSH",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/cosh-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "COT",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/cot-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "COTH",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/coth-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "CURRENCY",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/currency-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "DEGREES",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/degrees-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "DIVIDE",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/divide-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "EVEN",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/even-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "EXP",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/exp-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "FACT",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/fact-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "FLOOR",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/floor-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "GCD",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/gcd-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "INT",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/int-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "ISO.CEILING",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/iso-ceiling-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "LCM",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/lcm-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "LN",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/ln-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "LOG",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/log-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "LOG10",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/log10-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "MOD",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/mod-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "MROUND",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/mround-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "ODD",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/odd-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "PI",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/pi-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "POWER",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/power-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "QUOTIENT",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/quotient-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "RADIANS",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/radians-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "RAND",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/rand-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "RANDBETWEEN",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/randbetween-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "ROUND",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/round-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "ROUNDDOWN",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/rounddown-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "ROUNDUP",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/roundup-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "SIGN",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/sign-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "SIN",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/sin-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "SINH",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/sinh-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "SQRT",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/sqrt-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "SQRTPI",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/sqrtpi-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "TAN",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/tan-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "TANH",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/tanh-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "TRUNC",
+      "category": "math-and-trig",
+      "reference": "https://learn.microsoft.com/en-us/dax/trunc-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "BLANK",
+      "category": "other",
+      "reference": "https://learn.microsoft.com/en-us/dax/blank-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "ERROR",
+      "category": "other",
+      "reference": "https://learn.microsoft.com/en-us/dax/error-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "EVALUATEANDLOG",
+      "category": "other",
+      "reference": "https://learn.microsoft.com/en-us/dax/evaluateandlog-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "EXTERNALMEASURE",
+      "category": "other",
+      "reference": "https://learn.microsoft.com/en-us/dax/externalmeasure-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "TOCSV",
+      "category": "other",
+      "reference": "https://learn.microsoft.com/en-us/dax/tocsv-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "TOJSON",
+      "category": "other",
+      "reference": "https://learn.microsoft.com/en-us/dax/tojson-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "PATH",
+      "category": "parent-and-child",
+      "reference": "https://learn.microsoft.com/en-us/dax/path-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "PATHCONTAINS",
+      "category": "parent-and-child",
+      "reference": "https://learn.microsoft.com/en-us/dax/pathcontains-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "PATHITEM",
+      "category": "parent-and-child",
+      "reference": "https://learn.microsoft.com/en-us/dax/pathitem-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "PATHITEMREVERSE",
+      "category": "parent-and-child",
+      "reference": "https://learn.microsoft.com/en-us/dax/pathitemreverse-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "PATHLENGTH",
+      "category": "parent-and-child",
+      "reference": "https://learn.microsoft.com/en-us/dax/pathlength-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "CROSSFILTER",
+      "category": "relationship",
+      "reference": "https://learn.microsoft.com/en-us/dax/crossfilter-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "RELATED",
+      "category": "relationship",
+      "reference": "https://learn.microsoft.com/en-us/dax/related-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "RELATEDTABLE",
+      "category": "relationship",
+      "reference": "https://learn.microsoft.com/en-us/dax/relatedtable-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "USERELATIONSHIP",
+      "category": "relationship",
+      "reference": "https://learn.microsoft.com/en-us/dax/userelationship-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "BETA.DIST",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/beta-dist-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "BETA.INV",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/beta-inv-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "CHISQ.DIST",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/chisq-dist-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "CHISQ.DIST.RT",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/chisq-dist-rt-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "CHISQ.INV",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/chisq-inv-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "CHISQ.INV.RT",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/chisq-inv-rt-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "COMBIN",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/combin-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "COMBINA",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/combina-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "CONFIDENCE.NORM",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/confidence-norm-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "CONFIDENCE.T",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/confidence-t-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "EXPON.DIST",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/expon-dist-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "GEOMEAN",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/geomean-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "GEOMEANX",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/geomeanx-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "LINEST",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/linest-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "LINESTX",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/linestx-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "MEDIAN",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/median-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "MEDIANX",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/medianx-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "NORM.DIST",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/norm-dist-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "NORM.INV",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/norm-inv-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "NORM.S.DIST",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/norm-s-dist-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "NORM.S.INV",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/norm-s-inv-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "PERCENTILE.EXC",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/percentile-exc-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "PERCENTILE.INC",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/percentile-inc-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "PERCENTILEX.EXC",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/percentilex-exc-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "PERCENTILEX.INC",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/percentilex-inc-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "PERMUT",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/permut-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "POISSON.DIST",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/poisson-dist-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "RANK.EQ",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/rank-eq-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "RANKX",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/rankx-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "SAMPLE",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/sample-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "STDEV.P",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/stdev-p-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "STDEV.S",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/stdev-s-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "STDEVX.P",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/stdevx-p-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "STDEVX.S",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/stdevx-s-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "T.DIST",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/t-dist-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "T.DIST.2T",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/t-dist-2t-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "T.DIST.RT",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/t-dist-rt-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "T.INV",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/t-inv-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "VAR.P",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/var-p-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "VAR.S",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/var-s-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "VARX.P",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/varx-p-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "VARX.S",
+      "category": "statistical",
+      "reference": "https://learn.microsoft.com/en-us/dax/varx-s-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "ADDCOLUMNS",
+      "category": "table-manipulation",
+      "reference": "https://learn.microsoft.com/en-us/dax/addcolumns-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "ADDMISSINGITEMS",
+      "category": "table-manipulation",
+      "reference": "https://learn.microsoft.com/en-us/dax/addmissingitems-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "CROSSJOIN",
+      "category": "table-manipulation",
+      "reference": "https://learn.microsoft.com/en-us/dax/crossjoin-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "CURRENTGROUP",
+      "category": "table-manipulation",
+      "reference": "https://learn.microsoft.com/en-us/dax/currentgroup-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "DATATABLE",
+      "category": "table-manipulation",
+      "reference": "https://learn.microsoft.com/en-us/dax/datatable-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "DETAILROWS",
+      "category": "table-manipulation",
+      "reference": "https://learn.microsoft.com/en-us/dax/detailrows-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "EXCEPT",
+      "category": "table-manipulation",
+      "reference": "https://learn.microsoft.com/en-us/dax/except-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "FILTERS",
+      "category": "table-manipulation",
+      "reference": "https://learn.microsoft.com/en-us/dax/filters-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "GENERATE",
+      "category": "table-manipulation",
+      "reference": "https://learn.microsoft.com/en-us/dax/generate-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "GENERATEALL",
+      "category": "table-manipulation",
+      "reference": "https://learn.microsoft.com/en-us/dax/generateall-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "GENERATESERIES",
+      "category": "table-manipulation",
+      "reference": "https://learn.microsoft.com/en-us/dax/generateseries-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "GROUPBY",
+      "category": "table-manipulation",
+      "reference": "https://learn.microsoft.com/en-us/dax/groupby-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "IGNORE",
+      "category": "table-manipulation",
+      "reference": "https://learn.microsoft.com/en-us/dax/ignore-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "INTERSECT",
+      "category": "table-manipulation",
+      "reference": "https://learn.microsoft.com/en-us/dax/intersect-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "NATURALINNERJOIN",
+      "category": "table-manipulation",
+      "reference": "https://learn.microsoft.com/en-us/dax/naturalinnerjoin-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "NATURALLEFTOUTERJOIN",
+      "category": "table-manipulation",
+      "reference": "https://learn.microsoft.com/en-us/dax/naturalleftouterjoin-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "ROLLUP",
+      "category": "table-manipulation",
+      "reference": "https://learn.microsoft.com/en-us/dax/rollup-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "ROLLUPADDISSUBTOTAL",
+      "category": "table-manipulation",
+      "reference": "https://learn.microsoft.com/en-us/dax/rollupaddissubtotal-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "ROLLUPGROUP",
+      "category": "table-manipulation",
+      "reference": "https://learn.microsoft.com/en-us/dax/rollupgroup-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "ROLLUPISSUBTOTAL",
+      "category": "table-manipulation",
+      "reference": "https://learn.microsoft.com/en-us/dax/rollupissubtotal-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "ROW",
+      "category": "table-manipulation",
+      "reference": "https://learn.microsoft.com/en-us/dax/row-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "SELECTCOLUMNS",
+      "category": "table-manipulation",
+      "reference": "https://learn.microsoft.com/en-us/dax/selectcolumns-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "SUBSTITUTEWITHINDEX",
+      "category": "table-manipulation",
+      "reference": "https://learn.microsoft.com/en-us/dax/substitutewithindex-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "SUMMARIZE",
+      "category": "table-manipulation",
+      "reference": "https://learn.microsoft.com/en-us/dax/summarize-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "SUMMARIZECOLUMNS",
+      "category": "table-manipulation",
+      "reference": "https://learn.microsoft.com/en-us/dax/summarizecolumns-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "TOPN",
+      "category": "table-manipulation",
+      "reference": "https://learn.microsoft.com/en-us/dax/topn-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "TREATAS",
+      "category": "table-manipulation",
+      "reference": "https://learn.microsoft.com/en-us/dax/treatas-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "UNION",
+      "category": "table-manipulation",
+      "reference": "https://learn.microsoft.com/en-us/dax/union-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "VALUES",
+      "category": "table-manipulation",
+      "reference": "https://learn.microsoft.com/en-us/dax/values-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "COMBINEVALUES",
+      "category": "text",
+      "reference": "https://learn.microsoft.com/en-us/dax/combinevalues-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "CONCATENATE",
+      "category": "text",
+      "reference": "https://learn.microsoft.com/en-us/dax/concatenate-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "CONCATENATEX",
+      "category": "text",
+      "reference": "https://learn.microsoft.com/en-us/dax/concatenatex-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "EXACT",
+      "category": "text",
+      "reference": "https://learn.microsoft.com/en-us/dax/exact-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "FIND",
+      "category": "text",
+      "reference": "https://learn.microsoft.com/en-us/dax/find-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "FIXED",
+      "category": "text",
+      "reference": "https://learn.microsoft.com/en-us/dax/fixed-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "FORMAT",
+      "category": "text",
+      "reference": "https://learn.microsoft.com/en-us/dax/format-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "LEFT",
+      "category": "text",
+      "reference": "https://learn.microsoft.com/en-us/dax/left-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "LEN",
+      "category": "text",
+      "reference": "https://learn.microsoft.com/en-us/dax/len-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "LOWER",
+      "category": "text",
+      "reference": "https://learn.microsoft.com/en-us/dax/lower-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "MID",
+      "category": "text",
+      "reference": "https://learn.microsoft.com/en-us/dax/mid-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "REPLACE",
+      "category": "text",
+      "reference": "https://learn.microsoft.com/en-us/dax/replace-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "REPT",
+      "category": "text",
+      "reference": "https://learn.microsoft.com/en-us/dax/rept-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "RIGHT",
+      "category": "text",
+      "reference": "https://learn.microsoft.com/en-us/dax/right-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "SEARCH",
+      "category": "text",
+      "reference": "https://learn.microsoft.com/en-us/dax/search-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "SUBSTITUTE",
+      "category": "text",
+      "reference": "https://learn.microsoft.com/en-us/dax/substitute-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "TRIM",
+      "category": "text",
+      "reference": "https://learn.microsoft.com/en-us/dax/trim-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "UNICHAR",
+      "category": "text",
+      "reference": "https://learn.microsoft.com/en-us/dax/unichar-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "UNICODE",
+      "category": "text",
+      "reference": "https://learn.microsoft.com/en-us/dax/unicode-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "UPPER",
+      "category": "text",
+      "reference": "https://learn.microsoft.com/en-us/dax/upper-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "VALUE",
+      "category": "text",
+      "reference": "https://learn.microsoft.com/en-us/dax/value-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "CLOSINGBALANCEMONTH",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/closingbalancemonth-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "CLOSINGBALANCEQUARTER",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/closingbalancequarter-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "CLOSINGBALANCEWEEK",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/closingbalanceweek-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "CLOSINGBALANCEYEAR",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/closingbalanceyear-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "DATEADD",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/dateadd-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "DATESBETWEEN",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/datesbetween-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "DATESINPERIOD",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/datesinperiod-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "DATESMTD",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/datesmtd-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "DATESQTD",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/datesqtd-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "DATESWTD",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/dateswtd-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "DATESYTD",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/datesytd-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "ENDOFMONTH",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/endofmonth-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "ENDOFQUARTER",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/endofquarter-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "ENDOFWEEK",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/endofweek-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "ENDOFYEAR",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/endofyear-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "FIRSTDATE",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/firstdate-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "LASTDATE",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/lastdate-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "NEXTDAY",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/nextday-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "NEXTMONTH",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/nextmonth-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "NEXTQUARTER",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/nextquarter-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "NEXTWEEK",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/nextweek-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "NEXTYEAR",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/nextyear-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "OPENINGBALANCEMONTH",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/openingbalancemonth-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "OPENINGBALANCEQUARTER",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/openingbalancequarter-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "OPENINGBALANCEWEEK",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/openingbalanceweek-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "OPENINGBALANCEYEAR",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/openingbalanceyear-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "PARALLELPERIOD",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/parallelperiod-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "PREVIOUSDAY",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/previousday-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "PREVIOUSMONTH",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/previousmonth-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "PREVIOUSQUARTER",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/previousquarter-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "PREVIOUSWEEK",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/previousweek-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "PREVIOUSYEAR",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/previousyear-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "SAMEPERIODLASTYEAR",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/sameperiodlastyear-function-dax",
+      "status": "implemented-bounded",
+      "family": "Time intelligence",
+      "minArgs": 1,
+      "maxArgs": 1
+    },
+    {
+      "name": "STARTOFMONTH",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/startofmonth-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "STARTOFQUARTER",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/startofquarter-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "STARTOFWEEK",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/startofweek-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "STARTOFYEAR",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/startofyear-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "TOTALMTD",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/totalmtd-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "TOTALQTD",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/totalqtd-function-dax",
+      "status": "implemented-bounded"
+    },
+    {
+      "name": "TOTALWTD",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/totalwtd-function-dax",
+      "status": "not-implemented"
+    },
+    {
+      "name": "TOTALYTD",
+      "category": "time-intelligence",
+      "reference": "https://learn.microsoft.com/en-us/dax/totalytd-function-dax",
+      "status": "implemented-bounded"
+    }
+  ]
+}

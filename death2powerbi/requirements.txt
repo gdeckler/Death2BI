@@ -1,0 +1,6 @@
+pbixray==0.15.5
+duckdb>=1.4,<2
+polars>=1.30,<2
+pyarrow>=19
+
+cryptography>=45,<48

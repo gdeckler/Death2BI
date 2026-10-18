@@ -1,0 +1,1420 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Death2PowerBI · Open analytics workbench</title>
+<link rel="icon" type="image/svg+xml" sizes="any" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Ctitle%3EPower%20BI%20tombstone%3C%2Ftitle%3E%3Cpath%20d%3D%22M5%2028V12a11%2011%200%200%201%2022%200v16%22%20fill%3D%22%23b5c0bc%22%20stroke%3D%22%23173e35%22%20stroke-width%3D%221.5%22%2F%3E%3Cpath%20d%3D%22M8%2027V12a8%208%200%200%201%2016%200v15%22%20fill%3D%22%23899b92%22%2F%3E%3Crect%20x%3D%229%22%20y%3D%2220%22%20width%3D%225%22%20height%3D%227%22%20rx%3D%221%22%20fill%3D%22%23dba912%22%2F%3E%3Crect%20x%3D%2214%22%20y%3D%2214%22%20width%3D%225%22%20height%3D%2213%22%20rx%3D%221%22%20fill%3D%22%23f2c811%22%2F%3E%3Crect%20x%3D%2219%22%20y%3D%228%22%20width%3D%225%22%20height%3D%2219%22%20rx%3D%221%22%20fill%3D%22%23ffe36a%22%2F%3E%3Cpath%20d%3D%22M2%2028h28v3H2z%22%20fill%3D%22%23d1dad4%22%20stroke%3D%22%23173e35%22%20stroke-width%3D%221%22%2F%3E%3C%2Fsvg%3E">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+:root{--ink:#193a37;--muted:#788884;--line:#dfe7e3;--green:#246b55;--lime:#d7edba;--bg:#f5f7f3}*{box-sizing:border-box}body{margin:0;font:14px 'DM Sans',sans-serif;color:var(--ink);background:var(--bg)}button,input,select,textarea{font:inherit}button,a{ -webkit-tap-highlight-color:transparent}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #93ba62;outline-offset:3px}button{border:1px solid var(--line);background:white;color:var(--ink);border-radius:7px;padding:10px 15px}button:hover{background:#edf3e9}.primary{background:var(--green);color:white;border-color:var(--green)}.primary:hover{background:#164d3c}.app{display:grid;grid-template-columns:232px 1fr;min-height:100vh}.sidebar{background:#153e35;color:#c1d3cb;padding:30px 20px;display:flex;flex-direction:column;position:fixed;width:232px;height:100vh}.brand{color:#f9fff7;font:800 20px Manrope,sans-serif;letter-spacing:-1px;display:flex;align-items:center;gap:10px}.logo{width:31px;height:36px;flex-shrink:0;display:grid;place-items:center}.logo svg{display:block;width:31px;height:36px}.subbrand{font-size:10px;text-transform:uppercase;letter-spacing:2px;margin:12px 0 38px 41px;color:#8ca99d}.navlabel{font-size:10px;letter-spacing:1.8px;margin:0 12px 12px;color:#83a295}.nav button{display:flex;gap:13px;width:100%;text-align:left;border:0;background:transparent;color:#bcd0c6;margin:5px 0;padding:12px}.nav button.active{background:#30564a;color:#eaf7da}.nav .ico{width:18px;font-size:18px;line-height:18px}.asidefoot{margin-top:auto;border:1px solid #426154;border-radius:9px;padding:16px;font-size:12px;line-height:1.7}.asidefoot b{color:#e6f2da;display:block;margin-bottom:4px}.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#bbda8c;margin-right:6px}.main{grid-column:2;min-width:0}.topbar{height:77px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 38px;font-size:12px;color:var(--muted)}.topbar strong{color:var(--ink);font-weight:500}.avatar{border:1px solid var(--line);border-radius:50%;width:31px;height:31px;display:grid;place-items:center;background:#e9efdf;color:#47603e}.topright{display:flex;gap:19px;align-items:center}.status{font-size:11px;background:#edf4e7;padding:6px 10px;border-radius:20px;color:#577c43}.content{max-width:1500px;margin:auto;padding:34px 38px}.eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:1.8px;color:#778c79;font-weight:700}h1{font:700 31px Manrope,sans-serif;letter-spacing:-1.2px;margin:8px 0 10px}h2{font:700 18px Manrope,sans-serif;letter-spacing:-.5px;margin:0}p{color:var(--muted);line-height:1.65}.head{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px}.head p{margin:0}.headbuttons{display:flex;gap:8px}.badge{font-size:10px;padding:4px 8px;border:1px solid var(--line);border-radius:4px;background:#f3f6ef;color:#5d7650}.drop{background:#fff;border:1px dashed #a9beb0;border-radius:12px;display:flex;align-items:center;padding:25px;gap:20px;margin-bottom:25px;transition:.2s}.drop.over{background:#e8f2de;border-color:var(--green)}.uploadicon{height:58px;width:58px;background:#edf3e7;border-radius:12px;display:grid;place-items:center;font-size:26px;color:#4b7250}.drop h2{font-size:16px}.drop p{font-size:12px;margin:7px 0 0}.drop .actions{margin-left:auto;display:flex;gap:8px;align-items:center}.filetags{display:flex;gap:7px;margin-top:10px}.filetags span{font-family:monospace;font-size:10px;color:#69816b;background:#f3f5ef;padding:3px 6px;border-radius:3px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px}.stat{background:white;border:1px solid var(--line);border-radius:9px;padding:18px 20px}.statlabel{display:flex;justify-content:space-between;color:#7a8a81;font-size:11px}.stat strong{font:700 29px Manrope,sans-serif;display:block;margin:11px 0 4px;letter-spacing:-1px}.stat small{font-size:10px;color:#8a998e}.workbench{background:white;border:1px solid var(--line);border-radius:11px;overflow:hidden}.benchhead{padding:20px 23px 0;display:flex;justify-content:space-between;align-items:center}.modelname{display:flex;gap:12px;align-items:center}.fileicon{width:37px;height:40px;display:grid;place-items:center;background:#f3edcf;color:#93814b;border-radius:7px;font-size:20px}.modelname b{font-size:14px}.modelname small{display:block;font-size:10px;margin-top:5px;color:#8b978e}.tabs{display:flex;gap:26px;padding:19px 23px 0;border-bottom:1px solid var(--line)}.tabs button{border:0;background:none;border-radius:0;padding:0 0 13px;color:#8a968f;font-size:12px}.tabs button.active{color:var(--green);border-bottom:2px solid var(--green);font-weight:700}.benchbody{display:flex;min-height:460px}.pages{width:160px;flex-shrink:0;background:#fcfdfb;border-right:1px solid var(--line);padding:20px 13px}.pages .eyebrow{font-size:9px;margin:0 8px 15px}.pagebtn{display:block;border:0;background:none;width:100%;text-align:left;font-size:11px;padding:10px;margin-bottom:5px}.pagebtn.active{background:#edf3e5;color:#376341}.pagebtn span{margin-right:9px;color:#8e9f8e}.workspace{padding:21px;flex:1;min-width:0;background:#f2f4f0}.canvasbar{display:flex;justify-content:space-between;font-size:10px;color:#839183;margin-bottom:14px}.report{background:#fff;position:relative;overflow:hidden;border:1px solid #e1e6dd;box-shadow:0 3px 9px #24423308;width:100%;aspect-ratio:16/9}.visual{position:absolute;overflow:hidden;padding:12px;border:1px solid #e5eae0;background:#fff;border-radius:4px}.visual:has(> .tablewrap){display:flex;flex-direction:column}.visual > .tablewrap{flex:1;min-height:0;max-height:none}.visual h3{font-size:11px;margin:0 0 12px;font-weight:600}.visual .big{font:700 clamp(17px,2vw,32px) Manrope,sans-serif;letter-spacing:-1px}.visual small{color:#899981;font-size:10px}.bars{display:flex;align-items:end;gap:8px;height:65%;padding-top:15px}.barcol{flex:1;display:flex;flex-direction:column;justify-content:end;height:100%;text-align:center;font-size:8px;color:#85937e;min-width:0}.barcol i{display:block;min-height:2px;background:#638d69;border-radius:3px 3px 0 0;margin-bottom:6px}.barcol:nth-child(2n) i{background:#a2bd7b}.visual svg{width:100%;height:75%}.visual.unsupported{background:repeating-linear-gradient(135deg,#fafbf8,#fafbf8 8px,#f4f6f0 8px,#f4f6f0 16px);font-size:10px;color:#7b8876}.visual.unsupported p{font-size:10px;margin:4px 0}.footerline{display:flex;justify-content:space-between;margin-top:18px;font-size:10px;color:#89988c}.footerline a{color:#557154}.panel{padding:24px;width:100%;overflow:auto}.table{width:100%;border-collapse:collapse;font-size:12px}.table th{text-align:left;color:#82917f;background:#f6f8f2;font-size:10px;font-weight:500}.table th,.table td{padding:11px 12px;border-bottom:1px solid #e8ede3;max-width:380px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.table tr:hover td{background:#f8faf5}.tablewrap{overflow:auto;max-height:410px}.twocol{display:grid;grid-template-columns:200px 1fr;gap:20px}.tablelist button{display:block;width:100%;text-align:left;margin-bottom:7px;font-size:12px}.tablelist button.active{background:#eaf2de;border-color:#a6bc8b}textarea{width:100%;min-height:120px;background:#183d34;color:#dcecc6;border:0;border-radius:8px;padding:18px;font:13px/1.7 monospace;resize:vertical}.querybar{display:flex;justify-content:space-between;align-items:center;margin:12px 0 20px;font-size:11px;color:#84917e}.notice{padding:12px 15px;background:#fff7df;border:1px solid #efdeb3;color:#806b36;font-size:12px;border-radius:7px;margin-bottom:16px;line-height:1.7}.notice a{color:#4c6d44}.issue{padding:15px 0;border-bottom:1px solid var(--line);color:#6b7e6c;line-height:1.8;font-size:12px}.issue:before{content:'◌';margin-right:10px;color:#a38c42}.empty{padding:50px;text-align:center;color:#819078}.modalback{position:fixed;inset:0;background:#102d26a6;z-index:5;display:grid;place-items:center;padding:20px}.modal{max-height:calc(100dvh - 40px);overflow:auto;background:white;width:min(590px,100%);padding:30px;border-radius:13px;box-shadow:0 20px 80px #102d2650}.modal h2{font-size:23px}.modal code{display:block;white-space:pre-wrap;background:#183d34;color:#dcecc6;padding:15px;border-radius:7px;font-size:11px;line-height:1.8}.modal p{font-size:13px}.modal .close{float:right;padding:4px 9px}.toast{position:fixed;bottom:25px;left:50%;transform:translateX(-50%);background:#163e35;color:white;padding:14px 22px;border-radius:8px;z-index:9;box-shadow:0 5px 25px #0002;max-width:80vw}.loading{opacity:.55;pointer-events:none}@media(max-width:1100px){.sidebar{width:190px}.app{grid-template-columns:190px 1fr}.content{padding:25px}.topbar{padding:0 25px}.drop{flex-wrap:wrap}.drop .actions{margin-left:78px}.head{align-items:start}.stats{gap:10px}.stat{padding:15px}.pages{width:130px}}@media(max-width:760px){.app{display:block}.sidebar{position:static;width:100%;height:auto;padding:18px}.navlabel,.asidefoot{display:none}.subbrand{margin:8px 0 0 41px;font-size:9px}.nav{display:flex;margin-top:12px}.nav button{justify-content:center;padding:9px;font-size:11px}.nav .ico{display:none}.main{display:block}.topbar{height:55px;padding:0 18px}.content{padding:20px 14px}.head{display:block}.headbuttons{margin-top:14px}h1{font-size:26px}.stats{grid-template-columns:repeat(2,1fr)}.drop{padding:18px;gap:12px}.uploadicon{display:none}.drop .actions{margin:0}.benchbody{display:block}.pages{width:100%;display:flex;overflow:auto;border-right:0;padding:9px}.pages .eyebrow{display:none}.pagebtn{width:auto;white-space:nowrap;margin:0}.workspace{padding:12px}.tabs{gap:16px;overflow:auto}.tabs button{white-space:nowrap}.benchhead{padding:17px 15px 0}.twocol{grid-template-columns:1fr}.tablelist{display:flex;gap:7px;overflow:auto}.tablelist button{white-space:nowrap}.visual{padding:5px}.visual h3{font-size:8px;margin:0 0 3px}.visual small{font-size:7px}.visual.unsupported p{font-size:7px}.footerline{gap:15px;line-height:1.7}.topright .status{display:none}}
+@media(max-width:760px){.workspace{overflow:auto}.report{min-width:720px}.canvasbar{min-width:720px}.workspace:before{content:"Scroll horizontally to explore the report →";display:block;font-size:10px;color:#788884;margin-bottom:8px}}
+[hidden]{display:none!important}
+</style></head><body>
+<div class="app"><aside class="sidebar"><div class="brand"><span class="logo"><svg viewBox="0 0 36 42" role="img" aria-label="Tombstone with the Power BI logo" xmlns="http://www.w3.org/2000/svg"><path d="M5 37V15a13 13 0 0 1 26 0v22" fill="#b5c0bc" stroke="#e3e9e5" stroke-width="1.5"/><path d="M8 35V15a10 10 0 0 1 20 0v20" fill="#8d9d96"/><path d="m11 9 3 3-2 3" fill="none" stroke="#687c72" stroke-width="1.2" stroke-linecap="round"/><rect x="11" y="24" width="5" height="9" rx="1.2" fill="#e0aa12"/><rect x="16" y="19" width="5" height="14" rx="1.2" fill="#f2c811"/><rect x="21" y="14" width="5" height="19" rx="1.2" fill="#ffe36a"/><path d="M3 37h30v3H3z" fill="#d1dad4"/><path d="M1 40h34" stroke="#8ea58e" stroke-width="2" stroke-linecap="round"/></svg></span>Death2PowerBI</div><div class="subbrand">DIE POWER BI DIE!</div><div class="navlabel">WORKSPACE</div><nav class="nav"><button class="active" data-nav="Reports"><span class="ico">▧</span>Report workbench</button><button data-nav="Model"><span class="ico">▦</span>Semantic model</button><button data-nav="SQL"><span class="ico">⌘</span>SQL explorer</button><button data-nav="Custom"><span class="ico">▧</span>Custom visuals</button><button data-nav="Accounts" hidden><span class="ico">♙</span>Accounts</button><button data-nav="Compatibility"><span class="ico">◈</span>Compatibility</button></nav><div class="asidefoot"><b><span class="dot"></span>Your data, your engine.</b>Parquet storage.<br>DuckDB queries.<br>Polars conversion.<div style="border-top:1px solid #426154;margin-top:12px;padding-top:12px;font-size:10px">LOCAL-FIRST ANALYTICS ↗</div></div></aside>
+<main class="main"><header class="topbar"><div>Workspace <span style="padding:0 12px;color:#bdc7bd">/</span> <strong>Report workbench</strong></div><div class="topright"><span class="status" id="connection">○ Preview workspace</span><button id="account" aria-label="Your account">Sign in</button><button id="shutdown" style="color:#a14438;padding:7px 10px">Shut down server</button><button id="guide" style="border:0;padding:4px;font-size:12px;color:#7d8b7c">Getting started ↗</button><span class="avatar">D2</span></div></header><div class="content"><div class="head"><div><div class="eyebrow">Power BI → Open analytics</div><h1>A new home for your reports.</h1><p>Bring your model. Keep exploring. Built on an open data stack.</p></div><div class="headbuttons"><button id="sample">↻ Load example</button><button class="primary" id="importtop">＋ Import report</button></div></div>
+<div class="drop" id="drop"><div class="uploadicon">↥</div><div><h2>Bring your Power BI report</h2><p>Drop a PBIX, PBIP project ZIP, snapshot HTML or self-contained HTML report.</p><div class="filetags"><span>.pbix</span><span>.pbip + folders</span><span>.zip</span><span>.html</span><span>1 GB max</span></div></div><div class="actions"><button id="folder">Choose project folder</button><button class="primary" id="browse">Browse files ↗</button></div></div><input type="file" id="file" accept=".pbix,.zip,.pbip,.html,.htm" hidden><input type="file" id="dir" webkitdirectory multiple hidden>
+<div id="notice"></div><section class="workbench" style="padding:16px 20px;margin-bottom:20px"><div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap"><label for="reportselector" style="font-weight:600">Saved reports <span id="reportcount" class="badge">0</span></label><select id="reportselector" aria-label="Saved report" style="flex:1;min-width:180px;max-width:100%;padding:10px;border:1px solid var(--line);border-radius:7px;background:#fff;color:var(--ink)"></select><label id="ownerfilterlabel" hidden>Reports owned by <select id="ownerfilter" aria-label="Report owner"></select></label><button id="refreshreports">↻ Refresh list</button><button id="snapshotexport">Export snapshot HTML</button><button id="sharereport">Share report</button><button id="deletereport" style="color:#a14438">Delete report</button></div><small style="display:block;margin-top:9px;color:var(--muted)">Each import is saved separately. Switch reports here; importing the same filename creates another copy.</small></section><section class="stats" id="stats"></section><section class="workbench"><div class="benchhead"><div class="modelname"><span class="fileicon">▥</span><div><b id="modelname"></b><small id="modelmeta"></small></div></div><span class="badge" id="modelbadge">EXAMPLE DATA</span></div><div class="tabs" id="tabs"></div><div class="benchbody" id="body"></div></section><div class="footerline"><span>◈ &nbsp; Powered by Parquet · DuckDB · Polars · Vega-Lite</span><span id="footnote">Example workspace · Nothing uploaded</span></div></div></main></div><div id="authscreen"></div><div id="modal"></div><div id="toast" role="status" aria-live="polite"></div>
+<script src="/vendor/vega.min.js"></script>
+<script src="/vendor/vega-lite.min.js"></script>
+<script src="/vendor/vega-embed.min.js"></script>
+<script src="/vendor/world-geography.js"></script>
+<script>
+(function(root){
+function d3(format){
+ if(!format)return null;
+ const s=String(format).split(';')[0],named={percent:'.2%', 'whole number':',.0f','decimal number':',.2f',general:null};
+ if(Object.hasOwn(named,s.toLowerCase()))return named[s.toLowerCase()];
+ if(!/[0#]/.test(s)||/[dy]/i.test(s.replace(/"[^"]*"/g,'')))return null;
+ const m=s.match(/\.([0#]+)/),digits=m?m[1].length:0;
+ if(digits>20)return null;
+ return (s.includes(',')?',':'')+'.'+digits+(s.includes('%')?'%':'f');
+}
+function text(value,format){
+ if(value==null)return '—';if(typeof value!=='number'||!format)return String(value);
+ const f=d3(format);if(!f)return String(value);
+ const digits=Number(f.match(/\.(\d+)/)[1]);return new Intl.NumberFormat('en-US',{minimumFractionDigits:digits,maximumFractionDigits:digits,useGrouping:f.startsWith(','),style:f.endsWith('%')?'percent':'decimal'}).format(value);
+}
+const api={d3,text};if(typeof module!=='undefined')module.exports=api;root.ModelFormats=api;
+})(globalThis);
+
+/* CUSTOM VISUALS START */
+(function(root){
+function fail(message){throw Error(message)}
+const projections=visual=>Object.entries(visual.definition?.query?.queryState||{}).flatMap(([role,state])=>(state.projections||[]).filter(p=>p.active!==false).map(p=>({...p,role})));
+function objectValue(value){
+ if(Array.isArray(value))return value.map(objectValue);
+ if(!value||typeof value!=='object')return value;
+ if(value.Literal){const s=value.Literal.Value;if(s==='true'||s==='false')return s==='true';if(s==='null')return null;if(/^[-+]?\d+(?:\.\d+)?[dDlLmM]?$/.test(s))return Number(s.replace(/[dDlLmM]$/,''));if(s?.startsWith("'")&&s.endsWith("'"))return s.slice(1,-1).replaceAll("''","'")}
+ if(value.expr)return objectValue(value.expr);
+ return Object.fromEntries(Object.entries(value).map(([k,v])=>[k,objectValue(v)]));
+}
+function objects(source){const result={};for(const [name,entries] of Object.entries(source||{})){
+ const base=Array.isArray(entries)?entries.filter(e=>!e.selector).map(e=>e.properties||{}):[entries];
+ result[name]=Object.assign({},...base.map(objectValue));
+}return result}
+function build(pkg,visual,result,compiled,overrides={}){
+ const ps=projections(visual),caps=pkg.capabilities||{},roles=caps.dataRoles||[];
+ if(ps.length!==result.columns.length)fail('Custom visual query columns do not match its projections.');
+ const counts=Object.fromEntries(roles.map(role=>[role.name,ps.filter(p=>p.role===role.name).length]));
+ const mappings=(caps.dataViewMappings||[]).filter(m=>!m.conditions?.length||m.conditions.some(condition=>Object.entries(condition).every(([role,limit])=>(counts[role]||0)>=(limit.min||0)&&(counts[role]||0)<=(limit.max??Infinity))));
+ const mapping=mappings.find(m=>m.table||m.categorical||m.single);
+ if(!mapping)fail('This visual needs an unsupported data mapping or role combination (matrix/tree mappings are not implemented).');
+ const columns=ps.map((p,i)=>{
+  const t=String(result.types?.[i]||''),role=roles.find(r=>r.name===p.role),numeric=/INT|DOUBLE|DECIMAL|FLOAT|REAL|HUGEINT/.test(t),dateTime=/DATE|TIMESTAMP/.test(t);
+  return {displayName:compiled.labels[i],queryName:p.queryRef||p.nativeQueryRef||'field'+i,index:i,roles:{[p.role]:true},isMeasure:!!(p.field.Measure||p.field.Aggregation||role?.kind===1||role?.kind==='Measure'),type:dateTime?{dateTime:true}:numeric?{numeric:true,integer:/INT/.test(t)}:/BOOL/.test(t)?{bool:true}:{text:true},format:compiled.formats?.[i]||undefined};
+ });
+ const rows=result.rows.map(row=>row.map((value,i)=>value!=null&&columns[i].type.dateTime?new Date(value):value));
+ const identity=(indices,key)=>({key,rows:indices});
+ const view={metadata:{columns,objects:{...objects(visual.definition?.objects),...overrides}},table:{columns,rows,identity:rows.map((_,i)=>identity([i],'row:'+i))}};
+ const roleIndex=role=>ps.flatMap((p,i)=>p.role===role?[i]:[]);
+ function roleNames(def){if(!def)return [];if(def.for)return [def.for.in];if(def.bind)return [def.bind.to];if(def.select)return def.select.flatMap(roleNames);return []}
+ if(mapping.single){const index=roleIndex(mapping.single.role)[0];if(index===undefined)fail('The custom visual scalar role has no field.');if(rows.length>1)fail('The custom visual scalar mapping requires one row.');view.single={value:rows[0]?.[index]??null}}
+ if(mapping.categorical){
+  const cat=mapping.categorical,categoryIndices=roleNames(cat.categories).flatMap(roleIndex),group=cat.values?.group,seriesIndices=group?roleIndex(group.by):[];
+  if(group&&seriesIndices.length!==1)fail('Grouped custom visuals require exactly one series/time field.');
+  const measureIndices=roleNames(group?{select:group.select}:cat.values).flatMap(roleIndex);
+  if(!categoryIndices.length&&rows.length>1)fail('This categorical mapping has no supported category field.');
+  const keyFor=(row,indices)=>JSON.stringify(indices.map(i=>row[i]));
+  const categories=new Map();rows.forEach((row,index)=>{const key=keyFor(row,categoryIndices);if(!categories.has(key))categories.set(key,{row,indices:[]});categories.get(key).indices.push(index)});
+  const categoryRows=[...categories.values()],series=new Map();
+  rows.forEach((row,index)=>{const key=keyFor(row,seriesIndices);if(!series.has(key))series.set(key,{name:seriesIndices.length?row[seriesIndices[0]]:undefined,indices:[]});series.get(key).indices.push(index)});
+  view.categorical={categories:categoryIndices.map(i=>({source:columns[i],values:categoryRows.map(c=>c.row[i]),identity:categoryRows.map((c,j)=>identity(c.indices,'category:'+j))})),values:[]};
+  const values=view.categorical.values;
+  for(const [seriesKey,s] of series){for(const index of measureIndices){
+   const output=categoryRows.map(c=>{const matches=c.indices.filter(i=>s.indices.includes(i));if(matches.length>1)fail('Custom categorical mapping has duplicate category/series cells; its report query needs a unique grain.');return matches.length?rows[matches[0]][index]:null});
+   values.push({source:{...columns[index],...(group?{groupName:s.name}:{})},values:output,identity:identity(s.indices,'series:'+seriesKey)});
+  }}
+  if(group){values.source=columns[seriesIndices[0]];values.identityFields=[]}
+ }
+ if(visual._nativeKpi&&pkg.guid===root.NativeKPI?.guid)root.NativeKPI.orderMonths(view);
+ return view;
+}
+function selectionFields(visual,rows,indices){
+ const ps=projections(visual),columns=ps.flatMap((p,i)=>{const c=p.field.Column||p.field.GroupRef;return c?.Expression?.SourceRef?.Entity&&c.Property?[{table:c.Expression.SourceRef.Entity,column:c.Property,index:i}]:[]});
+ return {fields:columns.map(c=>({...c,dataField:'v'+c.index,label:c.column})),tuples:indices.map(index=>columns.map(c=>rows[index][c.index]))};
+}
+const api={build,objects,projections,selectionFields};if(typeof module!=='undefined')module.exports=api;root.CustomDataView=api;
+})(globalThis);
+
+(function(root){
+function bootstrap(config){
+ 'use strict';
+ const token=config.token,send=(type,payload={})=>parent.postMessage({death2custom:true,token,type,...payload},'*');
+ const element=document.getElementById('visual'),tooltip=document.getElementById('tooltip');let visual,view,selected=[],callbacks=[],objects={};
+ const error=e=>send('error',{message:String(e?.message||e).slice(0,2000)});
+ addEventListener('error',event=>error(event.error||event.message));addEventListener('unhandledrejection',event=>error(event.reason));
+ let blocked=false;addEventListener('securitypolicyviolation',event=>{if(!blocked&&/connect-src|img-src/.test(event.violatedDirective)){blocked=true;send('warning',{message:'External resources are blocked. Geometry can render locally; enable declared network services in Custom visuals if needed.'})}});
+ const palette=['#337b60','#4e8fa6','#c89849','#8b6aa8','#ca7b70','#9dbd67','#568475','#889ab5'];
+ const color=key=>{let h=0;for(const c of String(key))h=(h*31+c.charCodeAt(0))>>>0;return {value:palette[h%palette.length]}};
+ function selectionId(keys=[],rows=[]){
+  const key=JSON.stringify([...new Set(keys)].sort()),ids=[...new Set(rows)].filter(Number.isInteger);
+  return {key,rows:ids,getKey:()=>key,getSelector:()=>({data:keys.map(key=>({key}))}),getSelectorsByColumn:()=>({dataMap:{},metadata:key}),getSelectionId:()=>selectionId(keys,ids),equals:other=>other?.getKey?.()===key,includes:other=>other?.rows?.every(row=>ids.includes(row))||false,hasIdentity:()=>!!keys.length};
+ }
+ function idBuilder(){let keys=[],rows=null;const add=identity=>{if(identity){keys.push(identity.key);rows=rows===null?identity.rows||[]:rows.filter(row=>(identity.rows||[]).includes(row))}return api};
+  const api={withTable:(table,index)=>add(table.identity?.[index]),withCategory:(category,index)=>add(category.identity?.[index]),withSeries:(values,group)=>add(group.identity),withMeasure:name=>{keys.push('measure:'+name);return api},withMatrixNode:()=>{throw Error('Matrix selection identities are not supported')},createSelectionId:()=>selectionId(keys,rows||[])};return api;
+ }
+ const manager={select:async(ids,multi=false)=>{ids=Array.isArray(ids)?ids:[ids];selected=multi||selected.length===1&&ids.length===1&&selected[0].getKey()===ids[0].getKey()?[...selected]:[];for(const id of ids){const i=selected.findIndex(x=>x.getKey()===id.getKey());if(i>=0)selected.splice(i,1);else selected.push(id)}send('selection',{rows:[...new Set(selected.flatMap(id=>id.rows))]});callbacks.forEach(fn=>fn(selected));return selected},clear:async()=>{selected=[];send('selection',{rows:[]});callbacks.forEach(fn=>fn(selected));return []},getSelectionIds:()=>selected,hasSelection:()=>selected.length>0,registerOnSelectCallback:fn=>callbacks.push(fn),showContextMenu:async()=>{send('warning',{message:'Power BI context menus are not implemented.'})}};
+ const unsupported=name=>()=>{throw Error('Custom visual host service is not supported: '+name)};
+ function tooltipShow(options){const rows=options?.dataItems||[];tooltip.replaceChildren();for(const item of rows){const line=document.createElement('div');line.textContent=(item.displayName?item.displayName+': ':'')+(item.value??'');tooltip.appendChild(line)}tooltip.style.display=rows.length?'block':'none';tooltip.style.left=Math.max(0,Math.min(innerWidth-180,options.coordinates?.[0]||0))+'px';tooltip.style.top=Math.max(0,Math.min(innerHeight-60,options.coordinates?.[1]||0))+'px'}
+ const host={
+  instanceId:token,locale:'en-US',hostEnv:0,hostCapabilities:{allowInteractions:true,allowModalDialog:false},
+  colorPalette:{getColor:color,isHighContrast:false,foreground:{value:'#193a37'},background:{value:'#ffffff'},foregroundSelected:{value:'#337b60'},hyperlink:{value:'#2470a0'}},
+  createSelectionIdBuilder:idBuilder,createSelectionManager:()=>manager,
+  createLocalizationManager:()=>({getDisplayName:key=>config.strings?.[key]||key}),
+  eventService:{renderingStarted:()=>send('rendering'),renderingFinished:()=>send('finished'),renderingFailed:(options,message)=>error(message||'The custom visual reported a render failure'),trace:()=>{}},
+  tooltipService:{enabled:()=>true,show:tooltipShow,move:options=>{if(options.dataItems)tooltipShow(options);else{tooltip.style.left=Math.max(0,Math.min(innerWidth-180,options.coordinates?.[0]||0))+'px';tooltip.style.top=Math.max(0,Math.min(innerHeight-60,options.coordinates?.[1]||0))+'px'}},hide:()=>{tooltip.style.display='none'}},
+  persistProperties:changes=>{
+   for(const item of changes?.merge||[]){if(item.selector){send('warning',{message:'Per-data-point persisted formatting is not implemented.'});continue}objects[item.objectName]={...(objects[item.objectName]||{}),...item.properties}}
+   for(const item of changes?.remove||[]){if(!item.selector)delete objects[item.objectName]}
+   send('persist',{changes});if(view){view.metadata.objects={...view.metadata.objects,...objects};queueMicrotask(update)}
+  },
+  fetchMoreData:()=>{send('warning',{message:'This workbench supplies up to 1,000 query rows; fetchMoreData is not implemented.'});return false},
+  refreshHostData:()=>send('refresh'),displayWarningIcon:(title,detail)=>send('warning',{message:String(title)+': '+String(detail||'')}),
+  applyJsonFilter:unsupported('applyJsonFilter'),applyCustomSort:unsupported('applyCustomSort'),launchUrl:unsupported('launchUrl'),openModalDialog:unsupported('openModalDialog'),
+  downloadService:{exportVisualsContent:unsupported('downloadService')},storageService:{get:unsupported('storageService'),set:unsupported('storageService')},
+  storageV2Service:{status:async()=>2,get:unsupported('storageV2Service'),set:unsupported('storageV2Service')},
+  webAccessService:{webAccessStatus:async url=>{let origin;try{origin=new URL(url).origin}catch{return 1}const declared=(config.domains||[]).some(domain=>domain.includes('*.')?origin.startsWith('https://')&&(origin.slice(8).endsWith('.'+domain.split('*.')[1])):origin===domain);return declared?(config.network?0:3):1}},
+  authenticationService:{getAADToken:unsupported('authenticationService')},acquireAADTokenService:{acquireAADToken:unsupported('acquireAADTokenService')},
+  licenseManager:{getAvailableServicePlans:unsupported('licenseManager'),notifyLicenseRequired:unsupported('licenseManager'),notifyLicenseRequiredTooltip:unsupported('licenseManager')},
+  telemetry:{trace:()=>{}},switchFocusModeState:unsupported('switchFocusModeState')
+ };
+ function hydrate(data){
+  for(const column of data.metadata.columns){if(!column.type.dateTime)continue;const i=column.index;for(const row of data.table?.rows||[])if(row[i]!=null)row[i]=new Date(row[i])}
+  for(const category of data.categorical?.categories||[])if(category.source.type.dateTime)category.values=category.values.map(v=>v==null?v:new Date(v));
+  const values=data.categorical?.values;
+  if(values){values.grouped=()=>{const groups=new Map();for(const col of values){const key=JSON.stringify(col.source.groupName??null);if(!groups.has(key))groups.set(key,{name:col.source.groupName,identity:col.identity,values:[]});groups.get(key).values.push(col)}return [...groups.values()]};for(const col of values){if(values.source?.type.dateTime&&col.source.groupName!=null)col.source.groupName=new Date(col.source.groupName);if(col.source.type.dateTime)col.values=col.values.map(v=>v==null?v:new Date(v))}}
+  return data;
+ }
+ function update(){if(!visual||!view)return;try{const result=visual.update({dataViews:[view],viewport:{width:Math.max(1,element.clientWidth),height:Math.max(1,element.clientHeight)},type:62,viewMode:0,editMode:0,operationKind:0,isInFocus:false});Promise.resolve(result).then(()=>send('finished')).catch(error)}catch(e){error(e)}}
+ addEventListener('message',event=>{if(event.source!==parent||event.data?.token!==token)return;const message=event.data;if(message.type==='data'){view=hydrate(message.view);objects={...view.metadata.objects};const indices=new Set(message.selectedRows||[]);const identities=view.categorical?.categories?.[0]?.identity||view.table?.identity||[];selected=identities.filter(id=>id.rows?.length&&id.rows.every(index=>indices.has(index))).map(id=>selectionId([id.key],id.rows));update();callbacks.forEach(fn=>fn())}else if(message.type==='destroy'){try{visual?.destroy?.()}catch{}visual=null}});
+ try{
+  window.powerbi={visuals:{plugins:{}},extensibility:{visual:{}}};window.dialogRegistry={};
+  const style=document.createElement('style');style.textContent=config.css;document.head.appendChild(style);
+  const script=document.createElement('script');script.nonce=config.nonce;script.textContent=config.js;document.head.appendChild(script);
+  const plugin=window.powerbi.visuals.plugins[config.guid];if(!plugin?.create)throw Error('The visual bundle did not register its GUID with powerbi.visuals.plugins.');
+  visual=plugin.create({element,host});new ResizeObserver(()=>update()).observe(element);send('ready');
+ }catch(e){error(e)}
+}
+function documentFor(pkg,token,network=false){
+ const nonce=token.replace(/[^a-zA-Z0-9]/g,''),domains=network?(pkg.networkDomains||[]).join(' '):'',policy="default-src 'none'; script-src 'nonce-"+nonce+"'; style-src 'unsafe-inline'; img-src data: blob: "+domains+"; connect-src "+(domains||"'none'")+"; font-src data:; media-src 'none'; frame-src 'none'; form-action 'none'; base-uri 'none'; worker-src 'none'";
+ const config={token,nonce,guid:pkg.guid,js:pkg.js,css:pkg.css||'',strings:{},network,domains:pkg.networkDomains||[]};
+ const encoded=JSON.stringify(config).replaceAll('<','\\u003c').replaceAll('\u2028','\\u2028').replaceAll('\u2029','\\u2029');
+ return '<!doctype html><html><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="'+policy.replaceAll('"','&quot;')+'"><style>html,body,#visual{margin:0;width:100%;height:100%;overflow:hidden}body{font-family:Segoe UI,sans-serif}#tooltip{display:none;position:fixed;z-index:999999;background:#193a37;color:white;border-radius:4px;font:12px sans-serif;padding:8px;max-width:260px;pointer-events:none}</style></head><body><div id="visual"></div><div id="tooltip" role="tooltip"></div><script nonce="'+nonce+'">('+bootstrap.toString()+')('+encoded+');<\/script></body></html>';
+}
+const api={documentFor,bootstrap};if(typeof module!=='undefined')module.exports=api;root.CustomFrame=api;
+})(globalThis);
+
+(function(root){
+const sessions=new Set(),packages=new Map();let library=[];
+let storageKey='death2powerbi.customVisualSettings.signedout';
+function setAccount(id,inheritLegacy=false){disposeAll();packages.clear();library=[];storageKey='death2powerbi.customVisualSettings.'+(id||'signedout');if(inheritLegacy){try{if(localStorage.getItem(storageKey)===null){const old=localStorage.getItem('death2powerbi.customVisualSettings');if(old!==null)localStorage.setItem(storageKey,old)}}catch{}}}
+function settings(){try{return JSON.parse(localStorage.getItem(storageKey)||'{}')}catch{return {}}}
+function saveSettings(value){try{localStorage.setItem(storageKey,JSON.stringify(value))}catch{}}
+async function load(api){const [custom,builtins]=await Promise.all([api('/api/custom-visuals'),api('/api/builtin-visuals')]);library=[...builtins,...custom.filter(p=>!builtins.some(b=>b.id===p.id))];return library}
+function resolve(type,model){if(type==='kpi')return library.find(p=>p.builtin&&p.guid===root.NativeKPI?.guid);const embedded=model?.customVisuals?.find(p=>p.guid===type);return library.find(p=>p.id===embedded?.id)||library.find(p=>p.guid===type)}
+async function get(id,api){if(!packages.has(id))packages.set(id,await api('/api/custom-visuals/'+id));return packages.get(id)}
+function options(id){return settings()['package:'+id]||{network:false}}
+function configure(id,value){const all=settings();all['package:'+id]={...options(id),...value};saveSettings(all)}
+function disposeAll(){for(const session of [...sessions])session.dispose()}
+async function mount(container,pkgMeta,visual,result,compiled,{api,model,page,onSelection,onRefresh,selectedRows=[]}={}){
+ const pkg=await get(pkgMeta.id,api);if(!container.isConnected)return;
+ const key='visual:'+model.id+':'+visual.id+':'+pkg.id,all=settings(),overrides=all[key]||{};
+ const view=CustomDataView.build(pkg,visual,result,compiled,overrides);
+ const frame=document.createElement('iframe');frame.title=pkg.name+' custom visual';frame.setAttribute('sandbox','allow-scripts');frame.referrerPolicy='no-referrer';frame.style.cssText='width:100%;height:100%;border:0;min-height:100px;display:block;background:white';
+ const token=crypto.randomUUID(),note=document.createElement('div');note.style.cssText='font-size:11px;padding:3px;color:#806b36;flex:none';
+ container.replaceChildren(frame,note);container.style.cssText+=';display:flex;flex-direction:column;min-height:0';frame.style.flex='1';
+ let disposed=false,finished=false,resolveReady,rejectReady;
+ const ready=new Promise((resolve,reject)=>{resolveReady=resolve;rejectReady=reject});
+ const timer=setTimeout(()=>{if(!finished){note.textContent='The custom visual did not complete startup within 10 seconds.';rejectReady(Error(note.textContent))}},10000);
+ function message(event){
+  const data=event.data;if(disposed||event.source!==frame.contentWindow||!data?.death2custom||data.token!==token)return;
+  if(data.type==='ready')frame.contentWindow.postMessage({token,type:'data',view,selectedRows},'*');
+  if(data.type==='finished'){finished=true;clearTimeout(timer);resolveReady({frame})}
+  if(data.type==='error'){note.textContent='Custom visual error: '+String(data.message||'Unknown error').slice(0,2000);note.style.color='#a03c30';finished=true;clearTimeout(timer);rejectReady(Error(note.textContent))}
+  if(data.type==='warning')note.textContent=String(data.message||'').slice(0,2000);
+  if(data.type==='refresh')onRefresh?.();
+  if(data.type==='selection'){
+   if(!Array.isArray(data.rows)||data.rows.length>result.rows.length||data.rows.some(i=>!Number.isInteger(i)||i<0||i>=result.rows.length))return;
+   onSelection?.([...new Set(data.rows)]);
+  }
+  if(data.type==='persist'){
+   if(!data.changes||JSON.stringify(data.changes).length>64000)return;
+   if(data.changes.merge&&!Array.isArray(data.changes.merge)||data.changes.remove&&!Array.isArray(data.changes.remove))return;
+   const stored=settings(),current=stored[key]||{};
+   for(const item of data.changes.merge||[]){
+    if(item.selector||!Object.hasOwn(pkg.capabilities.objects||{},item.objectName))continue;
+    const allowed=pkg.capabilities.objects[item.objectName].properties||{};
+    const properties=Object.fromEntries(Object.entries(item.properties||{}).filter(([name])=>Object.hasOwn(allowed,name)));
+    current[item.objectName]={...(current[item.objectName]||{}),...properties};
+   }
+   for(const item of data.changes.remove||[])if(!item.selector&&Object.hasOwn(pkg.capabilities.objects||{},item.objectName))delete current[item.objectName];
+   stored[key]=current;saveSettings(stored);
+  }
+ }
+ const session={dispose(){if(disposed)return;disposed=true;clearTimeout(timer);frame.contentWindow?.postMessage({token,type:'destroy'},'*');removeEventListener('message',message);frame.remove();sessions.delete(session);resolveReady({disposed:true})}};
+ sessions.add(session);addEventListener('message',message);
+ frame.srcdoc=CustomFrame.documentFor(pkg,token,!!options(pkg.id).network);
+ if(result.truncated)note.textContent='Preview limited to 1,000 query rows.';
+ try{return await ready}catch(error){session.dispose();throw error}
+}
+const api={load,resolve,get,options,configure,disposeAll,mount,setAccount,list:()=>library};if(typeof module!=='undefined')module.exports=api;root.CustomVisuals=api;
+})(globalThis);
+
+(function(root){
+const escape=s=>String(s??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
+async function render({target,model,api,evaluate,page}){
+ target.innerHTML='<section class="panel"><h2>Custom Power BI visuals</h2><p>Import a .pbiviz package, or use visuals embedded in your saved reports. Uploaded JavaScript runs in an isolated frame with network access off by default. <a href="/api/custom-visuals/support" target="_blank" rel="noopener">Supported host APIs and limits</a></p><label>Visual package <input id="customfile" type="file" accept=".pbiviz"></label><p id="customimportstatus" role="status"></p><label>Installed visual <select id="custompackage" aria-label="Installed custom visual"></select></label><div id="customdetails"></div><div id="customroles" style="display:flex;flex-wrap:wrap;gap:12px;margin:18px 0"></div><button id="custompreviewbutton">Render preview with selected fields</button><div id="custompreview" style="height:550px;margin-top:16px;border:1px solid #dfe7e3;border-radius:8px;overflow:hidden"></div></section>';
+ const panel=target.firstElementChild,packages=await CustomVisuals.load(api);if(!target.isConnected||target.firstElementChild!==panel)return;
+ const selector=target.querySelector('#custompackage');
+ selector.innerHTML=packages.map(p=>'<option value="'+p.id+'">'+escape(p.name)+' · '+escape(p.version)+' · '+p.id.slice(-6)+'</option>').join('');
+ const fields=model.tables.flatMap(table=>table.columns.map(column=>({label:table.name+' · '+column.name,table:table.name,column:column.name,type:column.type,field:{Column:{Expression:{SourceRef:{Entity:table.name}},Property:column.name}}})));
+ fields.push(...model.measures.map(m=>({label:'Measure · '+(m.Name||m.name),type:'DOUBLE',field:{Measure:{Expression:{SourceRef:{Entity:m.TableName}},Property:m.Name||m.name}}})));
+ let current;
+ function choose(){
+  CustomVisuals.disposeAll();target.querySelector('#custompreview').replaceChildren();
+  current=packages.find(p=>p.id===selector.value);const details=target.querySelector('#customdetails'),roles=target.querySelector('#customroles');
+  if(!current){details.innerHTML='<p>No packages installed yet. Import a .pbiviz file above.</p>';roles.innerHTML='';target.querySelector('#custompreviewbutton').disabled=true;return}
+  target.querySelector('#custompreviewbutton').disabled=model.id==='demo';
+  details.innerHTML='<p>API '+escape(current.apiVersion)+' · GUID '+escape(current.guid)+'</p>'+(current.networkDomains.length?'<label><input type="checkbox" id="customnetwork" '+(CustomVisuals.options(current.id).network?'checked':'')+'> Allow declared external resources for this package</label><p style="font-size:11px">Enabling this sends requests to: '+current.networkDomains.map(escape).join(', ')+'</p>':'<p>No external network services declared.</p>');
+  const network=details.querySelector('#customnetwork');if(network)network.onchange=()=>CustomVisuals.configure(current.id,{network:network.checked});
+  roles.innerHTML=(current.capabilities.dataRoles||[]).map((role,index)=>'<label style="display:flex;flex-direction:column;max-width:300px">'+escape(role.displayName||role.name)+'<select data-custom-role="'+index+'" aria-label="Custom role '+escape(role.displayName||role.name)+'"><option value="">Not assigned</option>'+fields.map((f,i)=>'<option value="'+i+'">'+escape(f.label)+'</option>').join('')+'</select></label>').join('');
+ }
+ selector.onchange=choose;choose();
+ target.querySelector('#customfile').onchange=async event=>{const file=event.target.files[0];if(!file)return;const status=target.querySelector('#customimportstatus');status.textContent='Importing visual package…';try{const body=new FormData();body.append('file',file);const result=await api('/api/custom-visuals/import',{method:'POST',body});status.textContent='Imported '+result.name+'.';await render({target,model,api,evaluate,page});target.querySelector('#custompackage').value=result.id;target.querySelector('#custompackage').onchange()}catch(error){status.textContent=error.message}};
+ target.querySelector('#custompreviewbutton').onclick=async()=>{
+  const queryState={};for(const select of roles()){if(select.value==='')continue;const role=current.capabilities.dataRoles[+select.dataset.customRole],f=fields[+select.value];let field=f.field;
+   if((role.kind==='Measure'||role.kind===1)&&field.Column){if(!/INT|DOUBLE|DECIMAL|FLOAT|REAL/.test(f.type))return target.querySelector('#custompreview').textContent=role.displayName+' requires a numeric field.';field={Aggregation:{Expression:field,Function:0}}}
+   queryState[role.name]={projections:[{field,displayName:f.label,nativeQueryRef:f.label,queryRef:f.label}]};
+  }
+  const preview=target.querySelector('#custompreview');preview.className='visual';preview.style.position='relative';
+  CustomVisuals.disposeAll();
+  await evaluate({id:'custom-preview-'+current.id,type:current.guid,definition:{query:{queryState}}},page||{},preview);
+ };
+ function roles(){return target.querySelectorAll('[data-custom-role]')}
+}
+const api={render};if(typeof module!=='undefined')module.exports=api;root.CustomWorkbench=api;
+})(globalThis);
+
+/* CUSTOM VISUALS END */
+/* REPORT ENGINE START */
+/* Deliberately bounded PBIR-to-SQL translator. Unsupported semantics fail closed. */
+(function(root){
+const qi=s=>'"'+String(s).replaceAll('"','""')+'"';
+const fail=m=>{throw Error(m)};
+function literal(v){
+ const s=v?.Literal?.Value;
+ if(typeof s!=='string')return fail('Unsupported filter literal.');
+ if(s==='null')return null;
+ if(s==='true'||s==='false')return s==='true';
+ if(s.startsWith("'")&&s.endsWith("'"))return s.slice(1,-1).replaceAll("''","'");
+ if(/^[-+]?\d+(?:\.\d+)?(?:[dDlLmM])?$/.test(s))return Number(s.replace(/[dDlLmM]$/,''));
+ if(/^datetime'[^']+'$/i.test(s))return s.slice(9,-1);
+ return fail('Unsupported filter literal: '+s);
+}
+const sqlValue=v=>v===null?'NULL':typeof v==='number'?String(v):typeof v==='boolean'?String(v):"'"+String(v).replaceAll("'","''")+"'";
+function column(expr,aliases={}){
+ const c=expr?.Column||expr?.GroupRef;
+ if(!c)return fail('This filter or field is not a direct column.');
+ const source=c.Expression?.SourceRef||{};
+ const table=source.Entity||aliases[source.Source];
+ if(!table||!c.Property)return fail('Unresolved source column.');
+ return {table,column:c.Property};
+}
+const colsql=c=>qi(c.table)+'.'+qi(c.column);
+function filterEntries(value){
+ if(!value)return [];
+ if(Array.isArray(value))return value.flatMap(filterEntries);
+ if(value.reportFilters)return filterEntries(value.reportFilters);
+ if(Array.isArray(value.filters))return value.filters.flatMap(filterEntries);
+ return [value];
+}
+function parseFilters(values){
+ const result=[];
+ for(const entry of filterEntries(values)){
+  // A filter-well or drill-through field without a predicate is not a selection.
+  if(!entry.filter){
+   if(entry.Condition)return fail('Unsupported legacy filter expression.');
+   if(entry.expression){
+    const keys=Object.keys(entry.expression);
+    const fields=['Column','GroupRef','Measure','Aggregation','Hierarchy','HierarchyLevel'];
+    if(keys.length!==1||!fields.includes(keys[0]))return fail('Unsupported legacy filter expression.');
+   }
+   continue;
+  }
+  const f=entry.filter, aliases=Object.fromEntries((f.From||[]).map(x=>[x.Name,x.Entity]));
+  if(Object.keys(f).some(k=>!['Version','From','Where'].includes(k)))fail('Unsupported source filter structure.');
+  for(const where of f.Where||[]){
+   const tupleFilter=where.Condition?.In;
+   if(tupleFilter){
+    const columns=tupleFilter.Expressions.map(e=>column(e,aliases));
+    if(new Set(columns.map(c=>c.table)).size>1){
+     result.push({alternatives:tupleFilter.Values.map(row=>{if(row.length!==columns.length)fail('Invalid categorical selection.');return row.map((v,i)=>{const value=literal(v);return {table:columns[i].table,columns:[columns[i].column],sql:colsql(columns[i])+(value===null?' IS NULL':' = '+sqlValue(value))}})})});
+     continue;
+    }
+   }
+   const tables=new Set(),usedColumns=new Set();
+   function field(x){const c=column(x,aliases);tables.add(c.table);usedColumns.add(c.column);return colsql(c)}
+   function condition(c){
+    if(c.In){const a=c.In;const fields=a.Expressions.map(field);if(!a.Values.length)return 'FALSE';return '('+a.Values.map(row=>{if(row.length!==fields.length)fail('Invalid categorical filter.');return '('+row.map((v,i)=>{const value=literal(v);return fields[i]+(value===null?' IS NULL':' = '+sqlValue(value))}).join(' AND ')+')'}).join(' OR ')+')'}
+    if(c.Not)return '(NOT '+condition(c.Not.Expression||c.Not)+')';
+    if(c.And||c.Or){const a=c.And||c.Or;return '('+condition(a.Left)+(c.And?' AND ':' OR ')+condition(a.Right)+')'}
+    if(c.Comparison){const a=c.Comparison;const ops={0:'=',1:'>',2:'>=',3:'<',4:'<=',5:'<>'};const op=ops[a.ComparisonKind];if(!op)fail('Unsupported comparison kind.');const left=field(a.Left),v=literal(a.Right);return left+(v===null?(op==='='?' IS NULL':op==='<>'?' IS NOT NULL':fail('Invalid NULL comparison.')):' '+op+' '+sqlValue(v))}
+    return fail('Unsupported source filter condition: '+Object.keys(c||{}).join(', '));
+   }
+   const sql=condition(where.Condition);
+   if(tables.size!==1)fail('Multi-table filter predicates need further translation.');
+   result.push({table:[...tables][0],columns:[...usedColumns],sql});
+  }
+ }
+ return result;
+}
+function relationPath(from,to,relationships){
+ const queue=[[from,[]]],seen=new Set([from]);
+ while(queue.length){const [t,path]=queue.shift();if(t===to)return path;
+  for(const r of relationships||[]){if(!r.IsActive||!['M:1','1:1'].includes(r.Cardinality))continue;
+   // Search from the queried table towards dimensions whose filters reach it.
+   const edges=[{a:r.FromTableName,ac:r.FromColumnName,b:r.ToTableName,bc:r.ToColumnName}];
+   if(r.CrossFilteringBehavior==='Both')edges.push({a:r.ToTableName,ac:r.ToColumnName,b:r.FromTableName,bc:r.FromColumnName});
+   for(const e of edges)if(e.a===t&&!seen.has(e.b)){seen.add(e.b);queue.push([e.b,[...path,e]])}
+  }
+ }
+ return null;
+}
+function whereFor(table,filters,model){
+ const combined=new Map();for(const f of filters.filter(f=>!f.alternatives))combined.set(f.table,[...(combined.get(f.table)||[]),f.sql]);
+ const terms=[...combined].map(([table,conditions])=>({table,sql:'('+conditions.join(' AND ')+')'})).map(f=>{if(f.table===table)return f.sql;const path=relationPath(table,f.table,model.relationships);if(!path)return null;
+  let sql=f.sql;for(const e of [...path].reverse())sql='EXISTS (SELECT 1 FROM '+qi(e.b)+' WHERE '+qi(e.b)+'.'+qi(e.bc)+' = '+qi(e.a)+'.'+qi(e.ac)+' AND '+sql+')';return sql;
+ }).filter(Boolean);
+ for(const f of filters.filter(f=>f.alternatives))terms.push(f.alternatives.length?'('+f.alternatives.map(row=>'('+ (whereFor(table,row,model)||'TRUE') +')').join(' OR ')+')':'FALSE');
+ return terms.join(' AND ');
+}
+function projections(def){
+ const state=def.query?.queryState;
+ if(!state)return fail('Legacy visual queries need further translation.');
+ return Object.values(state).flatMap(role=>(role.projections||[]).filter(p=>p.active!==false));
+}
+function dateHierarchy(e,model){
+ const h=e?.HierarchyLevel, hierarchy=h?.Expression?.Hierarchy;
+ const source=hierarchy?.Expression?.PropertyVariationSource;
+ if(!source||hierarchy.Hierarchy!=='Date Hierarchy'||!['Year','Quarter','Month','Day'].includes(h.Level))return fail('Unsupported hierarchy definition.');
+ const table=source.Expression?.SourceRef?.Entity,property=source.Property;
+ const matches=(model.relationships||[]).filter(r=>r.IsActive&&r.FromTableName===table&&r.FromColumnName===property&&r.ToTableName?.startsWith('LocalDateTable_'));
+ if(matches.length!==1)return fail('Cannot resolve the automatic date hierarchy relationship.');
+ const column=h.Level==='Month'?'MonthNo':h.Level==='Quarter'?'QuarterNo':h.Level;
+ if(!model.tables?.find(t=>t.name===matches[0].ToTableName)?.columns.some(c=>c.name===column))return fail('The date hierarchy column was not imported.');
+ return {table:matches[0].ToTableName,column,sourceTable:table,sourceColumn:property,level:h.Level};
+}
+function normalizeDateAxis(model,visual){
+ const ps=visual.definition?.query?.queryState?.Category?.projections?.filter(p=>p.active!==false)||[];
+ if(ps.length<2||!ps.every(p=>p.field?.HierarchyLevel))return visual;
+ const levels=ps.map(p=>dateHierarchy(p.field,model)),first=levels[0];
+ const order=['Year','Quarter','Month','Day'];
+ if(first.level!=='Year'||levels.some(l=>l.table!==first.table)||levels.some((l,i)=>i&&order.indexOf(l.level)<=order.indexOf(levels[i-1].level)))return fail('Unsupported date hierarchy drill combination.');
+ const deepest=levels.at(-1),copy=structuredClone(visual);
+ copy.definition.query.queryState.Category.projections=[{field:{DateBucket:{table:first.sourceTable,column:first.sourceColumn,unit:deepest.level.toLowerCase()}},nativeQueryRef:first.sourceColumn}];
+ // A date axis has one chronological identity, rather than numeric year/day value series.
+ for(const sort of copy.definition.query.sortDefinition?.sort||[])if(ps.some(p=>JSON.stringify(p.field)===JSON.stringify(sort.field)))sort.field=copy.definition.query.queryState.Category.projections[0].field;
+ return copy;
+}
+function buildQuery(model,page,visual,extra=[]){
+ visual=normalizeDateAxis(model,visual);
+ const def=visual.definition;
+ const filters=parseFilters([page.reportFilters,page.filters,visual.filters,...extra]);
+ const tables=new Set(),aggregateTables=new Set(),labels=[],groups=[],stack=new Set(),warnings=[];
+ const fields=projections(def);
+ function measure(m){
+  const name=m.Property,table=m.Expression?.SourceRef?.Entity;
+  const matches=model.measures.filter(x=>(x.Name||x.MeasureName)===name&&(!table||!x.TableName||x.TableName===table));
+  if(matches.length!==1)fail('Cannot resolve measure: '+name);
+  if(stack.has(name))fail('Cyclic measure dependency.');stack.add(name);
+  const text=matches[0].Expression.trim();let sql;
+  if(/^[-+]?\d*\.?\d+$/.test(text))sql=text;
+  else{
+   const agg=text.match(/^(SUM|AVERAGE|MIN|MAX|COUNT|DISTINCTCOUNT)\s*\(\s*(?:(?:'([^']+)'|([\w ]+))\s*)?\[([^\]]+)\]\s*\)$/i);
+   if(agg){const t=agg[2]||agg[3]||matches[0].TableName||table;if(!t)fail('Cannot resolve the home table for DAX aggregate '+name);tables.add(t);aggregateTables.add(t);const c=qi(t)+'.'+qi(agg[4]);sql=agg[1].toUpperCase()==='DISTINCTCOUNT'?'COUNT(DISTINCT '+c+')':({AVERAGE:'AVG'}[agg[1].toUpperCase()]||agg[1].toUpperCase())+'('+c+')'}
+   else{
+    const reference=text.match(/^\[([^\]]+)\]$/);
+    const countRows=text.match(/^COUNTROWS\s*\(\s*(?:'([^']+)'|([\w ]+))\s*\)$/i);
+    const divide=text.match(/^DIVIDE\s*\((.*)\)$/is);
+    if(reference)sql=measure({Property:reference[1]}).sql;
+    else if(countRows){const t=countRows[1]||countRows[2];tables.add(t);aggregateTables.add(t);sql='NULLIF(COUNT(*),0)'}
+    else if(divide){
+     let depth=0,start=0,quote=null;const args=[];
+     for(let i=0;i<divide[1].length;i++){const c=divide[1][i];if(quote){if(c===quote){if(divide[1][i+1]===quote)i++;else quote=null}continue}if(c==='\''||c==='"'){quote=c;continue}if(c==='('||c==='[')depth++;if(c===')'||c===']')depth--;if(c===','&&!depth){args.push(divide[1].slice(start,i).trim());start=i+1}}
+     args.push(divide[1].slice(start).trim());
+     if(args.length<2||args.length>3)fail('DIVIDE expects two or three arguments.');
+     function operand(value){if(/^[-+]?\d*\.?\d+$/.test(value))return value;const ref=value.match(/^\[([^\]]+)\]$/);if(ref)return measure({Property:ref[1]}).sql;fail('DIVIDE currently supports numeric literals and measure references.')}
+     const left=operand(args[0]),right=operand(args[1]),alternate=args[2]?operand(args[2]):'NULL';
+     sql='CASE WHEN ('+right+') IS NULL OR ('+right+')=0 THEN '+alternate+' ELSE ('+left+')/('+right+') END';
+    }else fail('DAX measure “'+name+'” needs a SQL mapping; this DAX expression is not supported yet.');
+   }
+  }
+  stack.delete(name);return {sql,aggregate:!/^[-+]?\d*\.?\d+$/.test(text)};
+ }
+ function expression(e){
+  if(e.HierarchyLevel){const c=dateHierarchy(e,model);tables.add(c.table);return {sql:colsql(c),aggregate:false}}
+  if(e.DateBucket){const c=e.DateBucket;if(!['year','quarter','month','day'].includes(c.unit))fail('Unsupported date grain.');tables.add(c.table);return {sql:"date_trunc('"+c.unit+"', "+colsql(c)+')',aggregate:false}}
+  if(e.Column||e.GroupRef){const c=column(e);tables.add(c.table);return {sql:colsql(c),aggregate:false}}
+  if(e.Measure)return measure(e.Measure);
+  if(e.Aggregation){const a=e.Aggregation,c=expression(a.Expression);aggregateTables.add(column(a.Expression).table);if(c.aggregate)fail('Nested aggregation unsupported.');const fn={0:'SUM',1:'AVG',2:'COUNT',3:'MIN',4:'MAX',5:'DISTINCTCOUNT'}[a.Function];if(!fn)fail('Unsupported aggregation.');return {sql:fn==='DISTINCTCOUNT'?'COUNT(DISTINCT '+c.sql+')':fn+'('+c.sql+')',aggregate:true}}
+  if(e.Arithmetic){const a=e.Arithmetic,l=expression(a.Left),r=expression(a.Right),op={0:'+',1:'-',2:'*',3:'/'}[a.Operator];if(!op)fail('Unsupported arithmetic.');return {sql:'('+l.sql+op+(op==='/'?'NULLIF('+r.sql+',0)':r.sql)+')',aggregate:l.aggregate||r.aggregate}}
+  if(e.ScopedEval&&Array.isArray(e.ScopedEval.Scope)&&!e.ScopedEval.Scope.length){const a=expression(e.ScopedEval.Expression);if(!a.aggregate)fail('Total scope requires an aggregate.');return {sql:'SUM('+a.sql+') OVER ()',aggregate:true}}
+  return fail('Unsupported visual field expression: '+Object.keys(e).join(', '));
+ }
+ const selections=fields.map((p,i)=>{const e=expression(p.field);labels.push(p.displayName||p.nativeQueryRef||p.queryRef||'Value');if(!e.aggregate)groups.push(e.sql);return {...e,sql:e.sql+' AS '+qi('v'+i)}});
+ if(!selections.length)fail('No query fields found.');
+ if(aggregateTables.size>1)fail('Measures from multiple fact tables require separate aggregation plans.');
+ const table=[...aggregateTables][0]||[...tables][0];
+ let from=table?qi(table):'',joined=new Set(table?[table]:[]);
+ for(const target of tables){
+  if(joined.has(target))continue;
+  const path=relationPath(table,target,model.relationships);
+  if(path){
+   for(const e of path)if(!joined.has(e.b)){
+    const r=model.relationships.find(r=>(r.FromTableName===e.a&&r.ToTableName===e.b&&r.FromColumnName===e.ac&&r.ToColumnName===e.bc)||(r.Cardinality==='1:1'&&r.FromTableName===e.b&&r.ToTableName===e.a&&r.FromColumnName===e.bc&&r.ToColumnName===e.ac));
+    if(!r||!['M:1','1:1'].includes(r.Cardinality))fail('Reverse many-side projections need a separate aggregation plan.');
+    from+=' LEFT JOIN '+qi(e.b)+' ON '+qi(e.a)+'.'+qi(e.ac)+' = '+qi(e.b)+'.'+qi(e.bc);joined.add(e.b);
+   }
+  }else{
+   const columns=fields.filter(p=>p.field.Column||p.field.GroupRef).map(p=>column(p.field)).filter(c=>c.table===target).map(c=>qi(c.column));
+   if(!columns.length)fail('Disconnected aggregate expressions need a separate aggregation plan.');
+   const where=whereFor(target,filters,model);
+   from+=' CROSS JOIN (SELECT DISTINCT '+[...new Set(columns)].join(',')+' FROM '+qi(target)+(where?' WHERE '+where:'')+') AS '+qi(target);joined.add(target);
+   warnings.push(target+' has no active filter path to '+table+'. The filtered total repeats for each disconnected category.');
+  }
+ }
+ let sql='SELECT '+selections.map(s=>s.sql).join(', ')+(from?' FROM '+from:'');
+ const where=table?whereFor(table,filters,model):'';if(where)sql+=' WHERE '+where;
+ if(selections.some(s=>s.aggregate)&&groups.length)sql+=' GROUP BY '+groups.join(', ');
+ else if(!selections.some(s=>s.aggregate)&&!['histogram','histogramChart','boxplot','boxPlot','stripPlot','stripChart','ternaryPlot','ternaryChart','scatterChart','pointMap','map'].includes(visual.type))sql=sql.replace('SELECT ','SELECT DISTINCT ');
+ const sorts=def.query?.sortDefinition?.sort||[];
+ if(sorts.length){const parts=sorts.map(s=>{const i=fields.findIndex(p=>JSON.stringify(p.field)===JSON.stringify(s.field));if(i<0)fail('Source sort field is not projected.');return qi('v'+i)+(s.direction==='Descending'?' DESC':' ASC')});sql+=' ORDER BY '+parts.join(', ')}
+ else if(fields.some(p=>p.field.DateBucket))sql+=' ORDER BY '+qi('v'+fields.findIndex(p=>p.field.DateBucket))+' ASC';
+ return {sql,labels,warnings,formats:fields.map(p=>fieldFormat(model,p)),roles:Object.entries(def.query.queryState).flatMap(([role,v])=>(v.projections||[]).filter(p=>p.active!==false).map(()=>role))};
+}
+function fieldFormat(model,p){
+ if(p.format)return p.format;
+ let f=p.field;while(f.Aggregation)f=f.Aggregation.Expression;
+ if(f.Measure){const m=f.Measure;return model.measures.find(x=>x.Name===m.Property&&(!m.Expression?.SourceRef?.Entity||x.TableName===m.Expression.SourceRef.Entity))?.FormatString||''}
+ const c=f.Column||f.GroupRef;return c?model.tables?.find(t=>t.name===c.Expression?.SourceRef?.Entity)?.columns?.find(x=>x.name===c.Property)?.formatString||'':'';
+}
+async function pythonQuery(model,page,visual,extra,query,api){
+ const fields=projections(visual.definition),indices=fields.map((p,i)=>p.field.Column||p.field.GroupRef?i:-1).filter(i=>i>=0);
+ const filters=parseFilters([page.reportFilters,page.filters,visual.filters,...extra]);
+ let groupRows=[[]];
+ if(indices.length){
+  const def={...visual.definition,query:{queryState:{Category:{projections:indices.map(i=>fields[i])}}}};
+  const plan=buildQuery(model,page,{...visual,type:'tableEx',definition:def},extra),result=await query(plan.sql);
+  if(result.truncated)throw Error('Python DAX grouping exceeds 1,000 groups. Narrow the filters.');groupRows=result.rows;
+ }
+ const groups=groupRows.map(row=>{
+  const groupFilters=indices.map((i,j)=>{const c=column(fields[i].field);return {table:c.table,columns:[c.column],sql:colsql(c)+(row[j]===null?' IS NULL':' = '+sqlValue(row[j]))}});
+  return {values:Object.fromEntries(indices.map((i,j)=>[i,row[j]])),externalFilters:filters,filters:[...filters,...groupFilters],scope:indices.map(i=>{const c=column(fields[i].field);return [c.table,c.column]}),contexts:Object.fromEntries(model.tables.map(t=>[t.name,whereFor(t.name,[...filters,...groupFilters],model)]))};
+ });
+ const result=await api('/api/dax',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:model.id,fields:fields.map(p=>p.field),contexts:{},groups})});
+ const sorts=visual.definition.query?.sortDefinition?.sort||[];
+ if(sorts.length){
+  const indices=sorts.map(sort=>{const index=fields.findIndex(p=>JSON.stringify(p.field)===JSON.stringify(sort.field));if(index<0)fail('Source sort field is not projected.');return {index,descending:sort.direction==='Descending'}});
+  result.rows.sort((a,b)=>{for(const sort of indices){const x=a[sort.index],y=b[sort.index];let order=x===y?0:x===null?-1:y===null?1:typeof x==='string'&&typeof y==='string'?x.localeCompare(y):x<y?-1:1;if(order)return sort.descending?-order:order}return 0});
+ }
+ return {compiled:{labels:fields.map(p=>p.displayName||p.nativeQueryRef||p.queryRef||'Value'),formats:fields.map(p=>fieldFormat(model,p)),roles:Object.entries(visual.definition.query.queryState).flatMap(([role,v])=>(v.projections||[]).filter(p=>p.active!==false).map(()=>role)),warnings:[]},result};
+}
+const api={pythonQuery,fieldFormat,literal,parseFilters,whereFor,buildQuery,filterEntries};
+if(typeof module!=='undefined')module.exports=api;root.ReportEngine=api;
+})(globalThis);
+
+/* REPORT ENGINE END */
+/* CHART RENDERER START */
+(function(root){
+const escape=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const number=v=>Number(v).toLocaleString(undefined,{maximumFractionDigits:2,notation:Math.abs(v)>=1000000?'compact':'standard'});
+const colors=['#337b60','#9dbd67','#4e8fa6','#c89849','#8b6aa8','#ca7b70','#568475','#889ab5'];
+const types=['clusteredColumnChart','clusteredBarChart','columnChart','barChart','stackedColumnChart','stackedBarChart','hundredPercentStackedColumnChart','hundredPercentStackedBarChart','lineChart','areaChart','stackedAreaChart','pieChart','donutChart','scatterChart'];
+function chartHTML(type,labels,rows,roles=[]){
+ if(!rows.length)return '<p>No data for the current filters.</p>';
+ let svg='',note='';const W=900,H=400;
+ const wrap=s=>'<svg role="img" aria-label="'+escape(labels.join(' / '))+'" viewBox="0 0 '+W+' '+H+'" style="width:100%;height:85%;min-height:100px">'+s+'</svg>'+note;
+ if(type==='scatterChart'){
+  let xi=roles.indexOf('X'),yi=roles.indexOf('Y');if(xi<0)xi=0;if(yi<0)yi=1;
+  const pts=rows.filter(r=>r[xi]!==null&&r[yi]!==null&&Number.isFinite(Number(r[xi]))&&Number.isFinite(Number(r[yi])));
+  if(!pts.length)throw Error('Scatter chart needs numeric X and Y fields.');
+  const xmax=Math.max(1,...pts.map(r=>+r[xi])),xmin=Math.min(0,...pts.map(r=>+r[xi])),ymax=Math.max(1,...pts.map(r=>+r[yi])),ymin=Math.min(0,...pts.map(r=>+r[yi]));
+  svg='<path d="M70 20V350H870" fill="none" stroke="#b5c4b5"/>';
+  svg+=pts.map(r=>'<circle cx="'+(70+(r[xi]-xmin)/(xmax-xmin)*800)+'" cy="'+(350-(r[yi]-ymin)/(ymax-ymin)*330)+'" r="5" fill="'+colors[0]+'" opacity=".65"><title>'+escape(labels[xi]+': '+r[xi]+', '+labels[yi]+': '+r[yi])+'</title></circle>').join('');return wrap(svg);
+ }
+ const category=roles.findIndex(r=>['Category','Rows','Details'].includes(r));const ci=category<0?0:category;
+ const si=roles.findIndex(r=>['Series','Legend'].includes(r));
+ let values=labels.map((_,i)=>i).filter(i=>i!==ci&&i!==si&&rows.some(r=>r[i]!==null&&typeof r[i]==='number'));
+ if(!values.length)throw Error('Chart needs at least one numeric value.');
+ const cats=[...new Set(rows.map(r=>String(r[ci]??'(Blank)')))];
+ const allSeries=si<0?values.map(i=>({key:labels[i],i})): [...new Set(rows.map(r=>String(r[si]??'(Blank)')))].flatMap(key=>values.map(i=>({key:key+(values.length>1?' · '+labels[i]:''),i,series:key})));
+ const lookup=new Map();
+ for(const r of rows)for(const s of allSeries)if(si<0||String(r[si]??'(Blank)')===s.series){const key=JSON.stringify([String(r[ci]??'(Blank)'),s.key]);if(lookup.has(key))throw Error('Multiple rows map to the same chart point; additional dimensions need grouping.');lookup.set(key,r[s.i]===null?null:Number(r[s.i]))}
+ const get=(c,s)=>lookup.get(JSON.stringify([c,s.key]));
+ if(['pieChart','donutChart'].includes(type)){
+  if(allSeries.length!==1)throw Error('Pie/donut charts require one value series.');
+  const vals=cats.map(c=>get(c,allSeries[0])||0);if(vals.some(v=>v<0))throw Error('Pie/donut charts cannot show negative values.');
+  const total=vals.reduce((a,b)=>a+b,0);if(!total)return '<p>No nonzero values.</p>';
+  let angle=-Math.PI/2;
+  vals.forEach((v,i)=>{if(!v)return;const next=angle+v/total*2*Math.PI,x=300+145*Math.cos(angle),y=195+145*Math.sin(angle),nx=300+145*Math.cos(next),ny=195+145*Math.sin(next);svg+=v===total?'<circle cx="300" cy="195" r="145" fill="'+colors[i%colors.length]+'"/>':'<path d="M300 195L'+x+' '+y+'A145 145 0 '+(v/total>.5?1:0)+' 1 '+nx+' '+ny+'Z" fill="'+colors[i%colors.length]+'"><title>'+escape(cats[i])+': '+number(v)+'</title></path>';angle=next;});
+  if(type==='donutChart')svg+='<circle cx="300" cy="195" r="83" fill="white"/>';
+  svg+=cats.slice(0,14).map((c,i)=>'<rect x="515" y="'+(20+i*25)+'" width="12" height="12" fill="'+colors[i%colors.length]+'"/><text x="537" y="'+(31+i*25)+'" font-size="13">'+escape(c)+' · '+number(vals[i])+'</text>').join('');
+  if(cats.length>14)note='<small>Hover slices for all '+cats.length+' categories.</small>';return wrap(svg);
+ }
+ const visible=cats.slice(0,60);if(visible.length<cats.length)note='<small>Showing 60 of '+cats.length+' categories.</small>';
+ const horizontal=/BarChart$/.test(type)||type==='barChart',stacked=/stacked/i.test(type)||['columnChart','barChart'].includes(type),percent=/hundredPercent/.test(type);
+ const matrix=visible.map(c=>{let a=allSeries.map(s=>get(c,s)||0);if(percent){const total=a.reduce((s,v)=>s+Math.abs(v),0);a=a.map(v=>total?v/total*100:0)}return a});
+ const lows=matrix.map(a=>stacked?a.filter(v=>v<0).reduce((s,v)=>s+v,0):Math.min(0,...a));
+ const highs=matrix.map(a=>stacked?a.filter(v=>v>0).reduce((s,v)=>s+v,0):Math.max(0,...a));
+ const min=Math.min(0,...lows),max=Math.max(1,...highs),scale=n=>350-(n-min)/(max-min)*300;
+ for(let i=0;i<=4;i++){const n=min+(max-min)*i/4,y=scale(n);if(!horizontal)svg+='<path d="M80 '+y+'H880" stroke="#e4eae0"/><text x="72" y="'+(y+4)+'" text-anchor="end" font-size="12">'+escape(number(n)+(percent?'%':''))+'</text>'}
+ const line=['lineChart','areaChart','stackedAreaChart'].includes(type);
+ if(line){
+  allSeries.forEach((s,j)=>{
+   const segments=[];let run=[];
+   matrix.forEach((a,i)=>{if(get(visible[i],s)==null){if(run.length)segments.push(run);run=[];return}const lower=type==='stackedAreaChart'?a.slice(0,j).filter(v=>a[j]<0?v<0:v>0).reduce((x,y)=>x+y,0):0;run.push({x:80+i*800/Math.max(1,visible.length-1),upper:scale(lower+a[j]),lower:scale(lower),value:a[j],category:visible[i]})});if(run.length)segments.push(run);
+   for(const points of segments){
+    if(type!=='lineChart')svg+='<polygon points="'+points.map(p=>p.x+','+p.upper).concat([...points].reverse().map(p=>p.x+','+p.lower)).join(' ')+'" fill="'+colors[j%colors.length]+'" opacity=".25"/>';
+    svg+='<polyline points="'+points.map(p=>p.x+','+p.upper).join(' ')+'" fill="none" stroke="'+colors[j%colors.length]+'" stroke-width="3"/>';
+    svg+=points.map(p=>'<circle cx="'+p.x+'" cy="'+p.upper+'" r="3" fill="'+colors[j%colors.length]+'"><title>'+escape(p.category+' · '+s.key+': '+number(p.value))+'</title></circle>').join('');
+   }
+  });
+ }else{
+  matrix.forEach((a,i)=>{let positive=0,negative=0;a.forEach((v,j)=>{const start=stacked?(v<0?negative:positive):0,end=start+v;if(stacked){if(v<0)negative=end;else positive=end}
+   const slot=800/visible.length,offset=stacked?0:j*slot*.8/allSeries.length,band=slot*.8/(stacked?1:allSeries.length);
+   const x=80+i*slot+offset,y=Math.min(scale(start),scale(end)),height=Math.abs(scale(start)-scale(end));
+   const attrs=horizontal?'x="'+(180+(Math.min(start,end)-min)/(max-min)*650)+'" y="'+(30+i*(300/visible.length)+offset/slot*(300/visible.length))+'" width="'+(Math.abs(v)/(max-min)*650)+'" height="'+(band/slot*(300/visible.length))+'"':'x="'+x+'" y="'+y+'" width="'+Math.max(1,band)+'" height="'+height+'"';
+   svg+='<rect '+attrs+' fill="'+colors[j%colors.length]+'"><title>'+escape(visible[i]+' · '+allSeries[j].key+': '+number(v)+(percent?'%':''))+'</title></rect>';
+  })});
+ }
+ const stride=Math.max(1,Math.ceil(visible.length/(horizontal?15:10)));
+ svg+=visible.map((c,i)=>i%stride?'':horizontal?'<text x="170" y="'+(35+i*300/visible.length)+'" text-anchor="end" font-size="12">'+escape(c)+'</text>':'<text x="'+(80+i*800/(line?Math.max(1,visible.length-1):visible.length))+'" y="375" font-size="12">'+escape(c.slice(0,18))+'</text>').join('');
+ svg+=allSeries.slice(0,6).map((s,i)=>'<rect x="'+(85+i*135)+'" y="8" width="10" height="10" fill="'+colors[i%colors.length]+'"/><text x="'+(100+i*135)+'" y="18" font-size="11">'+escape(s.key.slice(0,20))+'</text>').join('');
+ return wrap(svg);
+}
+const api={chartHTML,types};if(typeof module!=='undefined')module.exports=api;root.ChartRenderer=api;
+})(globalThis);
+
+/* CHART RENDERER END */
+/* ADVANCED CHARTS START */
+(function(root){
+const types=['scatterChart','stripPlot','stripChart','ternaryChart','ternaryPlot','map','pointMap','filledMap','choroplethMap'];
+function channels(type){
+ if(type==='scatterChart')return [['x','X',true],['y','Y',true],['size','Size',true,true],['color','Color',false,true],['detail','Point identity',false,true]];
+ if(['stripPlot','stripChart'].includes(type))return [['value','Value',true],['category','Category',false,true],['color','Color',false,true]];
+ if(['ternaryChart','ternaryPlot'].includes(type))return [['a','Component A',true],['b','Component B',true],['c','Component C',true],['color','Color',false,true],['detail','Point identity',false,true]];
+ if(['map','pointMap'].includes(type))return [['country','Country / ISO code',false,true],['latitude','Latitude',true,true],['longitude','Longitude',true,true],['size','Size',true,true],['color','Color',false,true],['detail','Point identity',false,true]];
+ return [['country','Country / ISO code',false],['value','Value',true]];
+}
+const normal=s=>String(s??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]/g,'');
+function geography(){
+ if(!root.Death2Geo&&typeof module!=='undefined')require('./dist/vendor/world-geography.js');
+ if(!root.Death2Geo)throw Error('Local map geography did not load. Restart the updated server and refresh.');
+ return root.Death2Geo.features;
+}
+function mapViewport(value={}){
+ const finite=(n,fallback)=>Number.isFinite(n)?n:fallback,zoom=Math.max(1,Math.min(32,finite(value.zoom,1)));
+ return {zoom,x:Math.max(-zoom,Math.min(zoom,finite(value.x,0))),y:Math.max(-zoom,Math.min(zoom,finite(value.y,0)))};
+}
+let countryIndex, indexedFeatures;
+const countryPoints=new WeakMap();
+function resolveCountry(value,features){
+ if(indexedFeatures!==features){countryIndex=new Map();indexedFeatures=features;for(const feature of features)for(const key of feature.properties.keys){const normalized=normal(key),matches=countryIndex.get(normalized)||new Set();matches.add(feature);countryIndex.set(normalized,matches)}}
+ const key=normal(value),aliases={uk:'unitedkingdom',turkiye:'turkey',ivorycoast:'cotedivoire',congokinshasa:'cod',congobrazzaville:'cog',southkorea:'kor',northkorea:'prk',russianfederation:'rus',unitedstatesofamerica:'usa',vaticancity:'vat',easttimor:'tls'};
+ const matches=countryIndex.get(aliases[key]||key);
+ if(['congo','korea'].includes(key)||matches?.size>1)return {reason:'ambiguous'};
+ return matches?.size===1?{feature:[...matches][0]}:{reason:'unmatched'};
+}
+function countryPoint(feature){
+ if(countryPoints.has(feature))return countryPoints.get(feature);
+ // Representative interior point of the largest polygon, not a street/capital lookup.
+ const polygons=feature.geometry.type==='Polygon'?[feature.geometry.coordinates]:feature.geometry.coordinates;
+ const area=ring=>Math.abs(ring.reduce((sum,p,i)=>{const q=ring[(i+1)%ring.length];return sum+p[0]*q[1]-q[0]*p[1]},0));
+ const polygon=polygons.reduce((best,p)=>area(p[0])>area(best[0])?p:best),ring=polygon[0];
+ let sum=0,x=0,y=0;for(let i=0;i<ring.length;i++){const p=ring[i],q=ring[(i+1)%ring.length],cross=p[0]*q[1]-q[0]*p[1];sum+=cross;x+=(p[0]+q[0])*cross;y+=(p[1]+q[1])*cross}
+ let point=sum?[x/(3*sum),y/(3*sum)]:ring[0];
+ const insideRing=(p,r)=>{let inside=false;for(let i=0,j=r.length-1;i<r.length;j=i++){const a=r[i],b=r[j];if((a[1]>p[1])!==(b[1]>p[1])&&p[0]<(b[0]-a[0])*(p[1]-a[1])/(b[1]-a[1])+a[0])inside=!inside}return inside};
+ const inside=p=>insideRing(p,ring)&&!polygon.slice(1).some(hole=>insideRing(p,hole));
+ if(!inside(point)){
+  const xs=ring.map(p=>p[0]),ys=ring.map(p=>p[1]),left=Math.min(...xs),right=Math.max(...xs),bottom=Math.min(...ys),top=Math.max(...ys);let best,score=Infinity;
+  for(let i=1;i<40;i++)for(let j=1;j<40;j++){const candidate=[left+(right-left)*i/40,bottom+(top-bottom)*j/40],distance=(candidate[0]-point[0])**2+(candidate[1]-point[1])**2;if(distance<score&&inside(candidate)){best=candidate;score=distance}}
+  point=best||ring[0];
+ }
+ countryPoints.set(feature,point);return point;
+}
+function build(spec,type,labels,rows,roles=[],options={}){
+ const numeric=labels.map((_,i)=>i).filter(i=>rows.some(r=>typeof r[i]==='number'&&Number.isFinite(r[i]))),selected={};
+ function pick(name,roleNames=[],pattern=null,fallback=-1){
+  const value=options.channels?.[name];let index;
+  if(value==='none')index=-1;
+  else if(value!==undefined&&value!==''&&value!=='auto'){index=Number(value);if(!Number.isInteger(index)||index<0||index>=labels.length)throw Error('Invalid '+name+' field mapping.')}
+  else{index=roles.findIndex(r=>roleNames.includes(r));if(index<0&&pattern)index=labels.findIndex(s=>pattern.test(s));if(index<0)index=fallback}
+  selected[name]=index;return index;
+ }
+ function number(index,label){if(index<0||!numeric.includes(index))throw Error(label+' requires a numeric query field. Choose it in Chart fields.');return index}
+ function rowValue(row,index){return index>=0?row[index]:undefined}
+ function identity(row,detail,color){return {_categoryValue:rowValue(row,detail),_dimension:rowValue(row,color)}}
+ function colorEncoding(index){return index>=0?{field:'_color',type:numeric.includes(index)?'quantitative':'nominal',title:labels[index]}:{value:'#337b60'}}
+ function tooltip(fields){return fields.filter(([,i])=>i>=0).map(([field,i,quant])=>({field,title:labels[i],type:quant?'quantitative':'nominal'}))}
+ function finish(){spec.usermeta={...(spec.usermeta||{}),channels:selected};return spec}
+ if(type==='scatterChart'){
+  const x=number(pick('x',['X'],null,numeric[0]??-1),'X'),y=number(pick('y',['Y'],null,numeric.find(i=>i!==x)??-1),'Y');
+  if(x===y)throw Error('Scatter X and Y must be different fields.');
+  const size=pick('size',['Size']),color=pick('color',['Series','Legend']),detail=pick('detail',['Details','Category']);
+  if(size>=0)number(size,'Size');
+  if(size>=0&&rows.some(r=>r[size]<0))throw Error('Bubble size cannot be negative.');
+  spec.data.values=rows.filter(r=>r[x]!=null&&r[y]!=null).map(r=>({_x:r[x],_y:r[y],_size:rowValue(r,size),_color:rowValue(r,color),_detail:rowValue(r,detail),...identity(r,detail,color)}));
+  spec.mark={type:'point',filled:true,opacity:.75,tooltip:true};spec.encoding={x:{field:'_x',type:'quantitative',title:labels[x]},y:{field:'_y',type:'quantitative',title:labels[y]},color:colorEncoding(color),tooltip:tooltip([['_x',x,true],['_y',y,true],['_size',size,true],['_detail',detail],['_color',color]])};
+  if(size>=0)spec.encoding.size={field:'_size',type:'quantitative',title:labels[size],scale:{range:[20,800]}};
+  spec.params=[{name:'zoom',select:'interval',bind:'scales'}];return finish();
+ }
+ if(['stripPlot','stripChart'].includes(type)){
+  const value=number(pick('value',['Y','Values','Value'],null,numeric[0]??-1),'Strip value'),category=pick('category',['Category','Rows'],null,labels.findIndex((_,i)=>!numeric.includes(i))),color=pick('color',['Series','Legend']);
+  if(category===value)throw Error('Strip category and value must be different fields.');
+  spec.data.values=rows.filter(r=>r[value]!=null).map(r=>({_value:r[value],_category:category>=0?r[category]??'(Blank)':'All',_color:rowValue(r,color),...identity(r,category,color)}));
+  spec.mark={type:'tick',thickness:2,size:18,opacity:.65,tooltip:true};spec.encoding={x:{field:'_value',type:'quantitative',title:labels[value]},y:{field:'_category',type:'nominal',title:category>=0?labels[category]:null},color:colorEncoding(color),tooltip:tooltip([['_category',category],['_value',value,true],['_color',color]])};return finish();
+ }
+ if(['ternaryChart','ternaryPlot'].includes(type)){
+  const a=number(pick('a',['A','ComponentA','X'],null,numeric[0]??-1),'Component A'),b=number(pick('b',['B','ComponentB','Y'],null,numeric.find(i=>i!==a)??-1),'Component B'),c=number(pick('c',['C','ComponentC','Z'],null,numeric.find(i=>i!==a&&i!==b)??-1),'Component C');
+  if(new Set([a,b,c]).size!==3)throw Error('Ternary charts need three distinct component fields.');
+  const color=pick('color',['Series','Legend']),detail=pick('detail',['Details','Category']);
+  if(rows.some(r=>[a,b,c].some(i=>r[i]!=null&&r[i]<0)))throw Error('Ternary components must be nonnegative.');
+  const h=Math.sqrt(3)/2;
+  spec.data.values=rows.filter(r=>[a,b,c].every(i=>r[i]!=null&&Number.isFinite(r[i]))&&r[a]+r[b]+r[c]>0&&Number.isFinite(r[a]+r[b]+r[c])).map(r=>{const total=r[a]+r[b]+r[c];return {_x:(r[b]+r[c]/2)/total,_y:h*r[c]/total,_a:r[a],_b:r[b],_c:r[c],_pa:r[a]/total,_pb:r[b]/total,_pc:r[c]/total,_color:rowValue(r,color),_detail:rowValue(r,detail),...identity(r,detail,color)}});
+  if(!spec.data.values.length)throw Error('Ternary components need a positive total; zero or missing totals cannot be plotted.');
+  if(spec.data.values.length<rows.length)spec.usermeta={mappingWarnings:[(rows.length-spec.data.values.length)+' rows omitted: missing, zero or non-finite component totals.']};
+  const grid=[];
+  for(const t of [.2,.4,.6,.8])grid.push({_x:t/2,_y:h*t,_x2:1-t/2,_y2:h*t},{_x:t,_y:0,_x2:t+(1-t)/2,_y2:h*(1-t)},{_x:1-t,_y:0,_x2:(1-t)/2,_y2:h*(1-t)});
+  const coords={x:{field:'_x',type:'quantitative',scale:{domain:[-.12,1.12]},axis:null},y:{field:'_y',type:'quantitative',scale:{domain:[-.1,h+.12]},axis:null}};
+  const outline=[{_x:0,_y:0,_x2:1,_y2:0},{_x:1,_y:0,_x2:.5,_y2:h},{_x:.5,_y:h,_x2:0,_y2:0}];
+  spec.layer=[{data:{values:grid},mark:{type:'rule',color:'#d7e1d4',strokeWidth:1},encoding:{...coords,x2:{field:'_x2'},y2:{field:'_y2'}}},{data:{values:outline},mark:{type:'rule',color:'#627668',strokeWidth:1.5},encoding:{...coords,x2:{field:'_x2'},y2:{field:'_y2'}}},{mark:{type:'point',filled:true,size:65,tooltip:true},encoding:{...coords,color:colorEncoding(color),tooltip:[...tooltip([['_a',a,true],['_b',b,true],['_c',c,true],['_detail',detail]]),...['_pa','_pb','_pc'].map((field,i)=>({field,type:'quantitative',title:labels[[a,b,c][i]]+' share',format:'.1%'}))]}},{data:{values:[{_x:0,_y:-.055,label:labels[a]},{_x:1,_y:-.055,label:labels[b]},{_x:.5,_y:h+.055,label:labels[c]}]},mark:{type:'text',fontSize:11,color:'#344e40'},encoding:{...coords,text:{field:'label'}}}];return finish();
+ }
+ const features=geography();
+ const base={data:{values:features},mark:{type:'geoshape',fill:'#edf2e8',stroke:'#c6d2c1',strokeWidth:.4,clip:true}};
+ const viewport=mapViewport(options.mapViewport);
+ spec.params=[{name:'mapZoom',value:viewport.zoom},{name:'mapPanX',value:viewport.x},{name:'mapPanY',value:viewport.y}];
+ spec.projection={type:'equalEarth',scale:{expr:'max(1, min((width - 12) / 5.5, (height - 12) / 2.7)) * mapZoom'},translate:{expr:'[width * (0.5 + mapPanX), height * (0.5 + mapPanY)]'}};
+ if(['map','pointMap'].includes(type)){
+  const lat=pick('latitude',['Latitude'],/^(latitude|lat)$/i),lon=pick('longitude',['Longitude'],/^(longitude|lon|lng|long)$/i),coordinates=lat>=0||lon>=0;
+  let country=-1;
+  if(coordinates){number(lat,'Latitude');number(lon,'Longitude')}else{country=pick('country',['Location','Category','Details'],/^(country|country name|country code|iso.?[23]|alpha-[23]|location)$/i,labels.findIndex((_,i)=>!numeric.includes(i)&&rows.some(row=>resolveCountry(row[i],features).feature)));if(country<0)throw Error('Map needs latitude/longitude fields or a country name / ISO code field. Choose it in Chart fields.')}
+  if(coordinates&&lat===lon)throw Error('Latitude and longitude must be different fields.');
+  if(rows.some(r=>r[lat]!=null&&Math.abs(r[lat])>90||r[lon]!=null&&Math.abs(r[lon])>180))throw Error('Map coordinates must be latitude −90…90 and longitude −180…180.');
+  const size=pick('size',['Size']),color=pick('color',['Series','Legend']),detail=pick('detail',['Details','Category','Location']);
+  if(size>=0)number(size,'Size');if(size>=0&&rows.some(r=>r[size]<0))throw Error('Map bubble size cannot be negative.');
+  const missing=[],ambiguous=[];
+  spec.data.values=rows.flatMap(r=>{
+   let latitude,longitude;
+   if(coordinates){if(r[lat]==null||r[lon]==null)return [];latitude=r[lat];longitude=r[lon]}
+   else{const match=resolveCountry(r[country],features);if(!match.feature){(match.reason==='ambiguous'?ambiguous:missing).push(String(r[country]??'(Blank)'));return []}[longitude,latitude]=countryPoint(match.feature)}
+   return [{_latitude:latitude,_longitude:longitude,_size:rowValue(r,size),_color:rowValue(r,color),_detail:rowValue(r,detail>=0?detail:country),...identity(r,coordinates?detail:country,color)}];
+  });
+  const warnings=[];
+  if(missing.length)warnings.push(missing.length+' unmatched country values omitted: '+[...new Set(missing)].slice(0,5).join(', '));
+  if(ambiguous.length)warnings.push(ambiguous.length+' ambiguous country values omitted: '+[...new Set(ambiguous)].slice(0,5).join(', ')+'. Use a full country name or ISO code.');
+  if(!coordinates&&!spec.data.values.length)throw Error('No country locations could be resolved. '+warnings.join(' '));
+  if(!coordinates)warnings.unshift('Country names resolved offline to representative country locations.');
+  if(warnings.length)spec.usermeta={mappingWarnings:warnings};
+  const encoding={longitude:{field:'_longitude',type:'quantitative'},latitude:{field:'_latitude',type:'quantitative'},color:colorEncoding(color),tooltip:tooltip([['_detail',detail>=0?detail:country],['_latitude',lat,true],['_longitude',lon,true],['_size',size,true]])};
+  if(size>=0)encoding.size={field:'_size',type:'quantitative',title:labels[size],scale:{range:[20,600]}};
+  spec.layer=[base,{mark:{type:'circle',size:55,opacity:.8,tooltip:true,clip:true},encoding}];return finish();
+ }
+ const country=pick('country',['Category','Location','Details'],/^(country|country name|country code|iso.?[23]|alpha-[23])$/i,labels.findIndex((_,i)=>!numeric.includes(i))),value=number(pick('value',['Y','Size','Color','Values'],null,numeric.find(i=>i!==country)??-1),'Map value');
+ if(country<0)throw Error('Country maps need a country name or ISO code field.');
+ const missing=[],seen=new Set();
+ spec.data.values=rows.flatMap(r=>{const {feature}=resolveCountry(r[country],features);if(!feature){missing.push(String(r[country]??'(Blank)'));return []}const canonical=feature.properties.name;if(seen.has(canonical))throw Error('Country maps need one query row per country. Filter or group extra dimensions first.');seen.add(canonical);return [{...feature,_country:r[country],_value:r[value],_categoryValue:r[country]}]});
+ if(!spec.data.values.length)throw Error('No country values match the local geography. Use country names or ISO codes.');
+ spec.layer=[base,{mark:{type:'geoshape',stroke:'white',strokeWidth:.5,tooltip:true,clip:true},encoding:{color:{field:'_value',type:'quantitative',title:labels[value],scale:{scheme:'greens'}},tooltip:tooltip([['_country',country],['_value',value,true]])}}];
+ if(missing.length)spec.usermeta={mappingWarnings:[missing.length+' unmatched country values: '+missing.slice(0,5).join(', ')+(missing.length>5?'…':'')]};
+ return finish();
+}
+const api={types,channels,build,mapViewport};if(typeof module!=='undefined')module.exports=api;root.AdvancedCharts=api;
+})(globalThis);
+
+/* ADVANCED CHARTS END */
+/* VEGA RENDERER START */
+/* Power BI query results -> locally hosted Vega-Lite specifications. */
+(function(root){
+const Formats=typeof module!=='undefined'?require('./model-formats.js'):root.ModelFormats;
+const Advanced=typeof module!=='undefined'?require('./advanced-charts.js'):root.AdvancedCharts;
+const types=['clusteredColumnChart','clusteredBarChart','columnChart','barChart','stackedColumnChart','stackedBarChart','hundredPercentStackedColumnChart','hundredPercentStackedBarChart','lineChart','areaChart','stackedAreaChart','pieChart','donutChart','scatterChart','lineClusteredColumnComboChart','lineStackedColumnComboChart','heatmap','heatmapChart','histogram','histogramChart','boxplot','boxPlot','waterfallChart','funnel','funnelChart',...Advanced.types.filter(t=>t!=='scatterChart')];
+const palette=['#337b60','#9dbd67','#4e8fa6','#c89849','#8b6aa8','#ca7b70','#568475','#889ab5'];
+function dataLabelOptions(definition={}){
+ const entries=[...(definition.objects?.labels||[]),...(definition.objects?.dataLabels||[])];
+ const properties=Object.assign({},...entries.filter(e=>!e.selector).map(e=>e.properties||{}));
+ const value=x=>{if(x?.expr)x=x.expr;const literal=x?.Literal?.Value;if(literal!==undefined){if(literal==='true'||literal==='false')return literal==='true';if(/^[-+]?\d+(?:\.\d+)?[dDlLmM]?$/.test(literal))return Number(literal.replace(/[dDlLmM]$/,''));return String(literal).replace(/^'|'$/g,'').replaceAll("''", "'")}return typeof x==='object'?undefined:x};
+ const color=value(properties.color?.solid?.color)||value(properties.color);
+ return {show:value(properties.show)===true,fontSize:value(properties.fontSize),fontFamily:value(properties.fontFamily),color:typeof color==='string'?color:undefined,precision:value(properties.labelPrecision??properties.decimalPlaces),units:value(properties.labelDisplayUnits??properties.displayUnits),position:value(properties.labelPosition??properties.position)};
+}
+function labelText(value,format,settings){
+ if(value==null)return '';
+ const percent=Formats.d3(format)?.endsWith('%');
+ const units=!percent&&Number(settings.units)>1?Number(settings.units):1;
+ const precision=Number.isInteger(settings.precision)&&settings.precision>=0&&settings.precision<=20?settings.precision:null;
+ const text=precision===null?Formats.text(value/units,format):new Intl.NumberFormat('en-US',{minimumFractionDigits:precision,maximumFractionDigits:precision,useGrouping:true,style:percent?'percent':'decimal'}).format(value/units);
+ return text+({1000:'K',1000000:'M',1000000000:'B',1000000000000:'T'}[units]||'');
+}
+
+function buildSpec(type,labels,rows,roles=[],options={}){
+ const spec=buildRaw(type,labels,rows,roles,options);
+ function walk(node){if(!node||typeof node!=='object')return;
+  if(node.type==='quantitative'&&node.title){const i=labels.indexOf(node.title),f=Formats.d3(options.formats?.[i]);if(f){node.format=f;if(node.axis!==null)node.axis={...node.axis,format:f};if(node.legend!==null)node.legend={...node.legend,format:f}}}
+  for(const value of Object.values(node))if(value&&typeof value==='object')walk(value);
+ }
+ walk(spec);return spec;
+}
+function buildRaw(type,labels,rows,roles=[],options={}){
+ if(!types.includes(type))throw Error('No Vega-Lite mapping for '+type);
+ const width=Math.max(80,options.width||500),height=Math.max(80,options.height||280);
+ const spec={$schema:'https://vega.github.io/schema/vega-lite/v6.json',width,height,autosize:{type:'fit',contains:'padding',resize:true},background:'transparent',config:{view:{stroke:null},font:'DM Sans, sans-serif',axis:{labelColor:'#627668',titleColor:'#344e40',gridColor:'#e6ece3',labelLimit:110,labelOverlap:'greedy',labelSeparation:4,titleFontSize:11,labelFontSize:10},axisQuantitative:{format:'~s'},legend:{orient:'bottom',labelColor:'#627668',title:null,labelLimit:150},range:{category:palette}},data:{values:[]}};
+ if(!rows.length){spec.data.values=[{label:'No data for the current filters.'}];spec.mark={type:'text',color:'#788884'};spec.encoding={text:{field:'label'}};return spec}
+ const numeric=labels.map((_,i)=>i).filter(i=>rows.some(r=>typeof r[i]==='number'&&Number.isFinite(r[i])));
+ if(Advanced.types.includes(type))return Advanced.build(spec,type,labels,rows,roles,options);
+ const distribution=['histogram','histogramChart','boxplot','boxPlot'].includes(type);
+ let ci=roles.findIndex(r=>['Category','Rows','X'].includes(r));
+ if(ci<0)ci=distribution?(labels.length>1?labels.findIndex((_,i)=>!numeric.includes(i)):-1):0;
+ let si=roles.findIndex(r=>['Series','Legend','Columns'].includes(r));
+ if(si===ci)si=-1;
+ let vi=numeric.filter(i=>i!==ci&&i!==si);
+ if(!vi.length&&distribution)vi=numeric.slice(0,1);
+ if(!vi.length&&rows.length)throw Error('The chart query did not return a numeric value field.');
+ // Empty results still get a valid quantitative field and clear empty-state UI.
+ if(!vi.length)vi=[Math.max(0,labels.length-1)];
+ const values=[];
+ for(const row of rows)for(const i of vi){
+  if(row[i]!==null&&row[i]!==undefined&&typeof row[i]!=='number')throw Error('Chart value fields must be numeric.');
+  values.push({_category:ci>=0?row[ci]??'(Blank)':'All',_categoryValue:ci>=0?row[ci]:undefined,_dimension:si>=0?row[si]:undefined,_value:row[i],_formattedValue:Formats.text(row[i],options.formats?.[i]),_label:labelText(row[i],options.formats?.[i],options.dataLabels||{}),_series:(si>=0?String(row[si]??'(Blank)')+(vi.length>1?' · ':''):'')+(vi.length>1||si<0?labels[i]:''),_role:roles[i]||'Y'});
+ }
+ spec.data.values=values;
+ const categories=[...new Set(values.map(r=>r._category))],series=[...new Set(values.map(r=>r._series))];
+ const temporal=ci>=0&&['lineChart','areaChart','stackedAreaChart'].includes(type)&&(/DATE|TIMESTAMP/.test(options.fieldTypes?.[ci]||'')||rows.every(r=>r[ci]==null||typeof r[ci]==='string'&&/^\d{4}-\d\d-\d\d(?:$|[ T])/.test(r[ci])));
+ const category={field:'_category',type:temporal?'temporal':'nominal',title:ci>=0?labels[ci]:null,...(temporal?{}:{sort:categories})};
+ const quantity={field:'_value',type:'quantitative',title:vi.length===1?labels[vi[0]]:null};
+ const color={field:'_series',type:'nominal',sort:series,legend:series.length>1?{}:null};
+ const tooltip=[{field:'_category',type:'nominal',title:ci>=0?labels[ci]:'Category'},{field:'_series',type:'nominal',title:'Series'},{field:'_formattedValue',type:'nominal',title:'Value'}];
+ if(['histogram','histogramChart'].includes(type)){
+  if(vi.length!==1)throw Error('Histograms require one numeric field.');
+  spec.mark={type:'bar',tooltip:true};spec.encoding={x:{field:'_value',type:'quantitative',bin:{maxbins:20},title:labels[vi[0]]},y:{aggregate:'count',type:'quantitative',title:'Query row count'},tooltip:[{field:'_value',bin:true,type:'quantitative',title:labels[vi[0]]},{aggregate:'count',type:'quantitative',title:'Count'}]};return spec;
+ }
+ if(['boxplot','boxPlot'].includes(type)){
+  spec.mark={type:'boxplot',extent:1.5,tooltip:true};spec.encoding={y:quantity};
+  if(ci>=0)spec.encoding.x=category;if(series.length>1)spec.encoding.color=color;return spec;
+ }
+ if(['heatmap','heatmapChart'].includes(type)){
+  spec.mark={type:'rect',tooltip:true};spec.encoding={x:category,y:{field:'_series',type:'nominal',title:si>=0?labels[si]:'Series'},color:{field:'_value',type:'quantitative',title:quantity.title,scale:{scheme:'greens'}},tooltip};return spec;
+ }
+ if(['pieChart','donutChart'].includes(type)){
+  if(series.length>1)throw Error('Pie/donut charts require one numeric series.');
+  if(values.some(v=>v._value<0))throw Error('Pie/donut charts cannot represent negative values.');
+  spec.mark={type:'arc',innerRadius:type==='donutChart'?Math.min(width,height)*.22:0,tooltip:true};spec.encoding={theta:{...quantity,stack:true},color:{field:'_category',type:'nominal',sort:categories},order:{field:'_category',sort:'ascending'},tooltip};return spec;
+ }
+ if(['waterfallChart','funnel','funnelChart'].includes(type)){
+  if(series.length>1)throw Error('This chart needs one value series; breakdowns need further mapping.');
+  let total=0;spec.data.values=values.map(v=>{const n=v._value||0,start=type==='waterfallChart'?total:-n/2,end=type==='waterfallChart'?total+n:n/2;total+=n;return {...v,_start:start,_end:end,_kind:n<0?'Decrease':'Increase'}});
+  if(type==='waterfallChart'){
+   spec.mark={type:'bar',tooltip:true};spec.encoding={x:category,y:{field:'_start',type:'quantitative',title:quantity.title},y2:{field:'_end'},color:{field:'_kind',type:'nominal',scale:{domain:['Increase','Decrease'],range:['#337b60','#c46c5f']}},tooltip};
+  }else{
+   if(values.some(v=>v._value<0))throw Error('Funnel charts require nonnegative values.');
+   spec.mark={type:'bar',tooltip:true};spec.encoding={y:category,x:{field:'_start',type:'quantitative',axis:null},x2:{field:'_end'},color:{field:'_category',type:'nominal',legend:null},tooltip};
+  }return spec;
+ }
+ const combo=/ComboChart$/.test(type),horizontal=/BarChart$/.test(type)||type==='barChart',line=['lineChart','areaChart','stackedAreaChart'].includes(type);
+ const stacked=/stacked/i.test(type)||['columnChart','barChart'].includes(type),normalize=/hundredPercent/.test(type);
+ if(combo){
+  if(!values.some(r=>r._role==='Y2')||!values.some(r=>r._role!=='Y2'))throw Error('Combination charts need column and line value roles.');
+  const bar={transform:[{filter:"datum._role !== 'Y2'"}],mark:{type:'bar',tooltip:true},encoding:{x:category,y:{...quantity,stack:stacked?'zero':null},color,tooltip}};
+  if(!stacked)bar.encoding.xOffset={field:'_series',type:'nominal'};
+  const curve={transform:[{filter:"datum._role === 'Y2'"}],mark:{type:'line',point:true,tooltip:true},encoding:{x:category,y:{...quantity,axis:{orient:'right'}},color,tooltip}};
+  spec.layer=[bar,curve];spec.resolve={scale:{y:'independent'}};return spec;
+ }
+ spec.mark={type:line?(type==='lineChart'?'line':'area'):'bar',tooltip:true,...(line?{point:type==='lineChart'}:{})};
+ spec.encoding=horizontal?{y:category,x:{...quantity,stack:stacked?(normalize?'normalize':'zero'):null},color,tooltip}:{x:category,y:{...quantity,stack:stacked?(normalize?'normalize':'zero'):null},color,tooltip};
+ if(!stacked&&!line&&series.length>1)spec.encoding[horizontal?'yOffset':'xOffset']={field:'_series',type:'nominal'};
+ if(line&&!stacked)spec.encoding.y.stack=null;
+ if(!line&&options.dataLabels?.show){
+  const settings=options.dataLabels,bar={mark:spec.mark,encoding:spec.encoding};
+  const labelEncoding={...spec.encoding,text:{field:'_label',type:'nominal'}};delete labelEncoding.color;
+  const mark={type:'text',color:settings.color||'#344e40',fontSize:Math.max(1,Math.min(160,(Number(settings.fontSize)||9)*4/3)),...(settings.fontFamily?{font:settings.fontFamily}:{}),tooltip:true};
+  const inside=/inside/i.test(settings.position||'');
+  if(stacked){
+   spec.transform=[{stack:'_value',groupby:['_category'],sort:[{field:'_series',order:'ascending'}],offset:normalize?'normalize':'zero',as:['_stackStart','_stackEnd']},{calculate:'(datum._stackStart + datum._stackEnd)/2',as:'_labelPosition'}];
+   bar.encoding[horizontal?'x':'y']={...quantity,field:'_stackEnd',stack:null};bar.encoding[horizontal?'x2':'y2']={field:'_stackStart'};
+   labelEncoding[horizontal?'x':'y']={...quantity,field:'_labelPosition',stack:null};
+   if(normalize){spec.transform.push({calculate:"datum._value == null ? '' : format(abs(datum._stackEnd-datum._stackStart), '."+(Number.isInteger(settings.precision)?Math.max(0,Math.min(20,settings.precision)):0)+"%')",as:'_label'});bar.encoding[horizontal?'x':'y'].axis={format:'.0%'}}
+   mark.align='center';mark.baseline='middle';
+  }else if(horizontal){mark.align={expr:inside?"datum._value < 0 ? 'left' : 'right'":"datum._value < 0 ? 'right' : 'left'"};mark.dx={expr:(inside?'-':'')+"(datum._value < 0 ? -4 : 4)"};mark.baseline='middle'}
+  else{mark.baseline={expr:inside?"datum._value < 0 ? 'bottom' : 'top'":"datum._value < 0 ? 'top' : 'bottom'"};mark.dy={expr:(inside?'-':'')+"(datum._value < 0 ? 4 : -4)"}}
+  spec.layer=[bar,{transform:[{filter:'isValid(datum._value)'}],mark,encoding:labelEncoding}];delete spec.mark;delete spec.encoding;
+ }
+
+ return spec;
+}
+const mapViews=new Map(),mapTypes=new Set(['map','pointMap','filledMap','choroplethMap']);
+function mountMapControls(element,view,initial,key,item){
+ let state=Advanced.mapViewport(initial),drag=null,frame=0;
+ const svg=element.querySelector('svg'),controls=document.createElement('div'),status=document.createElement('output');
+ if(!svg)return;
+ element.style.position='relative';element.tabIndex=0;element.setAttribute('aria-label','Interactive map. Plus and minus zoom, arrow keys pan, Home resets.');
+ controls.className='map-controls';controls.setAttribute('role','group');controls.setAttribute('aria-label','Map navigation');
+ controls.style.cssText='position:absolute;top:6px;right:6px;z-index:2;display:flex;flex-wrap:wrap;gap:3px;align-items:center;max-width:calc(100% - 12px);padding:4px;background:rgba(255,255,255,.94);border:1px solid #dfe7e3;border-radius:6px;box-shadow:0 1px 4px #193a3718';
+ status.setAttribute('aria-label','Map zoom');status.setAttribute('aria-live','polite');status.style.cssText='font:11px system-ui;min-width:36px;text-align:center;color:#193a37';
+ const buttons={};
+ function apply(next){
+  state=Advanced.mapViewport(next);status.textContent=Math.round(state.zoom*100)+'%';
+  buttons.plus.disabled=state.zoom>=32;buttons.minus.disabled=state.zoom<=1;
+  if(key){mapViews.delete(key);mapViews.set(key,{...state});if(mapViews.size>200)mapViews.delete(mapViews.keys().next().value)}
+  if(!frame)frame=requestAnimationFrame(()=>{frame=0;if(element.isConnected)view.signal('mapZoom',state.zoom).signal('mapPanX',state.x).signal('mapPanY',state.y).runAsync().catch(()=>{})});
+ }
+ function zoom(factor){const next=Math.max(1,Math.min(32,state.zoom*factor)),ratio=next/state.zoom;apply({zoom:next,x:state.x*ratio,y:state.y*ratio})}
+ function button(text,label,action){const b=document.createElement('button');b.type='button';b.textContent=text;b.setAttribute('aria-label',label);b.title=label;b.style.cssText='width:26px;height:26px;padding:0;line-height:1;font:16px system-ui;border:1px solid #dfe7e3;border-radius:4px;background:white;color:#193a37';b.onclick=event=>{event.stopPropagation();action()};controls.appendChild(b);return b}
+ buttons.plus=button('+','Zoom in map',()=>zoom(2));buttons.minus=button('−','Zoom out map',()=>zoom(.5));controls.appendChild(status);
+ button('↺','Reset map view',()=>apply({zoom:1,x:0,y:0}));
+ button('←','Pan map left',()=>apply({...state,x:state.x+.15}));button('→','Pan map right',()=>apply({...state,x:state.x-.15}));
+ button('↑','Pan map up',()=>apply({...state,y:state.y+.15}));button('↓','Pan map down',()=>apply({...state,y:state.y-.15}));
+ element.appendChild(controls);svg.style.touchAction='none';svg.style.cursor='grab';
+ function down(event){if(event.button!==0||!event.isPrimary)return;drag={id:event.pointerId,px:event.clientX,py:event.clientY,x:state.x,y:state.y};item.suppressClick=false}
+ function move(event){if(!drag||drag.id!==event.pointerId)return;const dx=event.clientX-drag.px,dy=event.clientY-drag.py;if(!item.suppressClick&&Math.hypot(dx,dy)<4)return;item.suppressClick=true;try{svg.setPointerCapture(event.pointerId)}catch{}svg.style.cursor='grabbing';const box=svg.getBoundingClientRect();apply({...state,x:drag.x+dx/Math.max(1,box.width),y:drag.y+dy/Math.max(1,box.height)})}
+ function up(event){if(drag?.id!==event.pointerId)return;drag=null;svg.style.cursor='grab';try{if(svg.hasPointerCapture(event.pointerId))svg.releasePointerCapture(event.pointerId)}catch{}}
+ function keyboard(event){if(event.target!==element&&event.target!==svg)return;const actions={'+':()=>zoom(2),'=':()=>zoom(2),'-':()=>zoom(.5),'ArrowLeft':()=>apply({...state,x:state.x+.15}),'ArrowRight':()=>apply({...state,x:state.x-.15}),'ArrowUp':()=>apply({...state,y:state.y+.15}),'ArrowDown':()=>apply({...state,y:state.y-.15}),'Home':()=>apply({zoom:1,x:0,y:0})};if(actions[event.key]){event.preventDefault();event.stopPropagation();actions[event.key]()}}
+ svg.addEventListener('pointerdown',down);svg.addEventListener('pointermove',move);svg.addEventListener('pointerup',up);svg.addEventListener('pointercancel',up);element.addEventListener('keydown',keyboard);
+ item.cleanup=()=>{if(frame)cancelAnimationFrame(frame);controls.remove();svg.removeEventListener('pointerdown',down);svg.removeEventListener('pointermove',move);svg.removeEventListener('pointerup',up);svg.removeEventListener('pointercancel',up);element.removeEventListener('keydown',keyboard)};
+ status.textContent=Math.round(state.zoom*100)+'%';buttons.plus.disabled=state.zoom>=32;buttons.minus.disabled=state.zoom<=1;
+}
+
+const active=new Set();
+function disposeAll(){for(const item of active){item.observer?.disconnect();item.cleanup?.();item.view.finalize()}active.clear()}
+async function mount(element,type,labels,rows,roles,options={}){
+ if(!root.vegaEmbed)throw Error('Local Vega libraries did not load. Restart the updated server and refresh the page.');
+ const width=Math.max(80,element.clientWidth),height=Math.max(80,element.clientHeight);
+ const mapState=mapViews.get(options.mapKey)||options.mapViewport;
+ const spec=buildSpec(type,labels,rows,roles,{...options,width,height,mapViewport:mapState});
+ if(options.onSelect){
+  for(const datum of spec.data.values)datum._selected=options.matchesDatum?options.matchesDatum(datum):true;
+  const opacity={condition:{test:'datum._selected',value:1},value:.25};
+  if(spec.encoding)spec.encoding.opacity=opacity;
+  for(const layer of spec.layer||[])if(!layer.data){layer.encoding=layer.encoding||{};layer.encoding.opacity=opacity}
+ }
+ const result=await root.vegaEmbed(element,spec,{actions:false,renderer:'svg',tooltip:true});
+ if(!element.isConnected){result.view.finalize();return}
+ const item={view:result.view};active.add(item);
+ if(mapTypes.has(type)&&spec.projection)mountMapControls(element,result.view,mapState,options.mapKey,item);
+ if(options.onSelect){
+  const activeItem=item;
+  element.style.cursor='pointer';
+  result.view.addEventListener('click',(event,item)=>{
+   if(mapTypes.has(type)&&activeItem.suppressClick){activeItem.suppressClick=false;return}
+   const role=item?.mark?.role||'';
+   if(role.startsWith('axis')||role.startsWith('legend'))return;
+   if(item?.datum&&Object.prototype.hasOwnProperty.call(item.datum,'_categoryValue'))options.onSelect(item.datum,event);
+   else if(!item||['frame','scope'].includes(role))options.onClear?.();
+  });
+ }
+ if(root.ResizeObserver){item.observer=new ResizeObserver(entries=>{if(!element.isConnected){item.observer.disconnect();item.cleanup?.();item.view.finalize();active.delete(item);return}const {width,height}=entries[0].contentRect;if(width>0&&height>0)item.view.width(Math.max(80,width)).height(Math.max(80,height)).resize().runAsync().catch(()=>{})});item.observer.observe(element)}
+ return result.view;
+}
+const api={types,buildSpec,mount,disposeAll,dataLabelOptions};if(typeof module!=='undefined')module.exports=api;root.VegaRenderer=api;
+})(globalThis);
+
+/* VEGA RENDERER END */
+/* CHART INTERACTIONS START */
+(function(root){
+const equal=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+function bindings(visual,channels){
+ const state=visual.definition?.query?.queryState||{};
+ if(channels){
+  const projections=Object.values(state).flatMap(v=>(v.projections||[]).filter(p=>p.active!==false));
+  const first=channels.country??channels.category??channels.detail;
+  const fields=[];
+  for(const [index,dataField] of [[first,'_categoryValue'],[channels.color,'_dimension']]){
+   if(!Number.isInteger(index)||index<0)continue;
+   const c=projections[index]?.field?.Column||projections[index]?.field?.GroupRef;
+   if(c?.Expression?.SourceRef?.Entity&&c.Property)fields.push({table:c.Expression.SourceRef.Entity,column:c.Property,dataField,label:c.Property});
+  }
+  return fields.some(f=>f.dataField==='_categoryValue')?fields:[];
+ }
+ const fields=[];
+ for(const [role,dataField] of [['Category','_categoryValue'],['Series','_dimension'],['Legend','_dimension']]){
+  const projections=(state[role]?.projections||[]).filter(p=>p.active!==false);
+  if(!projections.length)continue;
+  // A collapsed hierarchy or multiple category fields needs a richer identity.
+  if(projections.length!==1)return [];
+  const c=projections[0].field?.Column||projections[0].field?.GroupRef;
+  if(!c?.Expression?.SourceRef?.Entity||!c.Property)return [];
+  fields.push({table:c.Expression.SourceRef.Entity,column:c.Property,dataField,label:c.Property});
+ }
+ if(!fields.some(f=>f.dataField==='_categoryValue'))return [];
+ return fields;
+}
+function literal(value){
+ if(value===null)return {Literal:{Value:'null'}};
+ if(typeof value==='number'&&Number.isFinite(value))return {Literal:{Value:String(value)}};
+ if(typeof value==='boolean')return {Literal:{Value:String(value)}};
+ if(typeof value==='string')return {Literal:{Value:"'"+value.replaceAll("'","''")+"'"}};
+ throw Error('Unsupported selection value.');
+}
+class ChartInteractions{
+ constructor(){this.pages=new Map()}
+ key(report,page){return report+':'+page}
+ entries(report,page){return [...(this.pages.get(this.key(report,page))?.values()||[])]}
+ select(report,page,source,fields,datum,multi=false){
+  if(!fields.length||fields.some(f=>!Object.prototype.hasOwnProperty.call(datum,f.dataField)))return false;
+  const tuple=fields.map(f=>datum[f.dataField]);tuple.forEach(literal);
+  const key=this.key(report,page),map=this.pages.get(key)||new Map(),old=map.get(source);
+  let tuples=old&&equal(old.fields,fields)?old.tuples:[];
+  const index=tuples.findIndex(t=>equal(t,tuple));
+  if(multi)tuples=index<0?[...tuples,tuple]:tuples.filter((_,i)=>i!==index);
+  else tuples=tuples.length===1&&index===0?[]:[tuple];
+  if(tuples.length)map.set(source,{source,fields,tuples});else map.delete(source);
+  if(map.size)this.pages.set(key,map);else this.pages.delete(key);
+  return true;
+ }
+ clear(report,page,source){const key=this.key(report,page),map=this.pages.get(key);if(!map)return false;if(source)map.delete(source);else map.clear();if(!map.size)this.pages.delete(key);return true}
+ removeReport(report){for(const key of this.pages.keys())if(key.startsWith(report+':'))this.pages.delete(key)}
+ allowed(page,source,target){return source!==target&&!(page.visualInteractions||[]).some(r=>r.source===source&&r.target===target&&r.type==='NoFilter')}
+ filtersFor(report,page,target){
+  return this.entries(report,page.id).filter(s=>this.allowed(page,s.source,target)).map(s=>({filter:{Where:[{Condition:{In:{Expressions:s.fields.map(f=>({Column:{Expression:{SourceRef:{Entity:f.table}},Property:f.column}})),Values:s.tuples.map(t=>t.map(literal))}}}]}}));
+ }
+ selected(report,page,source){return this.entries(report,page).find(s=>s.source===source)}
+ matchesDatum(selection,datum){return !selection||selection.tuples.some(t=>selection.fields.every((f,i)=>equal(t[i],datum[f.dataField])))}
+}
+const api={ChartInteractions,bindings,literal};if(typeof module!=='undefined')module.exports=api;root.ChartInteractionAPI=api;
+})(globalThis);
+
+/* CHART INTERACTIONS END */
+/* REPORT LIBRARY START */
+(function(root){
+class ReportLibrary {
+ constructor(storage){this.models=new Map();this.storage=storage;this.active=null;this.views=new Map()}
+ remember(id){this.active=id;try{this.storage?.setItem('modelbridge.activeReport',id)}catch{}}
+ add(model){if(!model.id)throw Error('A saved report needs an import ID.');this.models.set(model.id,model);return model}
+ list(){return [...this.models.values()].sort((a,b)=>(b.createdAt||'').localeCompare(a.createdAt||''))}
+ load(models){this.models=new Map(models.map(m=>[m.id,m]));let preferred=this.active;try{preferred=preferred||this.storage?.getItem('modelbridge.activeReport')}catch{};const selected=this.models.get(preferred)||this.list()[0];if(selected)this.remember(selected.id);return selected}
+ select(id){const selected=this.models.get(id);if(!selected)throw Error('Saved report no longer exists.');this.remember(id);return selected}
+ remove(id){this.models.delete(id);this.views.delete(id);if(this.active===id)this.remember(this.list()[0]?.id||'demo');return this.models.get(this.active)}
+}
+if(typeof module!=='undefined')module.exports=ReportLibrary;root.ReportLibrary=ReportLibrary;
+})(globalThis);
+
+/* REPORT LIBRARY END */
+
+/* INVITATION UI START */
+(function(root){
+const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const date=value=>value?new Date(value*1000).toLocaleString():'—';
+class InvitationUI{
+ constructor({api,account,onAccepted}){
+  this.api=api;this.account=account;this.onAccepted=onAccepted;
+  const params=new URLSearchParams(location.hash.slice(1));
+  try{if(params.has('invite'))sessionStorage.setItem('d2pbi.invitation',params.get('invite'));this.token=sessionStorage.getItem('d2pbi.invitation')||''}catch{this.token=params.get('invite')||''}
+  this.accepted=params.get('accepted');this.error=params.get('auth-error');
+  if(this.accepted){this.clearToken()}
+  if(params.has('invite')||params.has('accepted')||params.has('auth-error')||params.has('signed-in'))history.replaceState(null,'',location.pathname);
+ }
+ clearToken(){this.token='';try{sessionStorage.removeItem('d2pbi.invitation')}catch{}}
+ async loginOptions(target){
+  const section=document.createElement('section');target.querySelector('main > section').appendChild(section);
+  if(this.error){const p=document.createElement('p');p.textContent=this.error;section.appendChild(p)}
+  if(this.token){const p=document.createElement('p');p.textContent='You have a single-use report invitation. Sign in with an existing account or a configured identity provider to continue.';section.appendChild(p)}
+  try{
+   const config=await this.api('/api/auth/providers');if(!section.isConnected)return;
+   for(const [provider,label] of [['entra','Microsoft Entra ID'],['google','Google']]){
+    const button=document.createElement('button');button.type='button';button.textContent='Sign in with '+label;button.style.cssText='display:block;width:100%;margin-top:10px';button.disabled=!config.providers.includes(provider);button.title=button.disabled?'An administrator must configure this provider.':'';
+    button.onclick=()=>this.start(provider,button);section.appendChild(button);
+   }
+  }catch(error){const p=document.createElement('p');p.textContent='Federated sign-in is unavailable: '+error.message;section.appendChild(p)}
+ }
+ async start(provider,button){
+  button.disabled=true;
+  try{const result=await this.api('/api/auth/oidc/start',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({provider,invitation:this.token||undefined})});location.assign(result.url)}catch(error){button.disabled=false;alert(error.message)}
+ }
+ async afterSignIn(){
+  if(this.accepted){const id=this.accepted;this.accepted=null;await this.onAccepted(id);return}
+  if(!this.token)return;
+  const target=document.querySelector('#modal'),token=this.token;
+  try{
+   const info=await this.api('/api/auth/invite-preview',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token})});
+   target.innerHTML='<div class="modalback"><section class="modal" role="dialog" aria-modal="true" aria-label="Accept report invitation"><h2>Report invitation</h2><p>'+esc(info.reportName)+'</p><p>Accept as <strong>'+esc(this.account().session.user.username)+'</strong>? This link grants this account access to the complete report model and can only be used once.</p><p id="inviteerror" role="alert"></p><button id="acceptinvite" class="primary">Accept invitation</button> <button id="dismissinvite">Later</button></section></div>';
+   target.querySelector('#dismissinvite').onclick=()=>target.replaceChildren();
+   target.querySelector('#acceptinvite').onclick=async()=>{const button=target.querySelector('#acceptinvite');button.disabled=true;try{const result=await this.api('/api/invitations/redeem',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token})});this.clearToken();target.replaceChildren();await this.onAccepted(result.reportId)}catch(error){if(target.querySelector('#inviteerror'))target.querySelector('#inviteerror').textContent=error.message;button.disabled=false}};
+  }catch(error){this.clearToken();target.innerHTML='<div class="modalback"><section class="modal"><h2>Invitation unavailable</h2><p>'+esc(error.message)+'</p><button id="closeinvite">Close</button></section></div>';target.querySelector('#closeinvite').onclick=()=>target.replaceChildren()}
+ }
+ table(rows){return '<div class="tablewrap"><table class="table"><thead><tr><th>Report / Link ID</th><th>Created by / at</th><th>Status / used by</th><th>Expires</th><th>Actions</th></tr></thead><tbody>'+rows.map(r=>'<tr><td>'+esc(r.reportName)+'<br><small>'+esc(r.id)+'</small></td><td>'+esc(r.created_name)+'<br>'+esc(date(r.created_at))+'</td><td>'+esc(r.used_at?'Used by '+r.used_name+' · '+date(r.used_at):r.expires_at<Date.now()/1000?'Expired':'Unused')+(r.removed_at?'<br>Removed '+esc(date(r.removed_at)):'')+'</td><td>'+esc(date(r.expires_at))+'</td><td>'+(r.removed_at?'—':'<button data-remove-invitation="'+esc(r.id)+'">Remove link</button>')+'</td></tr>').join('')+'</tbody></table></div>'}
+ wireRemoval(target,reload){target.querySelectorAll('[data-remove-invitation]').forEach(button=>button.onclick=async()=>{button.disabled=true;try{await this.api('/api/invitations/remove',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:button.dataset.removeInvitation})});await reload()}catch(error){button.disabled=false;alert(error.message)}})}
+ async reportDialog(report){
+  const target=document.querySelector('#modal');
+  target.innerHTML='<div class="modalback"><section class="modal" role="dialog" aria-modal="true" aria-label="Report invitation links"><button class="close" id="closelinks">×</button><h2>Invitation links</h2><p>'+esc(report.name)+'</p><p>Each link can be claimed by one signed-in account. Opening it alone does not use it. Removing a used link retains its audit record; revoke the recipient in Share report to remove their report access.</p><label>Expires in <select id="invitehours"><option value="24">1 day</option><option value="168" selected>7 days</option><option value="720">30 days</option></select></label> <button class="primary" id="createlink">Generate single-use link</button><div id="newlink" role="status"></div><p id="linkerror" role="alert"></p><div id="reportlinks">Loading links…</div></section></div>';
+  const panel=target.firstElementChild;
+  target.querySelector('#closelinks').onclick=()=>target.replaceChildren();
+  const reload=async()=>{const rows=await this.api('/api/reports/'+report.id+'/invitations');if(target.firstElementChild!==panel)return;target.querySelector('#reportlinks').innerHTML=this.table(rows);this.wireRemoval(target.querySelector('#reportlinks'),reload)};
+  target.querySelector('#createlink').onclick=async()=>{const button=target.querySelector('#createlink');button.disabled=true;try{const result=await this.api('/api/reports/'+report.id+'/invitations',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({hours:Number(target.querySelector('#invitehours').value)})});if(target.firstElementChild!==panel)return;target.querySelector('#newlink').innerHTML='<p>Copy this link now. Its secret is only shown once.</p><textarea aria-label="Generated sharing link" readonly style="min-height:85px"></textarea>';target.querySelector('#newlink textarea').value=result.url;await reload()}catch(error){if(target.querySelector('#linkerror'))target.querySelector('#linkerror').textContent=error.message}finally{button.disabled=false}};
+  try{await reload()}catch(error){if(target.querySelector('#linkerror'))target.querySelector('#linkerror').textContent=error.message}
+ }
+ async adminSection(panel){
+  const section=document.createElement('section');section.innerHTML='<h3>All sharing links</h3><p>Includes unused, used, expired and removed invitations across all report owners.</p><div>Loading links…</div>';panel.appendChild(section);
+  const reload=async()=>{const rows=await this.api('/api/admin/invitations');if(!section.isConnected)return;section.querySelector('div').innerHTML=this.table(rows);this.wireRemoval(section,reload)};
+  try{await reload()}catch(error){section.querySelector('div').textContent=error.message}
+ }
+}
+root.InvitationUI=InvitationUI;if(typeof module!=='undefined')module.exports=InvitationUI;
+})(globalThis);
+
+/* INVITATION UI END */
+/* ACCOUNT UI START */
+(function(root){
+const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+class AccountUI{
+ constructor({api,onSignIn,onSignOut}){this.api=api;this.onSignIn=onSignIn;this.onSignOut=onSignOut;this.session=null}
+ async restore(){try{await this.signedIn(await this.api('/api/auth/me'))}catch(error){this.loginScreen(error.status===401?'':error.message)}}
+ async signedIn(session){this.session=session;document.querySelector('#authscreen').replaceChildren();document.querySelector('.app').style.display='';await this.onSignIn(session);this.update();await root.invitationUI?.afterSignIn()}
+ update(){const button=document.querySelector('#account');if(button){button.textContent=this.session?.user.username||'Sign in';button.onclick=()=>this.openAccount()}document.querySelectorAll('[data-nav="Accounts"]').forEach(node=>node.hidden=!this.session?.user.isAdmin);const shutdown=document.querySelector('#shutdown');if(shutdown)shutdown.hidden=!this.session?.user.isAdmin}
+ loginScreen(message=''){
+  this.session=null;this.onSignOut();document.querySelector('#modal').replaceChildren();document.querySelector('.app').style.display='none';
+  const target=document.querySelector('#authscreen');target.innerHTML='<main style="min-height:100vh;display:grid;place-items:center;background:#edf3e9;padding:24px"><section style="width:min(100%,420px);background:white;border:1px solid #d9e4d5;border-radius:16px;padding:30px"><h1 style="font-size:27px">Death2PowerBI</h1><h2 style="font-size:18px;margin:14px 0">Sign in</h2><p id="loginmessage" role="status">'+esc(message)+'</p><form id="loginform"><label style="display:block;margin:12px 0">Username<input name="username" autocomplete="username" required maxlength="64" style="width:100%;padding:10px;margin-top:5px"></label><label style="display:block;margin:12px 0">Password<input name="password" type="password" autocomplete="current-password" required maxlength="256" style="width:100%;padding:10px;margin-top:5px"></label><button class="primary" type="submit" style="width:100%;margin-top:12px">Sign in</button></form></section></main>';
+  root.invitationUI?.loginOptions(target);
+  const form=target.querySelector('form');form.onsubmit=async event=>{event.preventDefault();const button=form.querySelector('button');button.disabled=true;try{const session=await this.api('/api/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:form.elements.username.value,password:form.elements.password.value})});form.elements.password.value='';await this.signedIn(session)}catch(error){target.querySelector('#loginmessage').textContent=error.message;button.disabled=false}};
+ }
+ async logout(){try{await this.api('/api/auth/logout',{method:'POST'});this.loginScreen('Signed out.')}catch(error){if(error.status===401)this.loginScreen('Your session has expired.');else{const output=document.querySelector('#passworderror');if(output)output.textContent='Could not sign out: '+error.message}}}
+ openAccount(){
+  if(!this.session)return this.loginScreen();
+  const target=document.querySelector('#modal');target.innerHTML='<div class="modalback"><section class="modal" role="dialog" aria-modal="true" aria-label="Your account"><button class="close" id="closeaccount">×</button><h2>'+esc(this.session.user.username)+'</h2><p>'+(this.session.user.isAdmin?'Administrator':'Report owner')+'</p><h3>Change password</h3><form id="passwordform"><label style="display:block">Current password<input name="current" type="password" autocomplete="current-password" required maxlength="256" style="width:100%;padding:9px;margin:5px 0 12px"></label>'+this.passwordFields()+'<button class="primary" type="submit">Change password</button><p role="alert" id="passworderror"></p></form><button id="signout" style="margin-top:12px">Sign out</button></section></div>';
+  target.querySelector('#closeaccount').onclick=()=>target.replaceChildren();target.querySelector('#signout').onclick=()=>this.logout();
+  if(this.session.user.identity){target.querySelector('h3').textContent='Federated account · '+this.session.user.identity.provider;target.querySelector('form').remove();return}
+  const form=target.querySelector('form');form.onsubmit=async event=>{event.preventDefault();try{this.matchPasswords(form);await this.api('/api/auth/password',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({currentPassword:form.elements.current.value,newPassword:form.elements.password.value})});this.loginScreen('Password changed. Sign in with your new password.')}catch(error){const output=target.querySelector('#passworderror');if(output)output.textContent=error.message}};
+ }
+ passwordFields(){return '<label style="display:block">New password<input name="password" type="password" autocomplete="new-password" required minlength="8" maxlength="256" style="width:100%;padding:9px;margin:5px 0 12px"></label><label style="display:block">Confirm new password<input name="confirmation" type="password" autocomplete="new-password" required minlength="8" maxlength="256" style="width:100%;padding:9px;margin:5px 0 12px"></label>'}
+ matchPasswords(form){if(form.elements.password.value!==form.elements.confirmation.value)throw Error('The new passwords do not match.')}
+ async renderAccounts(target){
+  if(!this.session?.user.isAdmin)return;
+  target.innerHTML='<section class="panel" id="accountpanel"><h2>Accounts</h2><p>Admins can view all reports. Deleting an account transfers its reports to admin and revokes its sessions.</p><div id="accountlist">Loading accounts…</div><h3 style="margin-top:22px">Create account</h3><form id="createaccount"><label style="display:block">Username<input name="username" autocomplete="off" required pattern="[A-Za-z0-9][A-Za-z0-9_.-]{0,63}" maxlength="64" style="width:100%;padding:9px;margin:5px 0 12px"></label>'+this.passwordFields()+'<label><input name="isAdmin" type="checkbox"> Administrator account</label><p><button class="primary" type="submit">Create account</button></p><p role="status" id="accountstatus"></p></form></section>';
+  const panel=target.firstElementChild,users=await this.api('/api/admin/accounts');if(panel!==target.firstElementChild)return;
+  target.querySelector('#accountlist').innerHTML='<div class="tablewrap"><table class="table"><thead><tr><th>Username</th><th>Role</th><th>Reports</th><th>Actions</th></tr></thead><tbody>'+users.map(user=>'<tr><td>'+esc(user.username)+(user.identity?'<br>'+esc(user.identity.provider+' · '+(user.identity.email||user.identity.display_name)):'')+'</td><td>'+(user.isAdmin?'Admin':'User')+'</td><td>'+user.reportCount+'</td><td><button data-reset-account="'+user.id+'" '+(user.identity?'disabled':'')+'>Reset password</button> <button data-delete-account="'+user.id+'" '+(user.username.toLowerCase()==='admin'||user.id===this.session.user.id?'disabled':'')+'>Delete account</button></td></tr>').join('')+'</tbody></table></div>';
+  target.querySelectorAll('[data-reset-account]').forEach(button=>button.onclick=()=>this.resetDialog(users.find(user=>user.id===button.dataset.resetAccount),target));
+  target.querySelectorAll('[data-delete-account]').forEach(button=>button.onclick=()=>this.deleteDialog(users.find(user=>user.id===button.dataset.deleteAccount),target));
+  await root.invitationUI?.adminSection(panel);
+  const form=target.querySelector('form');form.onsubmit=async event=>{event.preventDefault();const button=form.querySelector('button');button.disabled=true;try{this.matchPasswords(form);await this.api('/api/admin/accounts',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:form.elements.username.value,password:form.elements.password.value,isAdmin:form.elements.isAdmin.checked})});await this.renderAccounts(target)}catch(error){const output=target.querySelector('#accountstatus');if(output)output.textContent=error.message;button.disabled=false}};
+ }
+ resetDialog(user,accountsTarget){
+  const target=document.querySelector('#modal');target.innerHTML='<div class="modalback"><section class="modal" role="dialog" aria-modal="true" aria-label="Reset account password"><h2>Reset password for '+esc(user.username)+'</h2><p>All active sessions for this account will be signed out.</p><form>'+this.passwordFields()+'<button class="primary" type="submit">Reset password</button> <button type="button" id="cancelreset">Cancel</button><p role="alert" id="reseterror"></p></form></section></div>';
+  target.querySelector('#cancelreset').onclick=()=>target.replaceChildren();const form=target.querySelector('form');form.onsubmit=async event=>{event.preventDefault();try{this.matchPasswords(form);const result=await this.api('/api/admin/reset-password',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:user.id,password:form.elements.password.value})});if(result.signInRequired)return this.loginScreen('Password reset. Sign in with your new password.');target.replaceChildren();await this.renderAccounts(accountsTarget)}catch(error){const output=target.querySelector('#reseterror');if(output)output.textContent=error.message}};
+ }
+ deleteDialog(user,accountsTarget){
+  const target=document.querySelector('#modal');target.innerHTML='<div class="modalback"><section class="modal" role="dialog" aria-modal="true" aria-label="Delete account"><h2>Delete '+esc(user.username)+'?</h2><p>Reports will be transferred to admin. Type the username to confirm.</p><form><label>Username confirmation<input name="confirmation" autocomplete="off" required style="width:100%;padding:9px;margin:8px 0"></label><button type="submit" style="color:#a14438">Delete account</button> <button type="button" id="canceldeleteaccount">Cancel</button><p role="alert" id="deleteaccounterror"></p></form></section></div>';
+  target.querySelector('#canceldeleteaccount').onclick=()=>target.replaceChildren();const form=target.querySelector('form');form.onsubmit=async event=>{event.preventDefault();try{await this.api('/api/admin/delete-account',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:user.id,confirmUsername:form.elements.confirmation.value})});target.replaceChildren();await this.renderAccounts(accountsTarget)}catch(error){const output=target.querySelector('#deleteaccounterror');if(output)output.textContent=error.message}};
+ }
+}
+if(typeof module!=='undefined')module.exports=AccountUI;root.AccountUI=AccountUI;
+})(globalThis);
+
+/* ACCOUNT UI END */
+/* HTML REPORTS START */
+/* Standalone snapshot documents and opaque-origin imported report frames. */
+(function(root){
+const policy="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' data: blob:; style-src 'unsafe-inline' data: blob:; img-src data: blob:; font-src data: blob:; media-src data: blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; worker-src 'none'";
+const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function isolatedDocument(source){return '<!doctype html><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="'+escape(policy)+'">'+source}
+function mount(target,source){
+ const frame=document.createElement('iframe');frame.title='Imported HTML report';frame.setAttribute('sandbox','allow-scripts');frame.referrerPolicy='no-referrer';frame.style.cssText='width:100%;height:80vh;min-height:600px;border:1px solid #dce4de;background:white;border-radius:8px';frame.srcdoc=isolatedDocument(source);target.replaceChildren(frame);return frame;
+}
+function download(source,name){const url=URL.createObjectURL(new Blob([source],{type:'text/html;charset=utf-8'})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),10000)}
+function capture(report){
+ const clone=report.cloneNode(true);
+ // Canvases have no serialized pixels. Preserve their current image instead.
+ const canvasCopies=[...clone.querySelectorAll('canvas')];report.querySelectorAll('canvas').forEach((canvas,i)=>{const copy=canvasCopies[i];if(!copy)return;try{const image=document.createElement('img');image.src=canvas.toDataURL();image.style.cssText=canvas.style.cssText;image.width=canvas.width;image.height=canvas.height;copy.replaceWith(image)}catch{copy.replaceWith(document.createTextNode('Canvas could not be captured.'))}});
+ clone.querySelectorAll('iframe').forEach(frame=>{const note=document.createElement('p');note.textContent='Custom visual: live embedded content is unavailable in this snapshot.';frame.replaceWith(note)});
+ const originalSelects=[...report.querySelectorAll('select')];clone.querySelectorAll('select').forEach((select,i)=>{const label=document.createElement('span');label.textContent=[...originalSelects[i].selectedOptions].map(option=>option.textContent).join(', ');select.replaceWith(label)});
+ clone.querySelectorAll('script,button,select,input,textarea,.vega-actions,.map-controls,details').forEach(node=>node.remove());
+ clone.querySelectorAll('*').forEach(node=>{for(const attr of [...node.attributes]){if(/^on/i.test(attr.name)||['href','xlink:href','src','srcset'].includes(attr.name)&&!attr.value.startsWith('data:')&&!attr.value.startsWith('#'))node.removeAttribute(attr.name)}});
+ clone.removeAttribute('id');return clone.outerHTML;
+}
+function documentFor(name,pages,css){
+ if(!pages.length)throw Error('There are no report pages to export.');
+ const packageData={format:'death2powerbi-snapshot',version:1,name,createdAt:new Date().toISOString(),pages};
+ const bytes=new TextEncoder().encode(JSON.stringify(packageData));let binary='';for(let i=0;i<bytes.length;i+=8192)binary+=String.fromCharCode(...bytes.subarray(i,i+8192));
+ const encoded=btoa(binary),safeCss=css.replace(/@import[^;]*;/gi,'').replace(/url\((?![\"']?(?:data:|#))[^)]*\)/gi,'none').replace(/<\/style/gi,'<\\/style');
+ return '<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="'+escape(policy)+'"><title>'+escape(name)+' — Snapshot</title><style>'+safeCss+'\nbody{margin:0;background:#f4f6f2}header.snapshot{padding:18px 24px;background:white;border-bottom:1px solid #dce4de}nav.snapshot{display:flex;gap:8px;flex-wrap:wrap;padding:12px 24px}main.snapshot{overflow:auto;padding:16px 24px}.snapshot-page[hidden]{display:none!important}.snapshot-page .report{position:relative;background:white;flex:none}.snapshot-page .visual{position:absolute}.snapshot-note{font-size:12px;color:#53675c}svg{max-width:100%}</style></head><body><header class="snapshot"><h1>'+escape(name)+'</h1><p class="snapshot-note">Static snapshot · '+escape(packageData.createdAt)+' · Values reflect saved page filters and selections at export. Slicers and cross-filtering are frozen. Unsupported/custom visuals may show explanatory messages. No semantic-model data is included.</p></header><nav class="snapshot">'+pages.map((p,i)=>'<button data-page="'+i+'">'+escape(p.name)+(p.hidden?' (hidden)':'')+'</button>').join('')+'</nav><main class="snapshot">'+pages.map((p,i)=>'<section class="snapshot-page"'+(i?' hidden':'')+'><h2>'+escape(p.name)+'</h2>'+p.html+'</section>').join('')+'</main><script id="death2powerbi-snapshot" type="application/octet-stream">'+encoded+'<'+ '/script><'+'script>document.querySelectorAll("nav.snapshot button").forEach((b,i)=>b.onclick=()=>document.querySelectorAll(".snapshot-page").forEach((p,j)=>p.hidden=i!==j));<'+ '/script></body></html>';
+}
+const api={mount,download,capture,documentFor,isolatedDocument,policy};root.HTMLReports=api;if(typeof module!=='undefined')module.exports=api;
+})(globalThis);
+
+/* HTML REPORTS END */
+/* NATIVE KPI START */
+/* Map native Power BI KPI fields/formatting without modifying stored reports. */
+(function(root){
+const DataView=typeof module!=='undefined'?require('./custom-dataview.js'):root.CustomDataView;
+const guid='NativeStyleKpiB82C40E7A9414D3AA105F8C29D663AB1';
+function adapt(visual){
+ if(visual.type!=='kpi')return visual;
+ const original=visual.definition||{},state=original.query?.queryState||{},queryState={};
+ const mapping={Indicator:'value',Value:'value',TrendLine:'trend',TrendAxis:'trend',Goal:'target',Target:'target',value:'value',trend:'trend',target:'target'};
+ for(const [name,data] of Object.entries(state)){
+  const role=mapping[name];if(!role){if(data.projections?.some(p=>p.active!==false))throw Error('Unsupported native KPI role: '+name);continue}
+  const projections=(data.projections||[]).filter(p=>p.active!==false);
+  if(projections.length)queryState[role]={...data,projections:[...(queryState[role]?.projections||[]),...projections]};
+ }
+ if(queryState.value?.projections.length!==1)throw Error('A KPI needs exactly one indicator field.');
+ for(const role of ['trend','target'])if(queryState[role]?.projections.length>1)throw Error('KPI '+role+' supports one field.');
+ const source=DataView.objects(original.objects),objects={...original.objects};
+ const put=(name,properties)=>{objects[name]=[{properties:{...source[name],...Object.fromEntries(Object.entries(properties).filter(([,v])=>v!==undefined))}}]};
+ const indicator=source.indicator||{},trend=source.trendline||source.trendLine||{},goals=source.goals||{},status=source.status||{};
+ put('callout',{fontSize:indicator.fontSize,decimals:indicator.precision??indicator.decimalPlaces,icons:indicator.showIcon,displayUnits:indicator.displayUnits===undefined?undefined:String(indicator.displayUnits||1)});
+ put('trend',{show:trend.show,lowGood:status.direction===undefined?undefined:/low|negative/i.test(String(status.direction)),good:status.goodColor,bad:status.badColor,neutral:status.neutralColor});
+ put('goal',{show:goals.show,distance:goals.showDistance,label:goals.label,fontSize:goals.fontSize,goalDecimals:goals.precision??goals.decimalPlaces});
+ put('layout',{title:false,date:false});
+ return {...visual,_nativeKpi:true,definition:{...original,query:{...original.query,queryState},objects}};
+}
+function orderMonths(view){
+ const category=view.categorical?.categories?.find(c=>c.source.roles?.trend);if(!category)return;
+ const months=['january','february','march','april','may','june','july','august','september','october','november','december'];
+ const indices=category.values.map(value=>typeof value==='string'?months.findIndex(month=>month===value.toLowerCase()||month.slice(0,3)===value.toLowerCase()):-1);
+ if(indices.length&&indices.every(i=>i>=0))category.objects=indices.map(sortOrder=>({death2Kpi:{sortOrder}}));
+}
+const api={guid,adapt,orderMonths};root.NativeKPI=api;if(typeof module!=='undefined')module.exports=api;
+})(globalThis);
+
+/* NATIVE KPI END */
+const $=s=>document.querySelector(s),esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let accountUI,authEpoch=0,ownerFilter='';
+const accountStorage={getItem:key=>{try{return localStorage.getItem('death2powerbi.account.'+(accountUI?.session?.user.id||'signedout')+'.'+key)}catch{return null}},setItem:(key,value)=>{try{localStorage.setItem('death2powerbi.account.'+(accountUI?.session?.user.id||'signedout')+'.'+key,value)}catch{}}};
+let local=false,tab='Reports',pageIndex=0,selectedTable=0,model,toastTimer;
+const demoRows=[['North',342000,280],['South',256000,213],['East',298000,241],['West',389000,312]];
+const demo={id:'demo',name:'Retail overview.pbix',tables:[{name:'Sales',rows:1046,columns:[{name:'Region',type:'VARCHAR'},{name:'Revenue',type:'DOUBLE'},{name:'Orders',type:'BIGINT'}]}],measures:[{Name:'Total revenue',Expression:'SUM(Sales[Revenue])'},{Name:'Total orders',Expression:'SUM(Sales[Orders])'}],relationships:[],pages:[{id:'overview',name:'Sales overview',width:1280,height:720,visuals:[]},{id:'regions',name:'Regional performance',width:1280,height:720,visuals:[]}],warnings:['This is an illustrative example. Import your own report in the local workbench to inspect actual data.','DAX and M are preserved as source; no general DAX or Power Query execution is included.','Report rendering is partial: unsupported visuals, filters and measures are marked. Original Power BI security roles are not enforced.']};
+const savedStorage=accountStorage;
+const library=new ReportLibrary(savedStorage);
+function renderLibrary(){
+ $('#snapshotexport').textContent=model.reportKind?'Download HTML report':'Export snapshot HTML';
+ const user=accountUI?.session?.user;const allReports=library.list();const reports=allReports.filter(report=>!user?.isAdmin||ownerFilter==='all'||report.ownerId===ownerFilter);
+ $('#ownerfilterlabel').hidden=!user?.isAdmin;$('#ownerfilter').innerHTML='<option value="'+esc(user?.id||'')+'">My reports</option><option value="all">All accounts</option>'+[...new Map(allReports.filter(report=>report.ownerId!==user?.id).map(report=>[report.ownerId,report.ownerUsername])).entries()].map(([id,name])=>'<option value="'+esc(id)+'">'+esc(name)+'</option>').join('');$('#ownerfilter').value=ownerFilter;
+ $('#reportcount').textContent=reports.length;
+ $('#reportselector').innerHTML='<option value="demo">Example report</option>'+reports.map(m=>'<option value="'+esc(m.id)+'">'+esc(m.name)+(m.sharedWithMe?' · Shared by '+esc(m.ownerUsername):user?.isAdmin?' · '+esc(m.ownerUsername||'admin'):'')+' · '+m.pages.length+' pages · '+esc(m.createdAt?new Date(m.createdAt).toLocaleString():'Saved import')+' · '+esc(m.id.slice(-6))+'</option>').join('');
+ $('#reportselector').value=model.id;
+ $('#refreshreports').disabled=!local;$('#deletereport').disabled=!local||model.id==='demo'||model.canManage===false;$('#sharereport').disabled=!local||model.id==='demo'||model.canManage===false;$('#shutdown').disabled=!local||!accountUI?.session?.user.isAdmin;accountUI?.update();
+}
+function chooseReport(id){
+ if(model)library.views.set(model.id,{pageIndex,selectedTable,tab});
+ model=id==='demo'?demo:library.select(id);
+ if(id==='demo')library.remember('demo');
+ const view=library.views.get(id);
+ pageIndex=view?.pageIndex??Math.max(0,model.pages.findIndex(p=>p.active&&!p.hidden));
+ if(pageIndex>=model.pages.length)pageIndex=0;
+ selectedTable=view?.selectedTable??0;tab=view?.tab??'Reports';render();
+}
+async function refreshReports(){
+ const reports=await api('/api/models');await CustomVisuals.load(api);
+ const active=library.active;const preferred=library.load(reports);const visible=library.list().filter(report=>!accountUI?.session?.user.isAdmin||ownerFilter==='all'||report.ownerId===ownerFilter);const selected=visible.find(report=>report.id===preferred?.id)||visible[0];
+ if(active!=='demo')chooseReport(selected?.id||'demo');else renderLibrary();
+}
+async function shareSelectedReport(){
+ const report=model;if(!local||report.id==='demo'||report.canManage===false)return;
+ try{
+  const users=await api('/api/reports/'+report.id+'/sharing');
+  $('#modal').innerHTML='<div class="modalback"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="sharetitle"><h2 id="sharetitle">Share report</h2><p><strong>'+esc(report.name)+'</strong></p><p>Selected users can view pages, filter visuals, query data and download an export. Only the owner and administrators can delete the report or change sharing. Administrators already have access.</p><div id="shareusers" style="max-height:240px;overflow:auto">'+(users.length?users.map(u=>'<label style="display:block;padding:10px"><input type="checkbox" value="'+esc(u.id)+'" '+(u.shared?'checked':'')+'> '+esc(u.username)+'</label>').join(''):'<p>No other user accounts are available. An administrator can create accounts.</p>')+'</div><p id="shareerror" role="alert"></p><div style="display:flex;gap:10px;justify-content:flex-end"><button id="invitationlinks">Invitation links</button><button id="closeshare">Cancel</button><button id="saveshare" class="primary">Save sharing</button></div></section></div>';
+  $('#invitationlinks').onclick=()=>window.invitationUI.reportDialog(report);
+  $('#closeshare').onclick=()=>$('#modal').innerHTML='';
+  $('#saveshare').onclick=async()=>{const button=$('#saveshare');button.disabled=true;try{
+   const userIds=[...document.querySelectorAll('#shareusers input:checked')].map(input=>input.value);
+   await api('/api/reports/'+report.id+'/sharing',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userIds})});
+   $('#modal').innerHTML='';toast('Report sharing updated. Recipients can refresh their report list.');
+  }catch(error){if($('#shareerror'))$('#shareerror').textContent=error.message;button.disabled=false}};
+ }catch(error){toast(error.message)}
+}
+let actionPending=false;
+function confirmAction({title,description,label,reportName,action}){
+ $('#modal').innerHTML='<div class="modalback"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="confirmtitle"><h2 id="confirmtitle">'+esc(title)+'</h2><p>'+esc(description)+'</p>'+(reportName?'<label for="confirmname">Type the report filename to confirm:</label><p><strong>'+esc(reportName)+'</strong></p><input id="confirmname" autocomplete="off" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:7px">':'')+'<div style="display:flex;justify-content:flex-end;gap:10px;margin-top:24px"><button id="cancelaction">Cancel</button><button id="confirmaction" style="background:#9b3e34;color:white">'+esc(label)+'</button></div><p id="actionerror" role="alert"></p></section></div>';
+ const button=$('#confirmaction');const input=$('#confirmname');
+ button.disabled=!!reportName;if(input){input.oninput=()=>button.disabled=input.value!==reportName;input.focus()}else $('#cancelaction').focus();
+ $('#cancelaction').onclick=()=>$('#modal').innerHTML='';
+ button.onclick=async()=>{actionPending=true;button.disabled=true;$('#cancelaction').disabled=true;try{await action();$('#modal').innerHTML=''}catch(e){$('#actionerror').textContent=e.message;button.disabled=!!reportName&&input.value!==reportName;$('#cancelaction').disabled=false}finally{actionPending=false}};
+}
+function deleteSelectedReport(){
+ if(!local||model.id==='demo')return;
+ const report=model;
+ confirmAction({title:'Delete saved report?',description:'Permanently delete this import (ID '+report.id.slice(-6)+'), including its uploaded copy, Parquet files and DuckDB database. Your original file outside Death2PowerBI and other imports are kept. This cannot be undone.',label:'Delete report',reportName:report.name,action:async()=>{
+  await api('/api/delete',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:report.id,confirmName:report.name})});
+  const next=library.remove(report.id);chartInteractions.removeReport(report.id);
+  for(const key of slicerState.keys())if(key.startsWith(report.id+':'))slicerState.delete(key);
+  model=undefined;chooseReport(next?.id||'demo');toast('Saved report deleted.');
+ }});
+}
+function shutdownServer(){
+ if(!local)return;
+ confirmAction({title:'Shut down Death2PowerBI?',description:'Stop the local Python server. All saved reports will be kept. To use the app again, launch start.cmd or run python server.py.',label:'Shut down server',action:async()=>{
+  await api('/api/shutdown',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({confirm:true})});
+  local=false;renderLibrary();$('#connection').textContent='○ Server stopped';
+  $('#notice').innerHTML='<div class="notice" role="status"><strong>Server stopped.</strong> Saved reports are kept. Run start.cmd or python server.py, then refresh this page to reconnect.</div>';
+  document.querySelectorAll('button,input,select,textarea').forEach(control=>control.disabled=true);
+ }});
+}
+function toast(msg){$('#toast').innerHTML='<div class="toast">'+esc(msg)+'</div>';clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').innerHTML='',5500)}
+async function api(path,options={}){
+ const epoch=authEpoch,headers=new Headers(options.headers||{});
+ if(options.method&&options.method!=='GET'&&accountUI?.session?.csrf)headers.set('X-CSRF-Token',accountUI.session.csrf);
+ const r=await fetch(path,{...options,headers,credentials:'same-origin'}),j=await r.json();
+ if(epoch!==authEpoch)throw Error('The account changed. This request was discarded.');
+ if(!r.ok){const error=Error(j.error||'Request failed');error.status=r.status;if(r.status===401&&path!=='/api/auth/login')accountUI?.loginScreen('Your session has expired. Please sign in.');throw error}return j;
+}
+function pick(){if(!local){guide();return}$('#file').click()}
+function guide(){$('#modal').innerHTML=`<div class="modalback"><section class="modal" role="dialog" aria-modal="true" aria-label="Getting started"><button class="close" id="close">×</button><div class="eyebrow">YOUR LOCAL WORKBENCH</div><h2 style="margin-top:10px">Open reports on your machine.</h2><p>PBIX extraction runs in the included Python service. The hosted preview contains example data; your reports stay on your computer when you use the local app.</p><code>cd death2powerbi\npython -m pip install -r requirements.txt\npython server.py</code><p>Then open <a href="http://127.0.0.1:8765" target="_blank" rel="noopener">http://127.0.0.1:8765 ↗</a>. Import a PBIX, a complete project folder, or a PBIP ZIP including its associated directories.</p><p>Embedded models convert to Parquet and DuckDB. PBIP projects need cache.abf or CSV/Parquet data. DAX, custom visuals, and Power BI interactions have partial support; see Compatibility.</p><button class="primary" id="gotit">Got it</button></section></div>`;$('#close').onclick=$('#gotit').onclick=()=>$('#modal').innerHTML=''}
+function stats(){const values=model.reportKind?[['Report type',model.reportKind==='snapshot'?'Snapshot':'HTML','Self-contained document','▧'],['Report pages',model.pages.length,'Navigation inside the report','▧'],['Interaction',model.reportKind==='snapshot'?'Static':'Embedded',model.reportKind==='snapshot'?'Frozen values and charts':'Provided by the report','◈'],['Viewer','Isolated','Private report library','◈']]:[['Model tables',model.tables.length,model.tables.reduce((a,t)=>a+t.rows,0).toLocaleString()+' rows available','▦'],['Report pages',model.pages.length,'Original page structure','▧'],['DAX measures',model.measures.length,'Expressions preserved','ƒ'],['Storage engine','DuckDB','Parquet · Polars pipeline','◈']];$('#stats').innerHTML=values.map(v=>`<div class="stat"><div class="statlabel">${v[0]}<span>${v[3]}</span></div><strong>${v[1]}</strong><small>${v[2]}</small></div>`).join('')}
+function render(){if(model.reportKind&&['Model','SQL','Custom'].includes(tab))tab='Reports';document.querySelectorAll('[data-nav]').forEach(button=>{if(['Model','SQL','Custom'].includes(button.dataset.nav))button.hidden=!!model.reportKind});CustomVisuals.disposeAll();if(tab!=='Reports')VegaRenderer.disposeAll();renderLibrary();stats();$('#modelname').textContent=model.name;$('#modelmeta').textContent=model.id==='demo'?'Example report · Open analytics preview':model.reportKind?'Self-contained '+model.reportKind+' · '+model.pages.length+' pages':'Imported locally · '+model.tables.length+' tables · '+model.pages.length+' pages';$('#modelbadge').textContent=model.id==='demo'?'EXAMPLE DATA':model.reportKind==='snapshot'?'SNAPSHOT':model.reportKind==='html'?'HTML REPORT':'LOCAL IMPORT';$('#footnote').textContent=model.id==='demo'?'Example workspace · Nothing uploaded':'Local workspace · '+model.name;$('#tabs').innerHTML=[...(model.reportKind?['Reports','Compatibility']:['Reports','Model','SQL','Custom','Compatibility']),...(accountUI?.session?.user.isAdmin?['Accounts']:[])].map(t=>`<button data-tab="${t}" class="${tab===t?'active':''}">${({Reports:'Report pages',Model:'Semantic model',SQL:'SQL explorer',Custom:'Custom visuals',Accounts:'Accounts',Compatibility:'Compatibility'})[t]}${t==='Compatibility'?' <span class="badge">'+model.warnings.length+'</span>':''}</button>`).join('');document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{tab=b.dataset.tab;render()});document.querySelectorAll('[data-nav]').forEach(b=>{b.classList.toggle('active',b.dataset.nav===tab);b.onclick=()=>{tab=b.dataset.nav;render()}});$('#notice').innerHTML=!local?'<div class="notice">Preview workspace. To import and convert your own PBIX, <a href="#" id="connectlink">open the included local service ↗</a>.</div>':'';if($('#connectlink'))$('#connectlink').onclick=e=>{e.preventDefault();guide()};if(tab==='Reports')renderReports();else if(tab==='Model')renderModel();else if(tab==='SQL')renderSQL();else if(tab==='Accounts')accountUI.renderAccounts($('#body')).catch(error=>toast(error.message));else if(tab==='Custom')CustomWorkbench.render({target:$('#body'),model,api,evaluate,page:model.pages[pageIndex]}).catch(error=>toast(error.message));else renderCompatibility()}
+function demoVisuals(){if(pageIndex===1)return [{x:35,y:40,width:1210,height:620,type:'clusteredColumnChart',title:'Revenue by region',data:demoRows.map(r=>[r[0],r[1]])}];return [{x:30,y:30,width:380,height:135,type:'card',title:'Total revenue',value:'$1.285M',note:'Sales · Revenue'},{x:450,y:30,width:380,height:135,type:'card',title:'Total orders',value:'1,046',note:'Sales · Orders'},{x:870,y:30,width:380,height:135,type:'card',title:'Average order value',value:'$1,228',note:'Example calculation'},{x:30,y:195,width:750,height:490,type:'clusteredColumnChart',title:'Revenue by region',data:demoRows.map(r=>[r[0],r[1]])},{x:810,y:195,width:440,height:490,type:'tableEx',title:'Regional breakdown',data:demoRows}]}
+let reportRequests=new AbortController(),snapshotExporting=false;
+$('#snapshotexport').onclick=()=>exportSnapshot().catch(e=>toast(e.message));
+async function renderHTMLReport(){
+ reportRequests.abort();reportRequests=new AbortController();const current=model;
+ $('#body').innerHTML='<div class="panel" style="width:100%"><h2>'+esc(model.reportKind==='snapshot'?'Snapshot report':'HTML report')+'</h2><p>Embedded interactions run inside an isolated viewer. External resources, forms, popups and access to the application are restricted.</p><div id="htmlreportviewer">Loading report…</div></div>';
+ const target=$('#htmlreportviewer');try{const result=await api('/api/html/'+current.id,{signal:reportRequests.signal});if(target.isConnected&&model===current)HTMLReports.mount(target,result.html)}catch(e){if(target.isConnected&&e.name!=='AbortError')target.textContent=e.message}
+}
+async function exportSnapshot(){
+ if(snapshotExporting)return;
+ if(model.reportKind){const source=await api('/api/html/'+model.id);HTMLReports.download(source.html,model.name.replace(/\.html?$/i,'')+'.html');return}
+ const current=model,originalPage=pageIndex,originalTab=tab,pages=[];let cancelled=false;
+ snapshotExporting=true;tab='Reports';
+ $('#modal').innerHTML='<div class="modalback"><section class="modal" role="dialog" aria-modal="true" aria-label="Export snapshot"><h2>Export snapshot</h2><p id="snapshotprogress" role="status">Preparing report pages…</p><p>Calculating all pages with their saved filters and selections. Hidden pages are included. This may take several minutes.</p><button id="cancelsnapshot">Cancel</button></section></div>';
+ $('#cancelsnapshot').onclick=()=>{cancelled=true;reportRequests.abort()};
+ try{
+  for(let i=0;i<current.pages.length;i++){
+   if(cancelled||model!==current)throw Error('Snapshot export cancelled.');
+   pageIndex=i;$('#snapshotprogress').textContent='Rendering page '+(i+1)+' of '+current.pages.length+': '+current.pages[i].name;
+   await renderReports();
+   if(cancelled||model!==current)throw Error('Snapshot export cancelled.');
+   const page=current.pages[i];pages.push({name:page.name,hidden:!!page.hidden,html:HTMLReports.capture($('#report'))});
+  }
+  const css=[...document.querySelectorAll('head style')].map(node=>node.textContent).join('\n');
+  HTMLReports.download(HTMLReports.documentFor(current.name,pages,css),current.name.replace(/\.[^.]+$/,'')+'-snapshot.html');
+  toast('Snapshot exported. It includes displayed results and all pages, including hidden pages.');
+ }finally{
+  snapshotExporting=false;$('#modal').innerHTML='';if(model===current){pageIndex=originalPage;tab=originalTab;render()}
+ }
+}
+
+function renderReports(){if(model.reportKind)return renderHTMLReport();const pending=[];reportRequests.abort();reportRequests=new AbortController();CustomVisuals.disposeAll();VegaRenderer.disposeAll();const p=model.pages[pageIndex];$('#body').innerHTML=`<aside class="pages"><div class="eyebrow">REPORT PAGES</div>${model.pages.map((p,i)=>`<button class="pagebtn ${pageIndex===i?'active':''}" data-page="${i}"><span>▧</span>${esc(p.name)}${p.hidden?' <small class="badge">Hidden</small>':''}</button>`).join('')}</aside><div class="workspace">${p?`<div class="canvasbar"><span>${esc(p.name)}${p.hidden?' · Hidden page':''} &nbsp; / &nbsp; ${model.id==='demo'?'Example report':'Partial reconstruction'}</span><span>${p.width} × ${p.height}</span></div><div id="interactionbar" style="margin-bottom:10px;font-size:11px"></div><div class="report" id="report" style="aspect-ratio:${p.width}/${p.height}"></div>`:'<div class="empty">No report page definitions found in this import.</div>'}</div>`;document.querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>{pageIndex=+b.dataset.page;renderReports()});if(!p)return;if(snapshotExporting){$('#report').style.width=p.width+'px';$('#report').style.height=p.height+'px'}renderInteractionBar(p);const vs=model.id==='demo'?demoVisuals().map((v,i)=>({...v,id:'demo-'+i,definition:{query:{queryState:{Category:{projections:[{field:{Column:{Expression:{SourceRef:{Entity:'Sales'}},Property:'Region'}}}]}}}}})):p.visuals;for(const [i,sourceVisual] of vs.entries()){let v=sourceVisual;$('#report').insertAdjacentHTML('beforeend',`<div class="visual" id="visual${i}" style="left:${100*v.x/p.width}%;top:${100*v.y/p.height}%;width:${100*v.width/p.width}%;height:${100*v.height/p.height}%"></div>`);if(model.id==='demo'){
+ const el=$('#visual'+i);const rows=demoSelectionRows(p,v.id);if(v.type==='tableEx')v={...v,data:rows};if(v.type==='card'){const sum=rows.reduce((a,r)=>a+r[1],0),orders=rows.reduce((a,r)=>a+r[2],0);v={...v,value:i===0?'$'+sum.toLocaleString():i===1?orders.toLocaleString():'$'+Math.round(orders?sum/orders:0).toLocaleString()}}if(VegaRenderer.types.includes(v.type)){el.style.display='flex';el.style.flexDirection='column';el.innerHTML='<h3>'+esc(v.title)+'</h3><div style="flex:1;min-height:80px;width:100%"></div>';pending.push(VegaRenderer.mount(el.querySelector('div'),v.type,['Region','Revenue'],rows.map(r=>r.slice(0,2)),['Category','Y'],interactionOptions(p,v)).catch(e=>unsupported(el,v,e.message)))}else draw(el,v)
+ }else pending.push(evaluate(v,p,$('#visual'+i)))}if(!vs.length)$('#report').innerHTML='<div class="empty">This page contains no visual definitions.</div>';return Promise.allSettled(pending)}
+function draw(el,v){el.classList.remove('unsupported');el.innerHTML='<h3>'+esc(v.title||v.type)+'</h3>';if(v.value!==undefined){el.innerHTML+='<div class="big">'+esc(v.value)+'</div><small>'+esc(v.note||'')+'</small>';return}if(v.type==='tableEx'||v.type==='table'){el.innerHTML+=table(['Region','Revenue','Orders'].slice(0,v.data?.[0]?.length||0),v.data||[]);return}const rows=v.data||[],max=Math.max(...rows.map(r=>Number(r[1])||0),1);el.innerHTML+='<div class="bars">'+rows.slice(0,20).map(r=>`<div class="barcol" title="${esc(r[0]+': '+r[1])}"><i style="height:${Math.max(0,Number(r[1])/max*90)}%"></i>${esc(r[0])}</div>`).join('')+'</div>'}
+function unsupported(el,v,msg){el.classList.add('unsupported');el.innerHTML='<h3>'+esc(v.type)+'</h3><b>'+(/Python DAX (time|step|row) limit exceeded/.test(msg)?'Calculation limit reached':'Needs mapping')+'</b><p>'+esc(msg)+'</p>'}
+function findBindings(def){const out=[];function walk(o){if(!o||typeof o!=='object')return;if(o.Column){out.push({table:o.Column.Expression?.SourceRef?.Entity,column:o.Column.Property}) ;return}if(o.Measure){out.push({measure:o.Measure.Property});return}if(o.Aggregation){const before=out.length;walk(o.Aggregation.Expression);if(out.length>before)out[out.length-1].agg=({0:'SUM',1:'AVG',2:'COUNT',3:'MIN',4:'MAX',5:'COUNT_DISTINCT'})[o.Aggregation.Function];return}for(const [k,v] of Object.entries(o)){if(k!=='nativeQueryRef'&&k!=='queryRef')walk(v)}}walk(def.query?.queryState||def.prototypeQuery?.Select||def.query);return out.filter((b,i,a)=>a.findIndex(x=>JSON.stringify(x)===JSON.stringify(b))===i)}
+const qi=s=>'"'+String(s).replaceAll('"','""')+'"';
+const slicerState=new Map();
+const chartInteractions=new ChartInteractionAPI.ChartInteractions();
+let interactionTimer;
+function scheduleInteractionRender(){clearTimeout(interactionTimer);interactionTimer=setTimeout(()=>{if(tab==='Reports')renderReports()},75)}
+function interactionOptions(page,visual,channels){
+ const reportId=model.id,fields=ChartInteractionAPI.bindings(visual,channels);
+ if(!fields.length||['histogram','histogramChart','boxplot','boxPlot'].includes(visual.type))return {};
+ const selected=chartInteractions.selected(reportId,page.id,visual.id);
+ return {matchesDatum:datum=>chartInteractions.matchesDatum(selected,datum),onSelect:(datum,event)=>{
+  if(model.id!==reportId||model.pages[pageIndex]?.id!==page.id)return;
+  if(chartInteractions.select(reportId,page.id,visual.id,fields,datum,!!(event.ctrlKey||event.metaKey)))scheduleInteractionRender();
+ },onClear:()=>{if(model.id===reportId&&chartInteractions.clear(reportId,page.id,visual.id))scheduleInteractionRender()}};
+}
+function renderInteractionBar(page){
+ const entries=chartInteractions.entries(model.id,page.id);
+ $('#interactionbar').innerHTML='<span style="color:#788884">Click a chart category to filter other visuals. Ctrl/Cmd-click adds selections. </span>'+entries.map((s,i)=>'<button data-clearselection="'+i+'" style="font-size:10px;padding:5px 8px;margin:3px">'+esc(s.fields.map(f=>f.label).join(' / '))+': '+esc(s.tuples.slice(0,3).map(t=>t.map(v=>v??'(Blank)').join(' / ')).join(', '))+(s.tuples.length>3?' +'+(s.tuples.length-3):'')+' ×</button>').join('')+(entries.length?'<button id="clearselections" style="font-size:11px;padding:5px 8px">Clear selections</button>':'');
+ document.querySelectorAll('[data-clearselection]').forEach(b=>b.onclick=()=>{chartInteractions.clear(model.id,page.id,entries[+b.dataset.clearselection].source);renderReports()});
+ if($('#clearselections'))$('#clearselections').onclick=()=>{chartInteractions.clear(model.id,page.id);renderReports()};
+ if((page.visualInteractions||[]).some(r=>r.type==='HighlightFilter'))$('#interactionbar').insertAdjacentHTML('beforeend','<small style="display:block;color:#788884">Cross-filter mode: source highlight interactions are displayed as filters.</small>');
+}
+function demoSelectionRows(page,target){return demoRows.filter(row=>chartInteractions.entries(model.id,page.id).filter(s=>chartInteractions.allowed(page,s.source,target)).every(s=>s.tuples.some(t=>s.fields.every((f,i)=>f.column==='Region'&&t[i]===row[0]))))}
+
+function slicerKey(p,v){return model.id+':'+p.id+':'+v.id}
+function sourceSlicerFilter(v){return (v.definition.objects?.general||[]).map(o=>o.properties?.filter).filter(Boolean)}
+function slicerFilters(p,except){return p.visuals.filter(v=>v.type==='slicer'&&v.id!==except).flatMap(v=>{const key=slicerKey(p,v);return slicerState.has(key)?slicerState.get(key)||[]:sourceSlicerFilter(v)})}
+function propertyText(def,group,key){return def.visualContainerObjects?.[group]?.[0]?.properties?.[key]?.expr?.Literal?.Value?.replace(/^'|'$/g,'').replaceAll("''", "'")}
+let chartChannelMappings={};try{chartChannelMappings=JSON.parse(accountStorage.getItem('death2powerbi.chartChannels')||'{}')}catch{}
+function chartChannels(key,type){return chartChannelMappings[key+'|'+type]||{}}
+function appendChartControls(el,v,context,key){
+ const {labels,rows,roles}=context,numeric=labels.map((_,i)=>i).filter(i=>rows.some(r=>typeof r[i]==='number'));
+ const names={scatterChart:'Scatter plot',stripPlot:'Strip plot',stripChart:'Strip plot',ternaryChart:'Ternary chart',ternaryPlot:'Ternary chart',map:'Point map',pointMap:'Point map',filledMap:'Country map',choroplethMap:'Country map'};
+ const seen=new Set();
+ const views=[v.type,...VegaRenderer.types].filter(type=>{const name=names[type]||type.replace(/([a-z])([A-Z])/g,'$1 $2');if(seen.has(name))return false;let valid=type===v.type;try{VegaRenderer.buildSpec(type,labels,rows,roles,{channels:chartChannels(key,type)});valid=true}catch{if(['map','pointMap'].includes(type)&&numeric.length>=2)valid=true}if(valid)seen.add(name);return valid});
+ const label=document.createElement('label');label.style.cssText='font-size:9px;flex-shrink:0;color:#778884';label.innerHTML='Vega-Lite · View as <select aria-label="Chart view" style="font-size:9px;max-width:70%">'+views.map(type=>'<option value="'+esc(type)+'">'+esc(names[type]||type.replace(/([a-z])([A-Z])/g,'$1 $2'))+'</option>').join('')+'</select>';el.appendChild(label);
+ const select=label.querySelector('select');select.value=v.type;select.onchange=()=>{chartViewOverrides[key]=select.value;try{accountStorage.setItem('modelbridge.chartViews',JSON.stringify(chartViewOverrides))}catch{}renderReports()};
+ const definitions=AdvancedCharts.channels(v.type);if(!AdvancedCharts.types.includes(v.type))return;
+ const details=document.createElement('details');details.style.cssText='font-size:10px;flex-shrink:0;max-height:130px;overflow:auto';details.innerHTML='<summary>Chart fields</summary>';
+ for(const [channel,name,numberOnly,optional] of definitions){
+  const field=document.createElement('label');field.style.cssText='display:inline-block;margin:4px 8px 4px 0';field.innerHTML=esc(name)+' <select aria-label="'+esc(name)+' field" style="font-size:10px;max-width:150px"><option value="auto">Auto</option>'+(optional?'<option value="none">None</option>':'')+labels.map((text,i)=>(!numberOnly||numeric.includes(i))?'<option value="'+i+'">'+esc(text)+'</option>':'').join('')+'</select>';
+  const select=field.querySelector('select');select.value=chartChannels(key,v.type)[channel]??'auto';select.onchange=()=>{const id=key+'|'+v.type;chartChannelMappings[id]={...chartChannels(key,v.type),[channel]:select.value};try{accountStorage.setItem('death2powerbi.chartChannels',JSON.stringify(chartChannelMappings))}catch{}renderReports()};details.appendChild(field);
+ }
+ el.appendChild(details);
+}
+let chartViewOverrides={};try{chartViewOverrides=JSON.parse(accountStorage.getItem('modelbridge.chartViews')||'{}')}catch{}
+let categoryMappings={};try{categoryMappings=JSON.parse(accountStorage.getItem('modelbridge.categoryMappings')||'{}')}catch{}
+function categoryField(v){return v.definition?.query?.queryState?.Category?.projections?.find(p=>p.field?.Column)?.field.Column}
+async function evaluate(v,p,el,reportModel=model){
+ const model=reportModel,signal=reportRequests.signal;
+ const runQuery=sql=>query(sql,model.id,signal);
+ const visualApi=(path,options={})=>api(path,{...options,signal});
+ el.innerHTML='<div role="status" style="font-size:11px;color:#788884">Loading visual…</div>';
+ const originalVisual=v,mappingKey=model.id+':'+v.id,mapped=categoryMappings[mappingKey];
+ if(mapped&&categoryField(v)){v=structuredClone(v);categoryField(v).Expression.SourceRef={Entity:mapped}}
+ if(chartViewOverrides[mappingKey]&&VegaRenderer.types.includes(v.type))v={...v,type:chartViewOverrides[mappingKey]};
+ if(v.type==='kpi'){try{v=NativeKPI.adapt(v)}catch(error){return unsupported(el,v,error.message)}}
+ const def=v.definition||{};let chartContext;
+ if(v.type==='textbox'){
+  const paras=def.objects?.general?.[0]?.properties?.paragraphs||[];
+  el.innerHTML=paras.map(p=>'<p style="color:var(--ink);margin:0 0 5px;font-size:clamp(8px,1.2vw,18px)">'+(p.textRuns||[]).map(r=>esc(r.value)).join('')+'</p>').join('');return;
+ }
+ if(v.type==='shape'){el.style.background='#edf3e7';el.style.borderColor='#d4dfca';return}
+ if(v.type==='unknown'){el.style.background='transparent';el.style.border='none';el.style.pointerEvents='none';return}
+ if(v.type==='actionButton'){el.innerHTML='<small>'+esc(propertyText(def,'title','text')||'Report action')+'</small>';el.title='Original Power BI navigation/bookmark action is not implemented.';return}
+ const customPackage=CustomVisuals.resolve(v.type,model);
+ if(!customPackage&&!['card','multiRowCard','cardVisual','tableEx','table','pivotTable','slicer',...VegaRenderer.types].includes(v.type))return unsupported(el,v,'This visual type is not implemented. For a custom visual, import its matching .pbiviz package in Custom visuals.');
+ try{
+  const extra=[...slicerFilters(p,v.type==='slicer'?v.id:null),...chartInteractions.filtersFor(model.id,p,v.id)];
+  let compiled,r;
+  try{compiled=ReportEngine.buildQuery(model,p,v,extra)}catch(error){
+   if(!/DAX|DIVIDE|fact tables|aggregation plans/.test(error.message))throw error;
+   const evaluated=await ReportEngine.pythonQuery(model,p,v,extra,runQuery,visualApi);compiled=evaluated.compiled;r=evaluated.result;
+  }
+  if(!r)r=await runQuery(compiled.sql);if(!el.isConnected)return;if(v._nativeKpi&&r.truncated)throw Error('KPI trend exceeds the 1,000-row preview limit. Narrow the date filters so the latest period can be determined reliably.');chartContext={labels:compiled.labels,rows:r.rows,roles:compiled.roles};
+  const title=propertyText(def,'title','text')||compiled.labels.join(' / ');
+  if(customPackage){
+   el.classList.remove('unsupported');el.style.display='flex';el.style.flexDirection='column';
+   el.innerHTML='<h3 style="flex:none">'+esc(propertyText(def,'title','text')||customPackage.name)+'</h3><div class="customvisualhost" style="flex:1;min-height:0"></div>';
+   await CustomVisuals.mount(el.querySelector('.customvisualhost'),customPackage,v,r,compiled,{api:visualApi,model,page:p,selectedRows:r.rows.flatMap((row,i)=>{const selection=chartInteractions.selected(model.id,p.id,v.id);return selection&&chartInteractions.matchesDatum(selection,Object.fromEntries(row.map((value,j)=>['v'+j,value])))?[i]:[]}),onRefresh:()=>{if(el.isConnected){CustomVisuals.disposeAll();evaluate(v,p,el,model)}},onSelection:indices=>{
+    if(v.id.startsWith('custom-preview-'))return;
+    const selected=CustomDataView.selectionFields(v,r.rows,indices);chartInteractions.clear(model.id,p.id,v.id);
+    if(selected.fields.length){const unique=new Set();for(const tuple of selected.tuples){const key=JSON.stringify(tuple);if(unique.has(key))continue;unique.add(key);const datum=Object.fromEntries(selected.fields.map((f,i)=>[f.dataField,tuple[i]]));chartInteractions.select(model.id,p.id,v.id,selected.fields,datum,true)}}
+    renderReports();
+   }});return;
+  }
+  if(v.type==='slicer'){
+   const vals=r.rows.map(r=>r[0]);const key=slicerKey(p,v);const selectId='slicer-'+v.id;
+   el.innerHTML='<h3>'+esc(compiled.labels[0])+'</h3><select id="'+esc(selectId)+'" aria-label="'+esc(compiled.labels[0])+'" style="width:100%;max-width:100%;padding:5px;border:1px solid #dfe7e3;background:#fff;color:#193a37"><option value="">All</option>'+vals.map((x,i)=>'<option value="'+i+'">'+esc(x===null?'(Blank)':x)+'</option>').join('')+'</select>';
+   const select=el.querySelector('select');
+   const selected=slicerState.get(key)?.selected;
+   if(selected!==undefined)select.value=String(vals.findIndex(x=>x===selected));
+   else if(!slicerState.has(key)){
+    const source=sourceSlicerFilter(v),condition=source[0]?.filter?.Where?.[0]?.Condition,eq=condition?.Comparison;
+    const literal=eq?.ComparisonKind===0?eq.Right:condition?.In?.Values?.length===1&&condition.In.Values[0].length===1?condition.In.Values[0][0]:null;
+    if(literal){const x=ReportEngine.literal(literal);select.value=String(vals.findIndex(y=>y===x))}
+    else if(source.length){const option=document.createElement('option');option.value='__saved';option.textContent='Saved source selection';select.appendChild(option);select.value='__saved'}
+   }
+   select.onchange=()=>{
+    if(select.value==='__saved')return;
+    if(select.value==='')slicerState.set(key,null);
+    else{
+     const value=vals[+select.value];
+     const proj=Object.values(def.query.queryState).flatMap(s=>s.projections||[])[0].field;
+     const literal={Literal:{Value:value===null?'null':typeof value==='number'?String(value):"'"+String(value).replaceAll("'","''")+"'"}};
+     const filter=[{filter:{Where:[{Condition:{In:{Expressions:[proj],Values:[[literal]]}}}]}}];filter.selected=value;slicerState.set(key,filter);
+    }
+    renderReports();
+   };return;
+  }
+  const warning=compiled.warnings.length?'<p role="note" style="font-size:10px;color:#806b36;margin:4px 0">'+compiled.warnings.map(esc).join(' ')+'</p>':'';
+  if(['card','cardVisual','multiRowCard'].includes(v.type)){
+   if(r.rows.length!==1)return unsupported(el,v,'Card needs one scalar row.');
+   if(r.columns.length===1){draw(el,{...v,title,value:ModelFormats.text(r.rows[0][0],compiled.formats?.[0])});el.innerHTML+=warning;return}
+   el.innerHTML='<h3>'+esc(title)+'</h3>'+compiled.labels.map((label,i)=>'<div><small>'+esc(label)+'</small><div class="big">'+esc(ModelFormats.text(r.rows[0][i],compiled.formats?.[i]))+'</div></div>').join('')+warning;return;
+  }
+  if(['table','tableEx','pivotTable'].includes(v.type)){el.innerHTML='<h3>'+esc(title)+(v.type==='pivotTable'?' · Matrix data preview':'')+'</h3>'+table(compiled.labels,r.rows,compiled.formats)+warning;return}
+  el.style.display='flex';el.style.flexDirection='column';el.style.gap='3px';
+  el.innerHTML='<h3 style="flex-shrink:0;margin:0">'+esc(title)+'</h3><div class="vega-chart" style="flex:1;min-height:80px;min-width:0;width:100%"></div>'+warning+(r.truncated?'<small style="flex-shrink:0">Preview limited to 1,000 query rows.</small>':'');
+  if(!r.rows.length){el.querySelector('.vega-chart').innerHTML='<p>No data for the current filters.</p>';return}
+  const channels=chartChannels(mappingKey,v.type),dataLabels=VegaRenderer.dataLabelOptions(def),mapKey=[accountUI?.session?.user.id,model.id,p.id,v.id].join(':');
+  const previewSpec=VegaRenderer.buildSpec(v.type,compiled.labels,r.rows,compiled.roles,{formats:compiled.formats,fieldTypes:r.types,channels,dataLabels,mapKey});
+  await VegaRenderer.mount(el.querySelector('.vega-chart'),v.type,compiled.labels,r.rows,compiled.roles,{formats:compiled.formats,fieldTypes:r.types,channels,dataLabels,mapKey,...interactionOptions(p,v,previewSpec.usermeta?.channels)});
+  if(!el.isConnected)return;
+  appendChartControls(el,v,chartContext,mappingKey);
+  for(const note of previewSpec.usermeta?.mappingWarnings||[])el.insertAdjacentHTML('beforeend','<small style="color:#806b36">'+esc(note)+'</small>');
+  if(['ternaryChart','ternaryPlot'].includes(v.type))el.insertAdjacentHTML('beforeend','<small>Components normalized to 100% per point.</small>');
+  if(['map','pointMap','filledMap','choroplethMap'].includes(v.type))el.insertAdjacentHTML('beforeend','<small>Map data: Natural Earth (public domain).</small>');
+  if(['histogram','histogramChart','boxplot','boxPlot'].includes(v.type))el.insertAdjacentHTML('beforeend','<small>Distribution of the current query result rows.</small>');
+  if((compiled.warnings.length||mapped)&&categoryField(originalVisual)){
+   const original=categoryField(originalVisual).Expression.SourceRef.Entity,column=categoryField(originalVisual).Property;
+   const candidates=model.tables.filter(t=>t.name!==original&&t.columns.some(c=>c.name===column)).filter(t=>{try{const copy=structuredClone(originalVisual);categoryField(copy).Expression.SourceRef={Entity:t.name};return ReportEngine.buildQuery(model,p,copy).warnings.length===0}catch{return false}});
+   if(candidates.length){
+    el.insertAdjacentHTML('beforeend','<label style="font-size:10px;display:block">Category source <select aria-label="Category source" style="max-width:100%;font-size:10px"><option value="'+esc(original)+'">'+esc(original)+' (original)</option>'+candidates.map(t=>'<option value="'+esc(t.name)+'">'+esc(t.name)+'</option>').join('')+'</select></label>');
+    const select=el.querySelector('select');select.value=mapped||original;select.onchange=()=>{if(select.value===original)delete categoryMappings[mappingKey];else categoryMappings[mappingKey]=select.value;try{accountStorage.setItem('modelbridge.categoryMappings',JSON.stringify(categoryMappings))}catch{}renderReports()};
+   }
+  }
+
+ }catch(e){if(signal.aborted||!el.isConnected)return;unsupported(el,v,e.message);if(chartContext&&VegaRenderer.types.includes(v.type))appendChartControls(el,v,chartContext,mappingKey);if(chartViewOverrides[mappingKey]){const button=document.createElement('button');button.textContent='Restore original chart';button.onclick=()=>{delete chartViewOverrides[mappingKey];try{accountStorage.setItem('modelbridge.chartViews',JSON.stringify(chartViewOverrides))}catch{}renderReports()};el.appendChild(button)}}
+}
+function table(cols,rows,formats=[]){return '<div class="tablewrap"><table class="table"><thead><tr>'+cols.map(c=>'<th>'+esc(c)+'</th>').join('')+'</tr></thead><tbody>'+rows.map(r=>'<tr>'+r.map((v,i)=>'<td title="'+esc(typeof v==='object'?JSON.stringify(v):v)+'">'+esc(typeof v==='object'?JSON.stringify(v):ModelFormats.text(v,formats[i]))+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>'}
+function renderModel(){$('#body').innerHTML='<div class="panel"><div class="twocol"><div class="tablelist">'+model.tables.map((t,i)=>`<button data-table="${i}" class="${i===selectedTable?'active':''}">▦ &nbsp; ${esc(t.name)} <small style="float:right">${t.rows.toLocaleString()}</small></button>`).join('')+'</div><div id="tablepreview"></div></div><h2 style="margin:26px 0 13px">Measures</h2>'+table(['Name','DAX expression'],model.measures.map(m=>[m.Name||m.MeasureName||m.name,m.Expression||m.expression]))+'<h2 style="margin:26px 0 13px">Relationships</h2>'+(model.relationships.length?table(Object.keys(model.relationships[0]),model.relationships.map(Object.values)):'<p>No relationship records found.</p>')+'</div>';document.querySelectorAll('[data-table]').forEach(b=>b.onclick=()=>{selectedTable=+b.dataset.table;renderModel()});const t=model.tables[selectedTable];if(!t){$('#tablepreview').innerHTML='<p>No table data available. See Compatibility for details.</p>';return}$('#tablepreview').innerHTML='<h2>'+esc(t.name)+'</h2><p>'+t.rows.toLocaleString()+' rows · '+t.columns.length+' columns</p>'+table(['Column','Data type'],t.columns.map(c=>[c.name,c.type]))+'<button id="previewrows" style="margin-top:15px">Preview rows →</button><div id="rows" style="margin-top:15px"></div>';$('#previewrows').onclick=async()=>{try{const r=await query('SELECT * FROM '+qi(t.name)+' LIMIT 100');$('#rows').innerHTML=table(r.columns,r.rows)}catch(e){toast(e.message)}}}
+async function query(sql,reportId=model.id,signal){if(reportId==='demo'){if(/^SELECT \* FROM "Sales"(?: LIMIT 100)?$/i.test(sql.trim()))return {columns:['Region','Revenue','Orders'],rows:demoRows};if(/^SELECT "Region", SUM\("Revenue"\) AS revenue FROM "Sales" GROUP BY "Region"$/i.test(sql.trim()))return {columns:['Region','revenue'],rows:demoRows.map(r=>r.slice(0,2))};throw Error('Example mode supports the two supplied queries. Import a model locally to run DuckDB SQL.')}return api('/api/query',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:reportId,sql}),signal})}
+function renderSQL(){$('#body').innerHTML='<div class="panel"><div class="eyebrow" style="margin-bottom:14px">DUCKDB QUERY EDITOR</div><textarea id="sql" aria-label="SQL query" spellcheck="false"></textarea><div class="querybar"><span>SELECT only · 1,000 row limit · 10 second timeout</span><button class="primary" id="run">▷ Run query</button></div><div id="results"></div></div>';$('#sql').value=model.id==='demo'?'SELECT "Region", SUM("Revenue") AS revenue FROM "Sales" GROUP BY "Region"':model.tables.length?'SELECT * FROM '+qi(model.tables[0].name)+' LIMIT 100':'SELECT 1';$('#run').onclick=async()=>{const b=$('#run');b.disabled=true;b.textContent='Running…';try{const r=await query($('#sql').value);$('#results').innerHTML=table(r.columns,r.rows)}catch(e){$('#results').innerHTML='<div class="notice">'+esc(e.message)+'</div>'}finally{b.disabled=false;b.textContent='▷ Run query'}}}
+async function renderCompatibility(){if(model.reportKind){$('#body').innerHTML='<div class="panel"><h2>HTML report compatibility</h2><p>'+esc(model.reportKind==='snapshot'?'This is a static snapshot. Page navigation, table scrolling and displayed formatting are preserved. Slicers, cross-filtering and DAX recalculation are frozen.':'This report uses its own embedded data and JavaScript. Its interactions run in an isolated frame. Browser storage, workers, external dependencies and application integration may require changes to the source report.')+'</p><p>Use Download HTML report to save the original document. Importing creates a new private report; sharing, invitation links and deletion use the standard report controls.</p>'+model.warnings.map(w=>'<div class="issue">'+esc(w)+'</div>').join('')+'</div>';return}$('#body').innerHTML='<div class="panel"><h2>Import & rendering notes</h2><p>Know what has been converted and what still needs attention.</p>'+model.warnings.map(w=>'<div class="issue">'+esc(w)+'</div>').join('')+'<div class="issue">Vega-Lite renders bars, columns, lines, areas, combinations, scatter, pie/donut, heatmaps, histograms, box plots, waterfalls and funnels. View as changes a chart locally. Query semantics, complex DAX, custom Power BI visuals and matrix layout remain separate compatibility limits. Source predicates translate to SQL and propagate through extracted active many-to-one relationships. Measures can use the Python DAX evaluator, including supported CALCULATE, iterators, table functions and classic time intelligence. Numeric model formats and chart interactions are supported; remaining limits are listed below.</div><div class="issue">Stored locally: original upload, model metadata, table Parquet files and a DuckDB database. Export includes converted data and manifest. Delete a model’s data folder to remove it.</div><div id="daxsupport"><h2>DAX function support</h2><p>Loading the local function registry…</p></div><button id="export" style="margin-top:20px">↓ Export open model</button></div>';$('#export').onclick=()=>{if(model.id==='demo'){const blob=new Blob([JSON.stringify(demo,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='example-manifest.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}else location.href='/api/export/'+model.id};
+ const target=$('#daxsupport');
+ try{const registry=await api('/api/dax/functions');if(!target?.isConnected)return;
+ const families=new Map();for(const f of registry.functions)families.set(f.family,[...(families.get(f.family)||[]),f.name]);
+ target.innerHTML='<h2>Python DAX · '+registry.functions.length+' registered functions</h2><p>Supported forms have defined limits. Fiscal calendars, arbitrary shadow contexts, relationship overrides, virtual table lineage and some overloads still need implementation. Unsupported expressions produce a mapping message.</p><p><a href="/api/dax/support" target="_blank" rel="noopener">Read function limits</a> · <a href="/api/dax/catalog" target="_blank" rel="noopener">Full reference inventory</a></p>'+[...families].map(([family,names])=>'<details><summary>'+esc(family)+' · '+names.length+'</summary><p>'+names.map(esc).join(', ')+'</p></details>').join('');
+ }catch(error){if(target?.isConnected)target.innerHTML='<p>Start or restart the updated local server to view DAX function support.</p>'}
+}
+async function upload(file){if(!local){guide();return}if(file.name.endsWith('.pbip')){toast('Select the full project folder or ZIP, not the PBIP pointer alone.');return}if(file.size>1024*1024*1024){toast('Maximum upload size is 1 GB.');return}document.body.classList.add('loading');$('#notice').innerHTML='<div class="notice" role="status">Importing report… PBIX model conversion can take several minutes.</div>';try{const f=new FormData();f.append('file',file);const imported=await api('/api/import',{method:'POST',body:f});await CustomVisuals.load(api);library.add(imported);chooseReport(imported.id);toast('Import complete. Review Compatibility for any limitations.')}catch(e){toast(e.message);$('#notice').innerHTML='<div class="notice">Import failed: '+esc(e.message)+'</div>'}finally{document.body.classList.remove('loading');$('#file').value=''}}
+// ZIP writer with stored entries, avoiding a third-party dependency for folder uploads.
+function zipFiles(files){const parts=[],central=[];let offset=0;const enc=new TextEncoder();const crcTable=Array.from({length:256},(_,n)=>{for(let k=0;k<8;k++)n=(n&1)?0xedb88320^(n>>>1):n>>>1;return n>>>0});function crc(b){let c=0xffffffff;for(const x of b)c=crcTable[(c^x)&255]^(c>>>8);return(c^0xffffffff)>>>0}function header(size){const b=new Uint8Array(size);return [b,new DataView(b.buffer)]}return (async()=>{for(const f of files){const n=enc.encode(f.webkitRelativePath||f.name),data=new Uint8Array(await f.arrayBuffer()),checksum=crc(data);let [h,d]=header(30);d.setUint32(0,0x04034b50,true);d.setUint16(4,20,true);d.setUint16(6,0x800,true);d.setUint32(14,checksum,true);d.setUint32(18,data.length,true);d.setUint32(22,data.length,true);d.setUint16(26,n.length,true);parts.push(h,n,data);let [c,v]=header(46);v.setUint32(0,0x02014b50,true);v.setUint16(4,20,true);v.setUint16(6,20,true);v.setUint16(8,0x800,true);v.setUint32(16,checksum,true);v.setUint32(20,data.length,true);v.setUint32(24,data.length,true);v.setUint16(28,n.length,true);v.setUint32(42,offset,true);central.push(c,n);offset+=30+n.length+data.length}const centralSize=central.reduce((a,b)=>a+b.length,0);let [e,v]=header(22);v.setUint32(0,0x06054b50,true);v.setUint16(8,files.length,true);v.setUint16(10,files.length,true);v.setUint32(12,centralSize,true);v.setUint32(16,offset,true);return new File([...parts,...central,e],'project.zip',{type:'application/zip'})})()}
+$('#guide').onclick=guide;$('#sample').onclick=()=>{chooseReport('demo');toast('Illustrative example loaded')};$('#browse').onclick=$('#importtop').onclick=pick;$('#folder').onclick=()=>local?$('#dir').click():guide();$('#file').onchange=e=>e.target.files[0]&&upload(e.target.files[0]);$('#dir').onchange=async e=>{const files=[...e.target.files];if(files.reduce((a,f)=>a+f.size,0)>500*1024*1024)return toast('Project folder is too large. Limit: 500 MB.');if(files.length>5000)return toast('Project contains more than 5,000 files.');if(files.length){toast('Packaging project folder…');try{await upload(await zipFiles(files))}catch(err){toast(err.message)}}};$('#drop').ondragover=e=>{e.preventDefault();$('#drop').classList.add('over')};$('#drop').ondragleave=()=>$('#drop').classList.remove('over');$('#drop').ondrop=e=>{e.preventDefault();$('#drop').classList.remove('over');if(e.dataTransfer.files[0])upload(e.dataTransfer.files[0])};document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!actionPending)$('#modal').innerHTML=''});
+$('#sharereport').onclick=shareSelectedReport;$('#shutdown').onclick=shutdownServer;$('#deletereport').onclick=deleteSelectedReport;$('#reportselector').onchange=e=>chooseReport(e.target.value);$('#refreshreports').onclick=()=>refreshReports().catch(e=>toast(e.message));
+accountUI=new AccountUI({api,onSignOut:()=>{
+ authEpoch++;local=false;$('#connection').textContent='○ Signed out';CustomVisuals.setAccount(null);VegaRenderer.disposeAll();library.models.clear();library.views.clear();library.active=null;chartInteractions.pages.clear();slicerState.clear();categoryMappings={};chartViewOverrides={};chartChannelMappings={};model=demo;pageIndex=0;selectedTable=0;tab='Reports';render();
+},onSignIn:async session=>{
+ authEpoch++;local=true;ownerFilter=session.user.id;CustomVisuals.setAccount(session.user.id,session.user.username==='admin');
+ if(session.user.username==='admin'){for(const key of ['modelbridge.activeReport','modelbridge.categoryMappings','modelbridge.chartViews','death2powerbi.chartChannels']){try{if(accountStorage.getItem(key)===null){const legacy=localStorage.getItem(key);if(legacy!==null)accountStorage.setItem(key,legacy)}}catch{}}}
+ categoryMappings=JSON.parse(accountStorage.getItem('modelbridge.categoryMappings')||'{}');chartViewOverrides=JSON.parse(accountStorage.getItem('modelbridge.chartViews')||'{}');chartChannelMappings=JSON.parse(accountStorage.getItem('death2powerbi.chartChannels')||'{}');
+ $('#connection').textContent='● Signed in as '+session.user.username;
+ const reports=await api('/api/models');await CustomVisuals.load(api);const preferred=library.load(reports);const own=library.list().filter(report=>report.ownerId===session.user.id);const selected=session.user.isAdmin?(own.find(report=>report.id===preferred?.id)||own[0]):(preferred||library.list()[0]);if(selected)chooseReport(selected.id);else chooseReport('demo')
+}});
+$('#ownerfilter').onchange=event=>{ownerFilter=event.target.value;const visible=library.list().filter(report=>ownerFilter==='all'||report.ownerId===ownerFilter);if(model.id!=='demo'&&!visible.some(report=>report.id===model.id))chooseReport(visible[0]?.id||'demo');else renderLibrary()};
+window.invitationUI=new InvitationUI({api,account:()=>accountUI,onAccepted:async id=>{await refreshReports();if(accountUI.session.user.isAdmin)ownerFilter='all';chooseReport(id)}});
+model=demo;render();accountUI.restore();
+</script></body></html>

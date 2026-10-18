@@ -1,0 +1,28 @@
+const assert=require('node:assert/strict'),R=require('./vega-renderer.js'),I=require('./chart-interactions.js');
+let s=R.buildSpec('ternaryChart',['A','B','C'],[[1,0,0],[0,1,0],[0,0,1],[20,30,50]],['A','B','C']);
+assert.deepEqual(s.data.values.slice(0,3).map(p=>p._x),[0,1,.5]);
+assert.equal(s.data.values[2]._y,Math.sqrt(3)/2);
+assert.equal(s.data.values[3]._pa+s.data.values[3]._pb+s.data.values[3]._pc,1);
+assert.throws(()=>R.buildSpec('ternaryChart',['A','B','C'],[[-1,2,3]],['A','B','C']),/nonnegative/);
+assert.throws(()=>R.buildSpec('ternaryChart',['A','B','C'],[[0,0,0]],['A','B','C']),/positive total/);
+s=R.buildSpec('stripPlot',['Group','Amount'],[['A',1],['A',1],['B',2]],['Category','Y']);assert.equal(s.data.values.length,3);
+s=R.buildSpec('scatterChart',['A','B','C'],[[1,2,3],[2,3,4]],[],{channels:{x:2,y:0,size:1}});assert.equal(s.encoding.x.title,'C');assert.equal(s.data.values[0]._x,3);
+assert.throws(()=>R.buildSpec('map',['Latitude','Longitude'],[[91,0]],['Latitude','Longitude']),/coordinates/);
+s=R.buildSpec('filledMap',['Country','Value'],[['FR',10],['DEU',20],['NoSuchCountry',30]],['Category','Y']);assert.equal(s.data.values.length,2);assert.match(s.usermeta.mappingWarnings[0],/1 unmatched/);
+assert.throws(()=>R.buildSpec('filledMap',['Country','Value'],[['FR',10],['France',20]],['Category','Y']),/one query row/);
+const field=(table,column)=>({Column:{Expression:{SourceRef:{Entity:table}},Property:column}});
+const visual={definition:{query:{queryState:{Details:{projections:[{field:field('Places','Country')}]},X:{projections:[{field:field('Places','X')}]},Y:{projections:[{field:field('Places','Y')}]}}}}};
+const bindings=I.bindings(visual,{detail:0,color:-1});assert.equal(bindings[0].column,'Country');assert.equal(bindings[0].dataField,'_categoryValue');
+console.log('PASS: ternary corners/normalization/invalid totals, strip duplicates, configurable scatter channels, coordinate validation, ISO country matching, unmatched warnings, duplicate geography and point identities');
+
+s=R.buildSpec('map',['Country'],[['France'],['US'],['DEU'],['UK'],['Czechia'],['Türkiye'],['Congo'],['NoSuchPlace'],[null]],['Category']);
+assert.equal(s.data.values.length,6);assert.equal(s.usermeta.channels.country,0);assert.equal(s.data.values[0]._categoryValue,'France');
+assert.ok(s.data.values[0]._latitude>41&&s.data.values[0]._latitude<52);assert.ok(s.data.values[0]._longitude>-5&&s.data.values[0]._longitude<10);
+assert.ok(s.usermeta.mappingWarnings.some(w=>w.includes('ambiguous')&&w.includes('Congo')));assert.ok(s.usermeta.mappingWarnings.some(w=>w.includes('unmatched')));
+const byName=R.buildSpec('pointMap',['Place','Value'],[['France',2],['Germany',3]],['Details','Size']);assert.equal(byName.data.values.length,2);assert.equal(byName.usermeta.channels.country,0);assert.equal(byName.data.values[1]._size,3);
+const explicit=R.buildSpec('map',['Country','Latitude','Longitude'],[['France',1,2]],['Category','Latitude','Longitude']);assert.equal(explicit.data.values[0]._latitude,1);assert.equal(explicit.data.values[0]._longitude,2);assert.equal(explicit.usermeta.channels.country,undefined);
+assert.throws(()=>R.buildSpec('map',['Country','Latitude'],[['France',1]],['Category','Latitude']),/Longitude requires/);
+assert.throws(()=>R.buildSpec('map',['Country'],[['Congo']],['Category']),/ambiguous/);
+assert.throws(()=>R.buildSpec('map',['Country'],[['Atlantis']],['Category']),/No country/);
+const mapVisual={definition:{query:{queryState:{Category:{projections:[{field:field('Countries','Country')}]}}}}};assert.equal(I.bindings(mapVisual,byName.usermeta.channels)[0].column,'Country');
+console.log('PASS: offline country coordinates, names/ISO/aliases, mainland France, ambiguous/unmatched/blank values, coordinate priority, incomplete coordinates and country selection identity');
