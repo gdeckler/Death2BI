@@ -1,0 +1,3 @@
+const assert=require('node:assert/strict'),E=require('./report-engine');
+const m={tables:[{name:'Respondents',columns:[{name:'N'}]}],relationships:[],measures:[{TableName:'M',Name:'Count',Expression:'COUNTROWS ( Respondents )'},{TableName:'M',Name:'Sum',Expression:'SUM ( Respondents [N] )'}]};
+for(const name of ['Count','Sum']){const v={type:'card',definition:{query:{queryState:{Values:{projections:[{field:{Measure:{Property:name}}}]}}}}};const q=E.buildQuery(m,{},v);assert.match(q.sql,/FROM "Respondents"/);assert.doesNotMatch(q.sql,/"Respondents "/)}console.log('PASS unquoted DAX aggregate table whitespace');

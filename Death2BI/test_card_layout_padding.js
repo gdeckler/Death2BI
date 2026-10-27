@@ -1,0 +1,17 @@
+const assert=require('node:assert/strict'),S=require('./report-style');
+const literal=value=>({expr:{Literal:{Value:typeof value==='string'?"'"+value+"'":String(value)}}});
+const model={theme:{visualStyles:{'*':{'*':{padding:[{paddingIndividual:true,topMargin:14,rightMargin:16,bottomMargin:16,leftMargin:16}]}},cardVisual:{'*':{layout:[{$id:'default',paddingUniform:0,paddingIndividual:false}]}}}}};
+const visual={type:'cardVisual',width:548,height:47,definition:{query:{queryState:{Data:{projections:[{field:{Measure:{Expression:{SourceRef:{Entity:'M'}},Property:'Fear'}},queryRef:'M.Fear'}]},Tooltips:{projections:[{field:{Measure:{Expression:{SourceRef:{Entity:'M'}},Property:'Percent'}},queryRef:'M.Percent'}]}}},objects:{value:[{selector:{id:'default'},properties:{fontSize:literal(25),fontFamily:literal('Constantia')}}],label:[{selector:{id:'default'},properties:{show:literal(false)}}],fillCustom:[{properties:{show:literal(false)}}]}}};
+function paint(model,visual){const number={style:{}},item={style:{},dataset:{cardIndex:'0'},querySelector:selector=>selector==='.big'?number:null},grid={style:{}},el={style:{width:visual.width+'px',height:visual.height+'px'},dataset:{},children:[grid],querySelector:selector=>selector===':scope > .card-metrics'?grid:null,querySelectorAll:selector=>selector==='.card-item'?[item]:[],setAttribute(){}};S.styleCard(el,model,visual);return {el,item,number}}
+const before=JSON.stringify({model,visual}),base=paint(model,visual);
+assert.equal(base.item.style.padding,'0px','native layout zero must override inherited general visual margin padding');
+assert.equal(base.number.style.fontSize,(25*4/3)+'px');assert.equal(base.number.style.fontFamily,'Constantia');
+assert.equal(base.item.style.background,'transparent');assert.equal(base.el.style.width,'548px');assert.equal(base.el.style.height,'47px');
+assert.equal(JSON.stringify({model,visual}),before,'source definitions remain unchanged');
+const compiled={labels:['Fear','Percent'],roles:['Data','Tooltips'],formats:['','0%']},html=S.cardResultMarkup(model,visual,compiled,{rows:[['Snakes',.25]]});
+assert.equal((html.match(/class="card-item"/g)||[]).length,1);assert.match(html,/<div class="big">Snakes<\/div>/);assert.doesNotMatch(html,/class="card-category"/);assert.doesNotMatch(html,/<div class="big">25%/,'tooltip fields remain hover-only');
+const uniform=structuredClone(visual);uniform.definition.objects.layout=[{properties:{paddingUniform:literal(5)}}];assert.equal(paint(model,uniform).item.style.padding,'5px');
+const individual=structuredClone(visual);individual.definition.objects.layout=[{properties:{paddingIndividual:literal(true),topMargin:literal(1),rightMargin:literal(2),bottomMargin:literal(3),leftMargin:literal(4)}}];assert.equal(paint(model,individual).item.style.padding,'1px 2px 3px 4px');
+const authored=structuredClone(visual);authored.definition.objects.padding=[{selector:{metadata:'M.Fear'},properties:{paddingIndividual:literal(true),topMargin:literal(2),rightMargin:literal(4),bottomMargin:literal(6),leftMargin:literal(8)}}];assert.equal(paint(model,authored).item.style.padding,'2px 4px 6px 8px','authored per-card padding remains authoritative over theme layout defaults');
+const oldCard={...visual,type:'card'};assert.equal(S.value(S.cardSettings(model,oldCard).padding.paddingIndividual),true,'legacy cards retain general padding resolution');
+console.log('PASS native card layout zero/uniform/individual padding, authored per-card overrides, legacy behavior, compact text bounds, unchanged fonts and tooltip-only fields');

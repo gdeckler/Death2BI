@@ -1,0 +1,12 @@
+const assert=require('node:assert/strict'),E=require('./report-engine'),S=require('./report-style');
+const measure={expr:{Measure:{Expression:{SourceRef:{Entity:'Data'}},Property:'Subtitle'}}},v={type:'lineChart',filters:{filters:[]},definition:{query:{queryState:{}}}};
+const plan=E.captionVisual(v,{title:{text:{expr:{Literal:{Value:"'Static'"}}}},subTitle:{text:measure}});
+assert.deepEqual(plan._captionKeys,['subTitle']);assert.deepEqual(plan.definition.query.queryState.Values.projections[0].field,measure.expr);assert.equal(E.captionVisual(v,{subTitle:{text:measure,show:false}}),null);assert.deepEqual(v.definition.query.queryState,{});
+assert.equal(S.value({ThemeDataColor:{ColorId:0,Percent:0}},{background:'#333333',dataColors:['#70B0E0','#FCB714']}),'#FFFFFF');
+assert.equal(S.value({ThemeDataColor:{ColorId:1,Percent:0}},{foreground:'#ffffff',dataColors:['#70B0E0','#FCB714']}),'#000000');
+class Node{constructor(tag){this.tagName=tag;this.style={};this.children=[];this.textContent=''}querySelector(s){return this.children.find(n=>s.includes('h3')?n.tagName==='h3':n.className==='pbi-subtitle')}prepend(n){n.parent=this;this.children.unshift(n)}after(n){n.parent=this.parent;this.parent.children.splice(this.parent.children.indexOf(this)+1,0,n)}remove(){this.parent.children=this.parent.children.filter(n=>n!==this)}}
+global.document={createElement:tag=>new Node(tag)};
+const el=new Node('section'),model={theme:{foreground:'#ffffff',textClasses:{label:{color:'#eeeeee'}}}},visual={type:'lineChart',_captionValues:{subTitle:'First line\nSecond line'},definition:{visualContainerObjects:{title:[{properties:{text:'Title',fontSize:22}}],subTitle:[{properties:{text:measure,fontSize:12}}]}}};
+S.styleTitle(el,model,visual);assert.deepEqual(el.children.map(n=>n.textContent),['Title','First line\nSecond line']);assert.equal(el.children[1].style.whiteSpace,'pre-wrap');assert.equal(el.children[1].style.flexShrink,'0');assert.equal(el.children[1].style.color,'#eeeeee');S.styleTitle(el,model,visual);assert.equal(el.children.length,2);
+visual.definition.visualContainerObjects.title[0].properties.show=false;visual.definition.visualContainerObjects.subTitle[0].properties.show=false;S.styleTitle(el,model,visual);assert.equal(el.children.length,0);
+console.log('PASS caption plans, source immutability, theme palette IDs, multiline captions, hidden captions and repeated rendering');

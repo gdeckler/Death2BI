@@ -1,0 +1,10 @@
+const assert=require('node:assert/strict'),E=require('./report-engine');
+const column=(table,Property)=>({Column:{Expression:{SourceRef:{Entity:table}},Property}}),measure=table=>({Measure:{Expression:{SourceRef:{Entity:table}},Property:'Coordinate'}});
+const model={tables:[{name:'T',columns:[{name:'Category'},{name:'Value'}]}],relationships:[],measures:[{Name:'Coordinate',TableName:'M',Expression:'SUM(T[Value])'}]};
+const visual={type:'scatterChart',definition:{query:{queryState:{Category:{projections:[{field:column('T','Category')}]},X:{projections:[{field:measure('M')}]},Y:{projections:[{field:{Aggregation:{Expression:column('T','Value'),Function:0}}}]}},sortDefinition:{isDefaultSort:true,sort:[{field:{Aggregation:{Expression:column('T','Coordinate'),Function:0}},direction:'Descending'}]}}}};
+const before=JSON.stringify(visual),plan=E.buildQuery(model,{},visual);assert.match(plan.sql,/ORDER BY "v1" DESC/);assert.equal(plan.warnings.length,1);assert.equal(JSON.stringify(visual),before);
+const explicit=structuredClone(visual);explicit.definition.query.sortDefinition.isDefaultSort=false;assert.throws(()=>E.buildQuery(model,{},explicit),/sort field/);
+model.tables[0].columns.push({name:'Coordinate'});assert.throws(()=>E.buildQuery(model,{},visual),/sort field/);model.tables[0].columns.pop();
+model.tables[0].columns.push({name:'coordinate'});assert.throws(()=>E.buildQuery(model,{},visual),/sort field/);model.tables[0].columns.pop();
+const ambiguous=structuredClone(visual);ambiguous.definition.query.queryState.X.projections.push({field:measure('N')});model.measures.push({Name:'Coordinate',TableName:'N',Expression:'SUM(T[Value])'});assert.throws(()=>E.buildQuery(model,{},ambiguous),/sort field/);
+console.log('PASS bounded default sort recovery uses a unique projected measure only for missing legacy columns, preserves explicit/physical/ambiguous sorts and source definitions');

@@ -1,0 +1,3 @@
+const assert=require('node:assert/strict'),E=require('./report-engine');
+const col=(t,c)=>({Column:{Expression:{SourceRef:{Entity:t}},Property:c}}),m={tables:[{name:'A',columns:[{name:'X'}]},{name:'B',columns:[{name:'Label',sortByColumn:'Order'},{name:'Order'}]}],relationships:[],measures:[]},v={type:'pivotTable',definition:{query:{queryState:{Rows:{projections:[{field:col('A','X')},{field:col('B','Label')}]}}}}};
+const q=E.buildQuery(m,{},v).sql;assert.match(q,/SELECT DISTINCT "Label","Order" FROM "B"/);assert.match(q,/"B"\."Order" ASC/);console.log('PASS disconnected category source retains semantic sort column');

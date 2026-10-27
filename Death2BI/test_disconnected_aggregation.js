@@ -1,0 +1,7 @@
+const assert=require('node:assert/strict'),E=require('./report-engine');
+const col=(t,p)=>({Column:{Expression:{SourceRef:{Entity:t}},Property:p}});
+const model={tables:[{name:'Fact',columns:[{name:'Amount'}]},{name:'Category',columns:[{name:'Name'}]}],relationships:[],measures:[]};
+const visual={type:'barChart',definition:{query:{queryState:{Category:{projections:[{field:col('Category','Name')}]},Y:{projections:[{field:{Aggregation:{Expression:col('Fact','Amount'),Function:0}}},{field:{Aggregation:{Expression:col('Fact','Amount'),Function:1}}},{field:{Aggregation:{Expression:col('Fact','Amount'),Function:2}}}]}},sortDefinition:{sort:[{field:col('Category','Name'),direction:'Ascending'}]}}}};
+const plan=E.buildQuery(model,{filters:[]},visual,[]);assert.match(plan.sql,/FROM \(SELECT SUM/);assert.match(plan.warnings.join(' '),/no active filter path/);assert.ok(plan.sql.indexOf('SUM(')<plan.sql.indexOf('CROSS JOIN'));
+const filter=(left,kind,value)=>({filter:{Where:[{Condition:{Comparison:{ComparisonKind:kind,Left:left,Right:{Literal:{Value:value}}}}}]}});const filtered=E.buildQuery(model,{filters:[]},visual,[filter(col('Fact','Amount'),2,'15L'),filter(col('Category','Name'),0,"'B'")]);
+if(process.argv.includes('--sql'))console.log(JSON.stringify({sql:plan.sql,filtered:filtered.sql}));else console.log('PASS disconnected aggregation plan factors totals before category expansion');

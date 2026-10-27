@@ -1,0 +1,11 @@
+const A=require('node:assert/strict'),S=require('./report-style');
+const lit=x=>({expr:{Literal:{Value:"'"+x+"'"}}});
+const m={bookmarks:['outside','first','second','hidden'].map(name=>({name,displayName:name})),bookmarkGroups:[{name:'g',children:['second','nested','absent']},{name:'nested',children:['first','g']}]};
+const visual=group=>({type:'bookmarkNavigator',definition:{objects:{bookmarks:[{properties:{bookmarkGroup:lit(group)}}]}}});
+A.deepEqual(S.navigatorBookmarks(m,visual('g')).map(b=>b.name),['second','first']);
+A.deepEqual(S.navigatorBookmarks(m,visual('missing')),[]);
+A.deepEqual(S.navigatorBookmarks(m,visual('')),m.bookmarks);
+A.deepEqual(S.navigatorBookmarks({...m,bookmarks:m.bookmarks.filter(b=>b.name!=='first')},visual('g')).map(b=>b.name),['second']);
+const el={style:{}};S.staticVisual(el,m,visual('g'));
+A.match(el.innerHTML,/data-report-bookmark="second"/);A.doesNotMatch(el.innerHTML,/outside|hidden|nested/);
+console.log('PASS bookmark navigator group selection, ordering, nested cycles, missing groups and authorized leaves');
