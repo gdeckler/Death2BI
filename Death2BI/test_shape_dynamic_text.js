@@ -1,0 +1,6 @@
+const assert=require('node:assert/strict'),S=require('./report-style'),E=require('./report-engine');
+const measure={expr:{Measure:{Expression:{SourceRef:{Entity:'Measures'}},Property:'Language label'}}};
+for(const type of ['shape','actionButton']){
+ const v={type,definition:{objects:{text:[{properties:{show:true,text:measure,fontColor:'#ffffff',fontSize:14,bold:true,horizontalAlignment:'left'}}]}}};const p=S.props(S.objects({},v),'text'),plan=E.captionVisual(v,{shapeText:p});assert.deepEqual(plan._captionKeys,['shapeText']);assert.deepEqual(plan.definition.query.queryState.Values.projections[0].field,measure.expr);assert.ok(!v._captionValues);v._captionValues={shapeText:'Translated <label>\nNext line'};const html=S.shapeTextMarkup({},v);assert.match(html,/Translated &lt;label&gt;/);assert.match(html,/white-space:pre-wrap/);assert.match(html,/text-align:left/);assert.match(html,/color:#ffffff/);v.definition.objects.text[0].properties.show=false;assert.equal(E.captionVisual(v,{shapeText:S.props(S.objects({},v),'text')}),null);assert.equal(S.shapeTextMarkup({},v),'');
+}
+console.log('PASS dynamic shape/button text query bindings, translated values, escaping, formatting and disabled text');

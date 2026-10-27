@@ -1,0 +1,4 @@
+const R=require('./vega-renderer'),assert=require('assert');
+const visual={definition:{query:{queryState:{Category:{projections:[{field:{Column:{Expression:{SourceRef:{Entity:'T'}},Property:'location_state'}}}]},Tooltips:{projections:[{field:{Aggregation:{}}}]}}}}};
+let s=R.buildSpec('filledMap',['location_state','Count'],[['CA',1],['IN',2],['TX',3],['OH',4]],['Category','Tooltips'],{visual});assert.equal(s.data.values.length,4);assert.deepEqual(s.data.values.map(d=>d.properties.name),['California','Indiana','Texas','Ohio']);assert.equal(s.layer[1].encoding.color.value,'#337b60');assert.equal(s.layer[1].encoding.tooltip[1].field,'_tooltipValue');assert.equal(s.layer[0].data.values.length,53);
+s=R.buildSpec('filledMap',['Country','Count'],[['CA',1],['IN',2]],['Category','Y']);assert.deepEqual(s.data.values.map(d=>d.properties.name),['Canada','India']);console.log('US state matching, country-code isolation and tooltip-only uniform maps passed');

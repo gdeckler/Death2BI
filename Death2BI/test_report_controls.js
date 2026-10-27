@@ -1,0 +1,24 @@
+const assert=require('node:assert/strict'),C=require('./report-controls');
+const col=(t,p)=>({Column:{Expression:{SourceRef:{Entity:t}},Property:p}});
+const slicer={type:'slicer',definition:{query:{queryState:{Values:{projections:[{field:col('Choices','Label')}]}}}}};
+const v={definition:{query:{queryState:{X:{projections:[{field:col('Data','Old')}],fieldParameters:[{parameterExpr:col('Choices','Fields'),index:0,length:1}]}}}}};
+const m={measures:[{Name:'Score'}],fieldParameters:{Choices:{columns:['Label','Fields'],rows:[['New score',"'Metrics'[Score]"]]}}};
+let filter=[];filter.selected='New score';
+const changed=C.resolve(m,{visuals:[slicer]},v,()=>filter);
+assert.equal(changed.definition.query.queryState.X.projections[0].field.Measure.Property,'Score');
+assert.equal(v.definition.query.queryState.X.projections[0].field.Column.Property,'Old');
+const source=[{filter:{Where:[{Condition:{In:{Values:[[{Literal:{Value:"'''Metrics''[Score]'"}}]]}}}]}}];
+ m.fieldParameters.Choices.fieldColumn='Fields';
+assert.equal(C.selectionLabel(m,slicer,source),'New score');
+assert.equal(C.resolve(m,{visuals:[slicer]},v,()=>source).definition.query.queryState.X.projections[0].field.Measure.Property,'Score');
+const range=C.rangeFilter(col('Facts','Year'),2010,2020);
+assert.equal(range[0].filter.Where[0].Condition.And.Left.Comparison.ComparisonKind,2);
+assert.equal(range[0].filter.Where[0].Condition.And.Right.Comparison.Right.Literal.Value,'2020');
+console.log('PASS source parameter identities, selected labels, immutable projections and inclusive range filters');
+(async()=>{
+ const model={measures:['Classic','Hit','Forgotten','Failure'].map(Name=>({Name,TableName:'Metrics'})),fieldParameters:{Colors:{columns:['Label','Fields','Order','Mode'],fieldColumn:'Fields',rows:['Classic','Hit','Forgotten','Failure'].map((n,i)=>[n,"'Metrics'["+n+"]",i,'STD'])}}};
+ const visual={definition:{query:{queryState:{Y:{projections:[{field:col('Old','X')}],fieldParameters:[{parameterExpr:col('Colors','Label'),index:0,length:1}]}}}}};
+ let calls=0;const resolved=await C.resolveAsync(model,{visuals:[]},visual,()=>[],()=>true,async table=>{calls++;assert.equal(table,'Colors');return model.fieldParameters.Colors.rows.slice().reverse()});
+ assert.equal(calls,1);assert.deepEqual(resolved.definition.query.queryState.Y.projections.map(p=>p.field.Measure.Property),['Classic','Hit','Forgotten','Failure']);assert.equal(visual.definition.query.queryState.Y.projections.length,1);
+ console.log('PASS relationship-filtered multi-measure parameters retain all rows and model order');
+})().catch(e=>{console.error(e);process.exitCode=1});

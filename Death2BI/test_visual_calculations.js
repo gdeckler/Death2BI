@@ -1,0 +1,14 @@
+const assert=require('assert'),E=require('./report-engine'),V=require('./vega-renderer');
+const col={Column:{Expression:{SourceRef:{Entity:'Orders'}},Property:'Customer'}};
+const p=(name,field)=>({nativeQueryRef:name,field});
+const calc=(name,Expression)=>p(name,{NativeVisualCalculation:{Name:name,Language:'dax',Expression}});
+const visual={type:'scatterChart',definition:{query:{queryState:{Category:{projections:[p('Customer',col)]},Tooltips:{projections:[p('Count',{Aggregation:{Expression:col,Function:2}}),p('Sales',{Aggregation:{Expression:{Column:{Expression:{SourceRef:{Entity:'Orders'}},Property:'Sales'}},Function:0}}),calc('Share','DIVIDE([Count],COLLAPSEALL([Count],ROWS))'),calc('Running','RUNNINGSUM([Sales],ORDERBY([Sales],DESC))')]},X:{projections:[calc('X','RUNNINGSUM([Share],ORDERBY([Sales],DESC)) // comment')]},Y:{projections:[calc('Y','DIVIDE([Running],COLLAPSEALL([Running],ROWS))')]}}}}};
+(async()=>{const model={tables:[],measures:[],relationships:[]};let calls=0;
+const run=async sql=>{calls++;assert.match(sql,/COUNT\(DISTINCT/);return {columns:['v0','v1','v2'],types:['VARCHAR','BIGINT','DOUBLE'],rows:[['A',1,20],['B',1,50],['C',1,30]]}};
+const r=await E.pythonQuery(model,{},visual,[],run,()=>{throw Error('unexpected fallback')});
+assert.equal(calls,1);assert.deepEqual(r.result.rows.map(r=>r[4]),[100,50,80]);assert(Math.abs(r.result.rows[0][5]-1)<1e-10);assert.equal(r.result.rows[1][6],.5);
+const spec=V.buildSpec('scatterChart',r.compiled.labels,r.result.rows,r.compiled.roles);assert.equal(spec.data.values.length,3);assert.equal(spec.data.values[1]._x,1/3);
+await assert.rejects(()=>E.pythonQuery(model,{},visual,[],async()=>({rows:[],truncated:true}),()=>{}),/complete results/);
+const bad=structuredClone(visual);bad.definition.query.queryState.Y.projections[0].field.NativeVisualCalculation.Expression='UNKNOWN([Sales])';await assert.rejects(()=>E.pythonQuery(model,{},bad,[],run,()=>{}),/Unsupported DAX visual calculation/);
+console.log('PASS visual-calculation dependency order, running totals, grand totals, scatter roles, truncation and unsupported-expression rejection');
+})().catch(e=>{console.error(e);process.exitCode=1});

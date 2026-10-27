@@ -1,0 +1,13 @@
+const assert=require('node:assert/strict'),I=require('./chart-interactions');
+const col=p=>({field:{Column:{Expression:{SourceRef:{Entity:'Facts'}},Property:p}}});
+const visual={definition:{query:{queryState:{Values:{projections:[col('Year'),col('Category'),{field:{Measure:{Property:'Amount'}}}]}}}}};
+const a=I.rowIdentity(visual,[2019,'A',100]);assert.equal(a.fields.length,2);assert.deepEqual(a.datum,{v0:2019,v1:'A'});
+const state=new I.ChartInteractions();state.select('r','p','table',a.fields,a.datum);assert.equal(state.filtersFor('r',{id:'p'},'chart')[0].filter.Where[0].Condition.In.Expressions.length,2);
+assert.equal(state.filtersFor('r',{id:'p'},'table').length,0);
+state.select('r','p','table',a.fields,{v0:2020,v1:'B'},true);assert.equal(state.selected('r','p','table').tuples.length,2);
+state.select('r','p','table',a.fields,a.datum,true);assert.deepEqual(state.selected('r','p','table').tuples,[[2020,'B']]);
+const matrix={definition:{query:{queryState:{Rows:{projections:[col('Year'),col('Category')]}}}}};
+const child=I.rowIdentity(matrix,null,{matrix:true,path:[2020,'B']});assert.deepEqual(child.datum,{v0:2020,v1:'B'});
+assert.equal(I.rowIdentity(matrix,null,{matrix:true,path:[]}),null);
+const measures=structuredClone(visual);measures.definition.query.queryState.Values.projections=[{field:{Measure:{Property:'Sum'}}}];assert.equal(I.rowIdentity(measures,[10]),null);
+console.log('PASS table compound identity, measure exclusion, matrix ancestor identity, additive selection and source exclusion');

@@ -1,0 +1,13 @@
+const assert=require('node:assert/strict'),S=require('./report-style'),R=require('./vega-renderer'),C=require('./report-controls'),fs=require('node:fs'),vm=require('node:vm');
+const lit=v=>({expr:{Literal:{Value:String(v)}}}),col={Column:{Expression:{SourceRef:{Entity:'T'}},Property:'N'}},model={tables:[{name:'T',columns:[{name:'N'}]}],measures:[],theme:{}};
+const slicer={definition:{objects:{data:[{properties:{mode:lit("'Before'")}}]},query:{queryState:{Values:{projections:[{field:col}]}}}}};
+assert.equal(C.singleValuePlan(model,slicer,[0,1,2,3],[]).selected,3);
+assert.equal(C.singleValuePlan(model,slicer,[0,1,2,3],C.rangeFilter(col,0,2)).selected,2);
+const card={type:'cardVisual',definition:{query:{queryState:{Data:{projections:[{field:{Measure:{Property:'Value'}}}]},Tooltips:{projections:[{field:{Measure:{Property:'Detail'}}}]}}}}};
+const html=S.cardResultMarkup(model,card,{labels:['Value','Detail'],roles:['Data','Tooltips'],formats:['0','']},{rows:[[42,'Hover details']],columns:['v0','v1']});
+assert.match(html,/title="Detail: Hover details"/);assert.equal((html.match(/class="card-item"/g)||[]).length,1);assert.doesNotMatch(html,/>Hover details</);
+const visual={type:'scatterChart',definition:{objects:{categoryAxis:[{properties:{show:lit('false'),logAxisScale:lit('true')}}],valueAxis:[{properties:{show:lit('false')}}],xAxisReferenceLine:[{properties:{show:lit('true'),value:lit('2')}}],dataPoint:[{properties:{fill:{solid:{color:lit("'#123456'")}}}}]}}};
+const spec=R.buildSpec('scatterChart',['Group','X','Y'],[['a',1,2],['b',3,4]],['Series','X','Y'],{model,visual,width:400,height:250});
+const context={console,structuredClone,setTimeout,clearTimeout};vm.createContext(context);for(const name of ['vega','vega-lite'])vm.runInContext(fs.readFileSync(__dirname+'/dist/vendor/'+name+'.min.js','utf8'),context);
+const compiled=context.vegaLite.compile(spec).spec;assert.ok(compiled.marks.length);const point=spec.layer.find(l=>l.mark.type==='point');assert.equal(point.encoding.fill,undefined);assert.notEqual(point.encoding.color.legend,null);
+console.log('PASS one-sided slider values, tooltip-only card fields, scatter legends and hidden-axis reference-line compilation');

@@ -1,0 +1,16 @@
+const assert=require('node:assert/strict'),S=require('./report-style'),E=require('./report-engine');
+const lit=Value=>({expr:{Literal:{Value}}});
+const source={type:'lineChart',filters:[{filter:{Where:[{Condition:{In:{Expressions:[{Column:{Expression:{SourceRef:{Entity:'Data'}},Property:'Region'}}],Values:[[{Literal:{Value:"'West'"}}]]}}}]}}],definition:{visualContainerObjects:{visualTooltip:[{properties:{show:lit('true'),section:lit("'tip' ".trim())}}]}}};
+assert.equal(S.tooltipPage({theme:{}},source),'tip');const disabled=structuredClone(source);disabled.definition.visualContainerObjects.visualTooltip[0].properties.show=lit('false');assert.equal(S.tooltipPage({theme:{}},disabled),undefined);
+const legacy={type:'lineChart',definition:{objects:{tooltip:[{properties:{pageName:lit("'Old tip'")}}]}}};assert.equal(S.tooltipPage({theme:{}},legacy),'Old tip');
+const page={reportFilters:[{name:'Report'}],filters:[{name:'Page'}]},tip={id:'tip',hidden:true,isTooltip:true,filters:[{name:'Tooltip'}]},point=[{name:'Point'}],extra=[{name:'Slicer'},{name:'Other chart'}];
+const context=E.tooltipContext(page,tip,source,extra,point);assert.deepEqual(context.filters.map(x=>x.name||'Source'),['Tooltip','Page','Source','Slicer','Other chart','Point']);assert.deepEqual(context.reportFilters,page.reportFilters);assert.equal(tip.filters.length,1);assert.equal(context.id,'tip');
+console.log('PASS visualTooltip and legacy page bindings, explicit disable, hovered-point/source/page/report/slicer/selection contexts and immutable tooltip definitions');
+const field={Column:{Expression:{SourceRef:{Entity:'Data'}},Property:'Name'}},hierarchy={HierarchyLevel:{Expression:{Hierarchy:{Expression:{PropertyVariationSource:{Expression:{SourceRef:{Entity:'Data'}},Property:'Date'}},Hierarchy:'Date Hierarchy'}},Level:'Year'}};
+const fieldsVisual={definition:{query:{queryState:{Category:{projections:[{field:hierarchy}]},Series:{projections:[{field}]}}}}};
+const selected=E.tooltipPointFilters(fieldsVisual,{_categoryValue:2025,_dimension:"O'Brien"});assert.deepEqual(selected[0].filter.Where[0].Condition.In.Expressions,[hierarchy,field]);assert.equal(selected[0].filter.Where[0].Condition.In.Values[0][1].Literal.Value,"'O''Brien'");assert.equal(E.tooltipPointFilters(fieldsVisual,{url:'background'}).length,0);
+console.log('PASS date-hierarchy hover identities, typed tuple filters and escaped series values');
+global.innerWidth=1280;global.innerHeight=720;global.document={documentElement:{clientWidth:1265,clientHeight:705}};
+const popup={style:{},getBoundingClientRect:()=>({width:400,height:100})};S.positionTooltip(popup,{clientX:1250,clientY:700});assert.equal(popup.style.left,'859px');assert.equal(popup.style.top,'599px');
+delete global.document;delete global.innerWidth;delete global.innerHeight;
+console.log('PASS tooltip positioning stays inside the visible viewport including browser scrollbars');

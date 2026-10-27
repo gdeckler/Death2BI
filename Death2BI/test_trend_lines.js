@@ -1,0 +1,14 @@
+const assert=require('node:assert/strict'),R=require('./vega-renderer'),fs=require('node:fs'),vm=require('node:vm'),path=require('node:path');
+const lit=v=>({expr:{Literal:{Value:typeof v==='string'?"'"+v+"'":String(v)}}});
+const options=(p={})=>({model:{theme:{}},visual:{type:'lineChart',definition:{objects:{trend:[{properties:{show:lit(true),...p}}]}}}});
+const fit=R.linearFit([{x:1,y:3},{x:2,y:5},{x:3,y:7}]);assert.equal(fit(4),9);assert.equal(R.linearFit([{x:1,y:2},{x:1,y:3}]),null);
+const spec=R.buildSpec('lineChart',['Year','Value'],[[2020,2],[2021,4],[2022,6]],['Category','Y'],options({transparency:lit(50),lineColor:{solid:{color:lit('#ff0000')}}}));
+const trend=spec.layer.find(l=>l.name?.startsWith('pbi_trend'));assert.deepEqual(trend.data.values.map(d=>d._trendY),[2,6]);assert.equal(trend.mark.opacity,.5);assert.equal(trend.mark.color,'#ff0000');
+assert.equal(R.buildSpec('lineChart',['Year','Value'],[[2020,2],[2021,4]],['Category','Y'],options({show:lit(false)})).layer,undefined);
+const temporal=R.buildSpec('lineChart',['Date','Value'],[['2020-01-01',1],['2020-01-02',3],['2020-01-03',5]],['Category','Y'],options());assert.equal(temporal.layer.at(-1).encoding.x.type,'temporal');
+const multi=R.buildSpec('lineChart',['Year','Series','Value'],[[1,'A',2],[2,'A',4],[1,'B',10],[2,'B',20]],['Category','Series','Y'],options({combineSeries:lit(false)}));assert.equal(multi.usermeta.trendLines,2);
+const singleton=R.buildSpec('lineChart',['Year','Value'],[[2020,2]],['Category','Y'],options());assert.equal(singleton.layer,undefined);
+const scatter=R.buildSpec('scatterChart',['X','Y'],[[1,2],[2,4],[3,6]],['X','Y'],options());assert.equal(scatter.layer.at(-1).data.values[1]._trendY,6);
+const behind=R.buildSpec('lineChart',['X','Y'],[[1,2],[2,4]],['Category','Y'],options({position:lit('back'),style:lit('solid')}));assert.match(behind.layer[0].name,/pbi_trend/);assert.equal(behind.layer[0].mark.strokeDash,undefined);
+const ctx=vm.createContext({console,setTimeout,clearTimeout,URL,structuredClone});for(const file of ['vega.min.js','vega-lite.min.js'])vm.runInContext(fs.readFileSync(path.join(__dirname,'dist/vendor',file),'utf8'),ctx);
+(async()=>{for(const s of [spec,temporal,multi,scatter,behind]){const view=new ctx.vega.View(ctx.vega.parse(ctx.vegaLite.compile(s).spec),{renderer:'none'});try{await view.runAsync();const svg=await view.toSVG();assert.match(svg,/pbi_trend/);assert.ok(!svg.includes('NaN'))}finally{view.finalize()}}console.log('PASS linear trends, dates, filtered inputs, multiple series, styles, hidden/degenerate cases and Vega SVG output')})().catch(e=>{console.error(e);process.exitCode=1});

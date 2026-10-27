@@ -1,0 +1,4 @@
+const assert=require('node:assert/strict'),R=require('./vega-renderer');
+const s=R.buildSpec('treemap',['Sales','Product'],[[60,'A'],[30,'B'],[10,'C']],['Values','Group'],{width:400,height:200});
+assert.equal(s.data.values.length,3);const area=d=>(d._x2-d._x)*(d._y2-d._y);assert.ok(Math.abs(area(s.data.values[0])/area(s.data.values[2])-6)<1e-9);assert.ok(s.data.values.every(d=>d._x>=0&&d._y>=0&&d._x2<=400&&d._y2<=200));assert.equal(s.data.values[0]._categoryValue,'A');
+const p=R.buildSpec('donutChart',['Band','Profit'],[['A',20],['B',-5]],['Category','Y'],{});assert.equal(p.data.values[1]._value,-5);assert.equal(p.data.values[1]._magnitude,5);assert.ok(p.usermeta.mappingWarnings.length);assert.equal(p.layer[0].encoding.theta.field,'_magnitude');console.log('PASS treemap proportional areas and signed donut values');

@@ -1,0 +1,15 @@
+const assert=require('node:assert/strict'),V=require('./vega-renderer'),E=require('./report-engine');
+const col=(table,column)=>({Column:{Expression:{SourceRef:{Entity:table}},Property:column}});
+const model={tables:[{name:'Date',columns:[{name:'Decade',type:'VARCHAR'}]}],theme:{}};
+const visual={type:'scatterChart',definition:{query:{queryState:{X:{projections:[{field:col('Date','Decade')}]},Y:{projections:[{field:{Measure:{Property:'Rank'}}}]}}}}};
+const input=[['1980s',2],['1990s',1],['2000s',3],[null,2],['bad',null]];
+const spec=V.buildSpec('scatterChart',['Decade','Rank'],input,['X','Y'],{model,visual});
+assert.equal(spec.encoding.x.type,'ordinal');assert.deepEqual(spec.encoding.x.sort,['1980s','1990s','2000s']);assert.equal(spec.data.values.length,3);assert.equal(spec.encoding.tooltip[0].type,'nominal');assert.deepEqual(spec.params[0].select.encodings,['y']);assert.equal(spec.encoding.y.type,'quantitative');
+model.tables[0].columns[0].sortByColumn='MonthNumber';assert.deepEqual(V.buildSpec('scatterChart',['Month','Rank'],[['January',1],['February',2],['March',3]],['X','Y'],{model,visual}).encoding.x.sort,['January','February','March']);delete model.tables[0].columns[0].sortByColumn;
+model.tables[0].columns[0].type='DOUBLE';assert.equal(V.buildSpec('scatterChart',['Decade','Rank'],input,['X','Y'],{model,visual}).data.values.length,0);
+const m={tables:[],measures:[],relationships:[{FromTableName:'Bridge',FromColumnName:'MovieID',ToTableName:'Movies',ToColumnName:'MovieID',Cardinality:'M:1',CrossFilteringBehavior:'Both',IsActive:true},{FromTableName:'Bridge',FromColumnName:'GenreID',ToTableName:'Genres',ToColumnName:'GenreID',Cardinality:'M:1',CrossFilteringBehavior:'OneDirection',IsActive:true}]};
+const v={type:'tableEx',definition:{query:{queryState:{Category:{projections:[{field:col('Genres','Genre')}]},Values:{projections:[{field:{Aggregation:{Expression:col('Movies','MovieID'),Function:2}}}]}}}}};
+assert.throws(()=>E.buildQuery(m,{},v),/Reverse many-side/);
+const plan=E.buildQuery(m,{}, {...v,_groupEnumeration:true});assert.match(plan.sql,/LEFT JOIN "Bridge"/);assert.match(plan.sql,/GROUP BY "Genres"\."Genre"/);
+m.relationships[0].CrossFilteringBehavior='OneDirection';assert.doesNotMatch(E.buildQuery(m,{}, {...v,_groupEnumeration:true}).sql,/LEFT JOIN "Bridge"/);
+console.log('PASS source text scatter axes, numeric validation, sampling, and bounded reverse-Both grouping-domain enumeration');

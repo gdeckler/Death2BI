@@ -1,0 +1,22 @@
+const assert=require('node:assert/strict');
+const {QueryCache}=require('./query-cache');
+(async()=>{
+ const c=new QueryCache({maxEntries:2,maxBytes:10000});let calls=0;
+ const load=async()=>{calls++;return {rows:[[42]]}};
+ const get=(request,revision='1')=>c.get('r',revision,request,load);
+ const a=await get({sql:'a',filters:[1]});a.rows[0][0]=99;
+ assert.equal((await get({filters:[1],sql:'a'})).rows[0][0],42);assert.equal(calls,1);
+ await get({sql:'a',filters:[2]});assert.equal(calls,2);
+ await get({sql:'a',filters:[2]},'2');assert.equal(calls,3);
+ assert.equal(c.stats().entries,2);await get({sql:'a',filters:[1]});assert.equal(calls,4);
+ c.invalidate('r');assert.equal(c.stats().entries,0);
+ let finish;const slow=()=>new Promise(resolve=>{calls++;finish=resolve});const controller=new AbortController();
+ const first=c.get('r','1',{sql:'slow'},slow,controller.signal);const rejected=assert.rejects(first,{name:'AbortError'});
+ const second=c.get('r','1',{sql:'slow'},slow);await Promise.resolve();controller.abort();await rejected;finish({rows:[[7]]});assert.equal((await second).rows[0][0],7);assert.equal(c.stats().shared,1);
+ assert.equal((await c.get('r','1',{sql:'slow'},load)).rows[0][0],7);
+ let failCalls=0;for(let i=0;i<2;i++)await assert.rejects(c.get('r','1',{sql:'fail'},async()=>{failCalls++;throw Error('failure')}));assert.equal(failCalls,2);
+ let done;const pending=c.get('r','1',{sql:'old'},()=>new Promise(resolve=>done=resolve));const oldRejected=assert.rejects(pending,{name:'AbortError'});await Promise.resolve();c.invalidate();done({rows:[]});await oldRejected;assert.equal(c.stats().entries,0);
+ await c.get('other','1',{sql:'a'},load);c.invalidate('r');assert.equal(c.stats().entries,1);
+ const tiny=new QueryCache({maxBytes:5});await tiny.get('r','1',{},load);assert.equal(tiny.stats().entries,0);
+ console.log('Query cache: context keys, copies, LRU, shared navigation, failure retry, invalidation and size bounds passed.');
+})().catch(e=>{console.error(e);process.exitCode=1});

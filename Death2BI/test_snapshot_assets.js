@@ -1,0 +1,10 @@
+const assert=require('node:assert/strict'),S=require('./snapshot-dom'),F=require('./custom-frame');
+assert.equal(S.safeImage('data:image/png;base64,abc'),true);assert.equal(S.safeImage('javascript:alert(1)'),false);
+assert.equal(S.safeImage('data:image/avif;base64,YWJj'),true);
+assert.equal(S.safeImage('data:text/html;base64,YWJj'),false);
+const Style=require('./report-style'),avif='data:image/avif;base64,YWJj';
+assert.equal(Style.url(avif,{}),avif);
+assert.equal(Style.url({ResourcePackageItem:{ItemName:'transparent.avif'}},{assets:{'Report/StaticResources/RegisteredResources/transparent.avif':avif}}),avif);
+const html=F.documentFor({guid:'test',js:'',css:''},'test-token');assert.ok(html.includes('createSnapshotDOM'));assert.ok(html.includes('setTimeout(resolve,250)')); // Offscreen iframes may never receive animation frames.assert.ok(html.includes("message.type==='snapshot'"));assert.ok(html.includes("sandbox")===false);assert.ok(html.includes("frame-src 'none'"));
+const R=require('./html-reports');const exported=R.documentFor('x',[{name:'Page',html:'<div></div>',warnings:['Image <failed>']}],'');assert.ok(exported.includes('Image &lt;failed&gt;'));
+console.log('PASS snapshot image type checks, sandbox bridge injection, unchanged frame CSP and escaped capture warnings');

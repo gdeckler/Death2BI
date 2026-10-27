@@ -1,0 +1,13 @@
+const assert=require('node:assert/strict'),V=require('./vega-renderer'),E=require('./report-engine'),S=require('./report-style'),T=require('./table-rendering');
+const measure={Measure:{Expression:{SourceRef:{Entity:'Measures'}},Property:'Cell Color'}};
+const field=p=>({Column:{Expression:{SourceRef:{Entity:'Grid'}},Property:p}});
+const v={type:'scatterChart',definition:{query:{queryState:{X:{projections:[{field:field('Col'),nativeQueryRef:'Col'}]},Y:{projections:[{field:field('Row'),nativeQueryRef:'Row'}]}}},objects:{bubbles:[{properties:{markerShape:'square',bubbleSize:100}}],dataPoint:[{properties:{fill:{solid:{color:{expr:measure}}}},selector:{data:[{dataViewWildcard:{matchingOption:1}}]}}]}}};
+const m={theme:{dataColors:['#999999']},tables:[{name:'Grid',columns:[]}],measures:[{TableName:'Measures',Name:'Cell Color'}]};
+const plan=E.formattingVisual(v,m);assert.equal(plan.definition.query.queryState.Formatting.projections.length,1);assert.ok(!v.definition.query.queryState.Formatting);assert.equal(E.formattingVisual(plan,m).definition.query.queryState.Formatting.projections.length,1);
+const spec=V.buildSpec('scatterChart',['Col','Row','Cell Color'],[[0,0,'#00897B'],[1,0,'#C62828'],[0,1,'#000000']],['X','Y','Formatting'],{model:m,visual:plan,width:700,height:700});
+assert.equal(spec.mark.shape,'square');assert.equal(spec.mark.size,2500);assert.equal(spec.mark.opacity,.85);assert.deepEqual(spec.data.values.map(d=>d._pbiColor),['#00897B','#C62828','#000000']);assert.equal(spec.encoding.fill.scale,null);assert.equal(S.selectorMatches({data:[{dataViewWildcard:{matchingOption:1}}]},{}),true);
+const values=T.tableValues({backColorSecondary:'#e6e6e6'},'None');assert.equal(values.bandedRows,false);assert.equal(T.rowColors(values,{},S,0),'transparent');assert.equal(T.rowColors(values,{},S,1),'transparent');assert.equal(T.tableValues({bandedRows:true},'None').bandedRows,true);
+const table={type:'tableEx',definition:{objects:{values:[{properties:{fontColor:{solid:{color:{expr:measure}}}}}]},query:{queryState:{Values:{projections:[{field:field('Col')}]}}}}};assert.equal(E.formattingVisual(table,m).definition.query.queryState.Formatting.projections.length,1);assert.equal(S.color({solid:{color:{expr:measure}}},{},T.datumFor(table,['Col','Cell Color'],[1,'#C62828'])),'#C62828');
+console.log('PASS scatter marker shape/size, row-specific color measures, wildcard selectors, hidden table formatting measures and unbanded None styles');
+
+v.definition.objects.bubbles[0].properties.bubbleSize=0;const standard=V.buildSpec('scatterChart',['Col','Row'],[[1,2]],['X','Y'],{model:m,visual:v});assert.equal(standard.mark.size,64);

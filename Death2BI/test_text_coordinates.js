@@ -1,0 +1,2 @@
+const A=require('./advanced-charts'),assert=require('assert');
+const spec=A.build({width:400,height:300,data:{}},'map',['Latitude','Longitude','N'],[['52.56','-1.15',4],['','0',1],['garbage','-1.1',2],['91','0',3]],['Latitude','Longitude','Size']);assert.equal(spec.data.values.length,1);assert.equal(spec.data.values[0]._latitude,52.56);assert.equal(spec.data.values[0]._longitude,-1.15);console.log('Text coordinates, blanks, invalid text and range validation passed');

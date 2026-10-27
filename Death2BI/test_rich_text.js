@@ -1,0 +1,18 @@
+const assert=require('node:assert/strict'),S=require('./report-style');
+const visual=paragraphs=>({type:'textbox',definition:{objects:{general:[{properties:{paragraphs}}]}}});
+const model={theme:{textClasses:{label:{fontSize:10}}}};
+const markup=S.textboxMarkup(model,visual([{textRuns:[{value:'Mission body'}]},{listType:'bullet',textRuns:[{value:'      Icon label',textStyle:{fontFamily:'Times New Roman'}}]},{listType:'bullet',textRuns:[{value:'Second item'}]},{listType:'numbered',textRuns:[{value:'Ordered'}]},{horizontalTextAlignment:'right',textRuns:[{value:'Name        Credit',textStyle:{fontSize:'8pt'}},{value:'      More'}]},{textRuns:[]}]));
+assert.match(markup,/<ul /);assert.match(markup,/<ol /);assert.equal((markup.match(/<li /g)||[]).length,3);
+assert.ok(markup.replace(/<[^>]*>/g,'').includes('      Icon label'));assert.ok(markup.replace(/<[^>]*>/g,'').includes('Name        Credit'));
+assert.match(markup,/white-space:pre-wrap/);assert.match(markup,/line-height:1.15/);assert.match(markup,/font-size:10pt/);assert.match(markup,/font-size:8pt/);assert.match(markup,/text-align:right/);assert.match(markup,/<br>/);
+const links=S.textboxMarkup(model,visual([{textRuns:[{value:'<unsafe>',url:'javascript:alert(1)'},{value:'Email',url:'mailto:author@example.com'},{value:'Source',url:'https://example.com/'}]}]));
+assert.ok(links.includes('&lt;unsafe&gt;'));assert.ok(!links.includes('javascript:'));assert.ok(links.includes('href="mailto:author@example.com"'));
+let appended,clicks=0;const attrs={};
+const slot={style:{},getBoundingClientRect:()=>({x:30,y:20,width:20,height:15}),appendChild:n=>appended=n,setAttribute:(k,v)=>attrs[k]=v};
+const text={parentElement:{getBoundingClientRect:()=>({left:0,right:200,top:0,bottom:100})},querySelectorAll:()=>[slot]};
+const original={style:{},querySelector:()=>({cloneNode:()=>({style:{}})}),getBoundingClientRect:()=>({x:31,y:15,width:20,height:24}),classList:{contains:()=>true},getAttribute:()=> 'Open another page',setAttribute:(k,v)=>attrs[k]=v,click:()=>clicks++};
+const canvas={querySelectorAll:()=>[text],querySelector:()=>original};
+S.layoutTextIcons(canvas,{visuals:[{type:'image',width:20,height:24}]});
+assert.ok(appended);assert.equal(original.style.visibility,'hidden');assert.equal(attrs['aria-label'],'Open another page');
+slot.onclick({preventDefault(){},stopPropagation(){}});assert.equal(clicks,1);assert.ok(slot.style.cssText.includes('height:1.1em'));
+console.log('PASS rich text lists, whitespace, safe links, empty lines, default/inherited font sizes and paragraph alignment');

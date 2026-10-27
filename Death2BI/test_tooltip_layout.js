@@ -1,0 +1,17 @@
+const assert=require('node:assert/strict'),S=require('./report-style');
+assert.deepEqual(S.tooltipSize({width:650,height:160},[{x:0,y:0,width:656,height:190}],1200,800),{width:656,height:190,scale:1});
+const large=S.tooltipSize({width:1500,height:900},[],800,600);assert.ok(large.width*large.scale<=776);assert.ok(large.height*large.scale<=576);
+assert.equal(S.value({ThemeDataColor:{ColorId:0,Percent:-.2}},{background:'#FFFFFF',dataColors:['#118DFF']}),'#cccccc');assert.equal(S.value({ThemeDataColor:{ColorId:1}},{foreground:'#222222',dataColors:['#118DFF']}),'#000000');assert.equal(S.value({ThemeDataColor:{ColorId:2}},{dataColors:['#118DFF']}),'#118DFF');
+console.log('PASS complete tooltip extents, viewport fit and structural theme colors');
+const R=require('./vega-renderer'),rows=Array.from({length:45},(_,i)=>['2026-06-'+String(i+1).padStart(2,'0'),i]),roles=['Category','Y'],options={visual:{tooltipOnly:true}};
+assert.equal(R.contentWidth('columnChart',['Date','Value'],rows,roles,526,options),526);
+assert(R.contentWidth('columnChart',['Date','Value'],rows,roles,526,{})>526);
+assert.equal(R.barWindow('barChart',['Date','Value'],rows,roles,360,options),null);
+assert(R.barWindow('barChart',['Date','Value'],rows,roles,360,{}));
+const chart={style:{height:'100%',flex:'1'}},table={style:{}},wrap={style:{},querySelector:()=>table},visual={style:{left:'0px',top:'15px'},offsetWidth:526,scrollWidth:526,offsetHeight:360,scrollHeight:360,querySelectorAll:selector=>selector==='.vega-chart'?[chart]:[wrap]};
+global.innerWidth=1200;global.innerHeight=800;
+const canvas={children:[visual],style:{}},box={style:{},getBoundingClientRect:()=>({width:800,height:400})};
+S.fitTooltip(canvas,box,{width:800,height:400},{clientX:100,clientY:100});
+assert.equal(chart.style.overflow,'visible');assert.equal(chart.style.height,'100%');assert.equal(chart.style.flex,'1');assert.equal(wrap.style.height,'auto');assert.equal(table.style.width,'max-content');
+assert.equal(visual.style.width,'526px');assert.equal(visual.style.height,'360px');
+console.log('PASS tooltip charts fit their authored boxes without scrolling/windowing or chart growth; tooltip tables still expand');
