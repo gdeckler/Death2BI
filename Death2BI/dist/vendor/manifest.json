@@ -1,0 +1,26 @@
+[
+  {
+    "name": "vega",
+    "version": "6.4.0",
+    "file": "vega.min.js",
+    "sha256": "8f6a3587cf8d4f42c7e08120e3eb05d067e746d554e39d2dcf52acc0bd5ba28f",
+    "license": "BSD-3-Clause",
+    "source": "https://cdn.jsdelivr.net/npm/vega@6.4.0/build/vega.min.js"
+  },
+  {
+    "name": "vega-lite",
+    "version": "6.5.0",
+    "file": "vega-lite.min.js",
+    "sha256": "83e215e84e308ee8688fa6503ba0f1cf8a3c05c0d61df2841a0b92bf86809e00",
+    "license": "BSD-3-Clause",
+    "source": "https://cdn.jsdelivr.net/npm/vega-lite@6.5.0/build/vega-lite.min.js"
+  },
+  {
+    "name": "vega-embed",
+    "version": "7.3.0",
+    "file": "vega-embed.min.js",
+    "sha256": "b1455caba2fb1a72fb46025ba0ba1316e2dbc7f0dd40a3f6040172bf9c08ba91",
+    "license": "BSD-3-Clause",
+    "source": "https://cdn.jsdelivr.net/npm/vega-embed@7.3.0/build/vega-embed.min.js"
+  }
+]

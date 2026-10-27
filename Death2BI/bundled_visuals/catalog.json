@@ -1,0 +1,9 @@
+{
+  "wishyoulizationwalkers": {
+    "filename": "wishyoulizationwalkers.1.0.2.pbiviz",
+    "sha256": "32fae407f8747294d3b94be22c652e6b51e1d78b200ca8c2e6e9c7df3493f7d6",
+    "source": "https://github.com/wishyoulization/PowerBI-visuals-Walkers/blob/ab419e5ecb768c493fae087a0df7e5ca0b788cdd/PBI/dist/wishyoulizationwalkers.1.0.2.pbiviz",
+    "commit": "ab419e5ecb768c493fae087a0df7e5ca0b788cdd",
+    "license": "MIT; see wishyoulizationwalkers.LICENSE.txt"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "us_10m",
+  "type": "json",
+  "title": "U.S. land, state and county boundaries at 1:10 million scale",
+  "description": "US county boundaries represented at a 1:10,000,000 scale in \n[TopoJSON](https://github.com/topojson/topojson) format, which optimizes for \nsmaller file sizes. Similar to offerings in the TopoJSON US Atlas collection, which \nin turn is a redistribution of the Census Bureau's cartographic boundary shapefiles.\n",
+  "licenses": [
+    {
+      "name": "ISC",
+      "title": "TopoJSON US Atlas ISC License",
+      "path": "https://github.com/topojson/us-atlas/blob/master/LICENSE"
+    }
+  ],
+  "sources": [
+    {
+      "title": "TopoJSON US Atlas",
+      "path": "https://github.com/topojson/us-atlas"
+    },
+    {
+      "title": "US Census Bureau Cartographic Boundary FIles",
+      "path": "https://www.census.gov/geographies/mapping-files/time-series/geo/cartographic-boundary.html"
+    }
+  ],
+  "path": "us-10m.json",
+  "scheme": "file",
+  "format": "topojson",
+  "mediatype": "text/topojson",
+  "encoding": "utf-8",
+  "hash": "sha1:ff7a7e679c46f2d1eb85cc92521b990f1a7a5c7a",
+  "bytes": 642361
+}
