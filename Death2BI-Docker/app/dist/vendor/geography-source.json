@@ -1,0 +1,19 @@
+{
+  "source": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_50m_admin_0_countries.geojson",
+  "dataset": "Natural Earth 1:50m Admin 0 countries",
+  "license": "Public domain",
+  "terms": "https://www.naturalearthdata.com/about/terms-of-use/",
+  "featureCount": 242,
+  "sha256": "0e95732adb4904f1abe38148a1d133702d945cc5d3988059bdfae8f257e5b514",
+  "metadataFields": [
+    "CONTINENT",
+    "REGION_UN",
+    "SUBREGION"
+  ],
+  "usStates": {
+    "source": "https://raw.githubusercontent.com/vega/vega-datasets/main/data/us-10m.json",
+    "dataset": "US Census state boundaries distributed by Vega Datasets",
+    "featureCount": 53,
+    "sha256": "1f20340f18e02998937e1b086405ca6a16e6529e50af75d397452b695180164d"
+  }
+}
