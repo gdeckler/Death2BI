@@ -1,0 +1,15 @@
+const assert=require('node:assert/strict'),S=require('./report-style'),V=require('./vega-renderer'),C=require('./report-controls');
+const lit=x=>({expr:{Literal:{Value:typeof x==='string'?"'"+x+"'":String(x)}}});
+const col=(t,p)=>({Column:{Expression:{SourceRef:{Entity:t}},Property:p}}),measure={Measure:{Expression:{SourceRef:{Entity:'waits'}},Property:'Count'}};
+const model={theme:{background:'#FFFFFF',dataColors:['#1D4355'],visualStyles:{'*':{'*':{dataPoint:[{fill:{solid:{color:'#1D4355'}}}]}}}}};
+const visual={type:'clusteredColumnChart',definition:{objects:{categoryAxis:[{properties:{axisType:lit('Categorical'),innerPadding:lit(0),preferredCategoryWidth:lit(20)}}]},query:{queryState:{Category:{projections:[{field:col('Bins','Start')}]},Rows:{projections:[{field:col('waits','Site')}]},Y:{projections:[{field:measure}]}}}}};
+const roles=['Category','Rows','Y'],rows=[[0,'B',2],[1,'B',null],[0,'A',3],[1,'A',null],[2,'A',0]];
+const filtered=V.visibleRows(rows,roles,{visual});assert.equal(filtered.length,3);assert.ok(filtered.some(r=>r[2]===0));
+const plan=V.smallMultiplePlan(visual.type,['Bin','Site','Count'],filtered,roles,{visual});assert.deepEqual(plan.groups.map(g=>g.title),['A','B']);
+const spec=V.buildSpec(visual.type,plan.labels,plan.groups[0].rows,plan.roles,{model,visual:plan.visual});assert.equal(spec.encoding.x.type,'ordinal');assert.equal(spec.encoding.x.scale.paddingInner,0);assert.deepEqual(spec.encoding.x.sort,[0,2]);assert.equal(spec.encoding.color.scale.range[0],'#1D4355');
+assert.equal(V.contentWidth(visual.type,['Bin','Count'],Array.from({length:46},(_,i)=>[i,1]),['Category','Y'],1000,{model,visual}),1000);
+const element={style:{},classList:{add(){}}};S.container(element,{theme:{}},{type:'tableEx',definition:{visualContainerObjects:{background:[{properties:{show:lit(true)}}]}}});assert.equal(element.style.background,'#FFFFFFff');
+const slicer={definition:{query:{sortDefinition:{isDefaultSort:true,sort:[{field:{Aggregation:{Expression:col('B','Width'),Function:0}},direction:'Descending'}]}}}};assert.deepEqual(C.orderedValues(slicer,[10,5,2,1]),[1,2,5,10]);slicer.definition.query.sortDefinition.isDefaultSort=false;assert.deepEqual(C.orderedValues(slicer,[10,5,2,1]),[10,5,2,1]);
+const card={type:'cardVisual',definition:{objects:{smallMultiplesLayout:[{properties:{orientation:lit(2)}}]},query:{sortDefinition:{isDefaultSort:true},queryState:{}}}};
+const html=S.cardResultMarkup(model,card,{labels:['Count','Site'],roles:['Data','Rows'],formats:['0','']},{rows:[[2,'Site B'],[3,'Site A']]});assert.match(html,/repeat\(2,minmax/);assert.ok(html.indexOf('Site A')<html.indexOf('Site B'));
+console.log('PASS categorical small multiples, blank category suppression, zero counts, preferred width, raw theme fill, default backgrounds, grouped cards and slicer sorting');

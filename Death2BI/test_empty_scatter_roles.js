@@ -1,0 +1,1 @@
+const R=require('./vega-renderer'),assert=require('assert/strict');const s=R.buildSpec('scatterChart',['Movie','Budget','Rating'],[[1,null,8],[2,null,7]],['Category','X','Y'],{visual:{definition:{}}});assert.equal(s.data.values.length,0);assert.equal(s.encoding.x.type,'quantitative');console.log('PASS all-blank quantitative scatter role retains valid empty axes');

@@ -1,0 +1,15 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),D=require('./custom-dataview.js'),K=require('./native-kpi.js');
+const pkg=JSON.parse(fs.readFileSync(__dirname+'/dist/builtin-kpi.json','utf8'));
+const measure=name=>({field:{Measure:{Property:name,Expression:{SourceRef:{Entity:'Measures'}}}}});
+const trend={field:{Column:{Property:'Month',Expression:{SourceRef:{Entity:'Calendar'}}}}};
+const native={id:'test',type:'kpi',definition:{query:{queryState:{Goal:{projections:[measure('Target')]},Indicator:{projections:[measure('Actual')]},TrendLine:{projections:[trend]}}},objects:{indicator:[{properties:{fontSize:{expr:{Literal:{Value:'60D'}}}}}]}}};
+const adapted=K.adapt(native);assert.notEqual(adapted,native);assert.ok(native.definition.query.queryState.Indicator);assert.deepEqual(Object.keys(adapted.definition.query.queryState),['target','value','trend']);
+const result={columns:['v0','v1','v2'],types:['DOUBLE','DOUBLE','VARCHAR'],rows:[[.8,.9,'March'],[.8,.7,'January'],[.8,.85,'February']]},compiled={labels:['Target','Actual','Month'],formats:['0%','0%','']};
+const view=D.build(pkg,adapted,result,compiled);assert.equal(view.categorical.values.find(v=>v.source.roles.value).values[0],.9);assert.equal(view.metadata.objects.callout.fontSize,60);assert.equal(view.metadata.objects.layout.title,false);
+assert.deepEqual(view.categorical.categories[0].objects.map(o=>o.death2Kpi.sortOrder),[2,0,1]);assert.equal(view.categorical.values.find(v=>v.source.roles.target).source.format,'0%');
+assert.ok(pkg.js.includes('order:a?.objects?.[n]?.death2Kpi?.sortOrder??'));
+const scalar=K.adapt({type:'kpi',definition:{query:{queryState:{Indicator:{projections:[measure('Actual')]}}}}});
+const scalarView=D.build(pkg,scalar,{columns:['v0'],types:['DOUBLE'],rows:[[.75]]},{labels:['Actual'],formats:['0%']});assert.equal(scalarView.categorical.values[0].values[0],.75);
+assert.throws(()=>K.adapt({type:'kpi',definition:{query:{queryState:{}}}}),/indicator/);
+assert.throws(()=>K.adapt({type:'kpi',definition:{query:{queryState:{Indicator:{projections:[measure('A'),measure('B')]}}}}}),/exactly one/);
+console.log('PASS: native KPI role/format adaptation, optional goal/trend, calendar month ordering, preserved source and bundled compatibility hook');

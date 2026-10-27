@@ -1,0 +1,3 @@
+const assert=require('node:assert/strict'),S=require('./report-style');
+const m={theme:{}},v={type:'cardVisual',definition:{query:{queryState:{}}}},compiled={labels:['Count','Value','Region'],roles:['Data','Data','Rows'],formats:['0','0.00','']};
+const html=S.cardResultMarkup(m,v,compiled,{rows:[[5,2.5,'Domestic'],[3,4,'International']]});assert.match(html,/Domestic/);assert.match(html,/International/);assert.equal((html.match(/card-group/g)||[]).length,2);assert.equal((html.match(/data-card-index="1"/g)||[]).length,2);assert.match(html,/2.50/);assert.throws(()=>S.cardResultMarkup(m,{...v,type:'card'},compiled,{rows:[[1,2,'A'],[2,3,'B']]}),/scalar row/);console.log('PASS grouped New Card measure formatting and stable projection indices');

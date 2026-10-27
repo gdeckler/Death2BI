@@ -1,0 +1,5 @@
+const assert=require('node:assert/strict'),E=require('./report-engine'),S=require('./report-style');
+const column={Column:{Expression:{SourceRef:{Entity:'T'}},Property:'Text'}},field={Aggregation:{Expression:column,Function:3}};
+const run={value:{propertyIdentifier:{objectName:'values',propertyName:'expr'},selector:{id:'Value'}},textStyle:{fontFamily:'Times New Roman'}};
+const v={type:'textbox',definition:{objects:{general:[{properties:{paragraphs:[{textRuns:[run]}]}}],values:[{selector:{id:'Value'},properties:{expr:{expr:field}}}]}}};
+const p=E.textboxVisual(v);assert.equal(p.definition.query.queryState.Values.projections[0].field.Aggregation.Function,3);const r=E.applyTextboxValues(v,p,{rows:[['Fear description']]});assert.match(S.textboxMarkup({theme:{}},r),/Fear description/);assert.equal(r.definition.objects.general[0].properties.paragraphs[0].textRuns[0].textStyle.fontFamily,'Times New Roman');assert.equal(typeof run.value,'object');console.log('PASS dynamic text binding, source immutability and font preservation');

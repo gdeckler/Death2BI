@@ -1,0 +1,3 @@
+const R=require('./vega-renderer'),assert=require('assert');
+let s=R.buildSpec('donutChart',['Web','Store','Catalog'],[[10,20,30]],['Y','Y','Y']);assert.deepEqual(s.data.values.map(d=>d._category),['Web','Store','Catalog']);assert.deepEqual(s.layer[0].encoding.color.sort,['Web','Store','Catalog']);
+s=R.buildSpec('pieChart',['Category','A','B'],[['X',1,2],['Y',3,4]],['Category','Y','Y']);assert.equal(new Set(s.data.values.map(d=>d._category)).size,4);assert.deepEqual(s.data.values.map(d=>d._categoryValue),['X','X','Y','Y']);console.log('Multiple-measure pie/donut slices and category selection identities passed');

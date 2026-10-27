@@ -1,0 +1,2 @@
+const assert=require('node:assert/strict'),R=require('./vega-renderer');
+for(const [roles,kinds] of [[['Category','Series','Y'],['bar']],[['Category','Series','Y2'],['line']],[['Category','Y','Y2'],['bar','line']]]){const s=R.buildSpec('lineStackedColumnComboChart',['A','B','C'],[['one',2,3]],roles,{});assert.deepEqual(s.layer.map(l=>l.mark.type),kinds)}console.log('PASS single-sided and complete combination charts');

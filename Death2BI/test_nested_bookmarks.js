@@ -1,0 +1,4 @@
+const S=require('./report-style'),assert=require('assert');
+const p={visuals:[{id:'outer',ownHidden:false},{id:'inner',groupChain:['outer'],ownHidden:false},{id:'slicer',groupChain:['outer','inner'],ownHidden:false},{id:'background',groupChain:['outer','inner'],ownHidden:false}]};
+S.applyBookmarkDisplay(p,{visualContainerGroups:{outer:{children:{inner:{isHidden:true}}}}},['inner']);assert(p.visuals[2].hidden);assert(p.visuals[3].hidden);
+S.applyBookmarkDisplay(p,{visualContainerGroups:{outer:{children:{inner:{isHidden:false}}}},visualContainers:{slicer:{singleVisual:{objects:{}}}}},['inner']);assert(!p.visuals[2].hidden);assert(!p.visuals[3].hidden);p.visuals[2].ownHidden=true;S.applyBookmarkDisplay(p,{visualContainers:{slicer:{singleVisual:{objects:{}}}}});assert(!p.visuals[2].hidden);console.log('Nested bookmark groups, scoped descendants and default-visible saved visuals passed');

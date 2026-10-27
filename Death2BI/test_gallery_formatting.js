@@ -1,0 +1,40 @@
+const assert=require('node:assert/strict');
+const Renderer=require('./vega-renderer.js');
+const lit=value=>({expr:{Literal:{Value:String(value)}}});
+const visual={type:'areaChart',definition:{objects:{categoryAxis:[{properties:{show:lit(false)}}],valueAxis:[{properties:{show:lit(false)}}]}}};
+const model={theme:{}};
+const spec=Renderer.buildSpec('areaChart',['Date','Value'],[['2023-01-01',5],['2023-01-02',8]],['Category','Y'],{model,visual,width:300,height:160});
+assert.equal(spec.encoding.x.axis,null);
+assert.equal(spec.encoding.y.axis,null);
+assert.equal(spec.mark.fillOpacity,.4);
+assert.equal(spec.mark.line,true);
+console.log('Gallery sparkline formatting checks passed');
+const Style=require('./report-style.js');
+const theme={background:'#ffffff',foreground:'#333333',visualStyles:{tableEx:{'*':{stylePreset:[{name:'None'}]},None:{values:[{backColorPrimary:{solid:{color:'#FFFFFF00'}}}],columnHeaders:[{fontColor:{solid:{color:'foreground'}}}]},Minimal:{values:[{backColorPrimary:{solid:{color:'#eeeeee'}}}]}}}};
+assert.equal(Style.color({solid:{color:'foreground'}},theme),'#333333');
+assert.equal(Style.color({solid:{color:'background'}},theme),'#ffffff');
+assert.equal(Style.color('bad-token',theme),undefined);
+let objects=Style.objects({theme},{type:'tableEx',definition:{}});
+assert.equal(Style.color(Style.props(objects,'values').backColorPrimary,theme),'#FFFFFF00');
+objects=Style.objects({theme},{type:'tableEx',definition:{visualContainerObjects:{stylePreset:[{properties:{name:lit("'Minimal'")}}]}}});
+assert.equal(Style.color(Style.props(objects,'values').backColorPrimary,theme),'#eeeeee');
+const line={type:'lineChart',definition:{
+ objects:{categoryAxis:[{properties:{axisType:lit("'Categorical'")}}],valueAxis:[{properties:{invertAxis:lit(true)}}],lineStyles:[{properties:{interpolationSmooth:lit("'monotoneX'")}}]},
+ query:{sortDefinition:{isDefaultSort:true},queryState:{Category:{projections:[{field:{Column:{Property:'Race'}}}]}}}
+}};
+const ranking=Renderer.buildSpec('lineChart',['Race','Position'],[[3,1],[1,3],[2,2]],['Category','Y'],{model:{theme:{}},visual:line});
+assert.deepEqual(ranking.encoding.x.sort,[1,2,3]);
+assert.equal(ranking.encoding.y.scale.reverse,true);
+assert.equal(ranking.mark.interpolate,'monotone');
+console.log('Theme tokens, table presets, rank inversion and curve formatting checks passed');
+const Engine=require('./report-engine.js');
+const measure={Measure:{Expression:{SourceRef:{Entity:'Temp'}},Property:'Anomaly'}};
+const gradient={FillRule:{Input:measure,FillRule:{linearGradient3:{min:{color:lit("'#0000ff'")},mid:{value:lit(0),color:lit("'#ffffff'")},max:{color:lit("'#ff0000'")}}}}};
+const stripe={type:'clusteredColumnChart',definition:{objects:{dataPoint:[{properties:{fill:{solid:{color:{expr:gradient}}}},selector:{data:[{dataViewWildcard:{matchingOption:1}}]}}]},query:{queryState:{Category:{projections:[{field:{Column:{Expression:{SourceRef:{Entity:'Temp'}},Property:'Year'}}}]},Y:{projections:[{field:{Measure:{Expression:{SourceRef:{Entity:'Temp'}},Property:'Height'}}}]}}}}};
+const augmented=Engine.formattingVisual(stripe);
+assert.equal(augmented.definition.query.queryState.Formatting.projections[0].field.Measure.Property,'Anomaly');
+assert.equal(stripe.definition.query.queryState.Formatting,undefined);
+const colored=Renderer.buildSpec('clusteredColumnChart',['Year','Height','Anomaly'],[[2000,1,-1],[2001,1,0],[2002,1,1]],['Category','Y','Formatting'],{model:{theme:{}},visual:stripe});
+assert.equal(colored.data.values.length,3);
+assert.deepEqual(colored.data.values.map(d=>d._pbiColor),['#0000ff','#ffffff','#ff0000']);
+console.log('Hidden formatting measures and three-stop gradient checks passed');
